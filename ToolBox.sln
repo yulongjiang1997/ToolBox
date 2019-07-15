@@ -3,33 +3,33 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.572
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToolBox", "ToolBox\ToolBox.csproj", "{78A751EB-7739-4BB4-9F07-613BDA41A89A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToolBox.DateTime", "ToolBox.DateTime\ToolBox.DateTime.csproj", "{A25954E2-BC9C-411E-A911-96ABA6CB6F47}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToolBox.DateTime", "ToolBox.DateTime\ToolBox.DateTime.csproj", "{A25954E2-BC9C-411E-A911-96ABA6CB6F47}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToolBox.Cmd", "ToolBox.Cmd\ToolBox.Cmd.csproj", "{621AF054-7FEB-4B7C-B617-D04113BE53F6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToolBox.Cmd", "ToolBox.Cmd\ToolBox.Cmd.csproj", "{621AF054-7FEB-4B7C-B617-D04113BE53F6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToolBox.Common", "ToolBox.Common\ToolBox.Common.csproj", "{2F2CBF1C-084B-44D5-A94E-E1CDA37DAF29}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToolBox.Common", "ToolBox.Common\ToolBox.Common.csproj", "{2F2CBF1C-084B-44D5-A94E-E1CDA37DAF29}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToolBox.Files", "ToolBox.Files\ToolBox.Files.csproj", "{E337219D-C541-4D44-8C18-4076120355C6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToolBox.Files", "ToolBox.Files\ToolBox.Files.csproj", "{E337219D-C541-4D44-8C18-4076120355C6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToolBox.Ftp", "ToolBox.Ftp\ToolBox.Ftp.csproj", "{B15B0DA7-2A94-49F2-AFD2-EE01F3DC114D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToolBox.Ftp", "ToolBox.Ftp\ToolBox.Ftp.csproj", "{B15B0DA7-2A94-49F2-AFD2-EE01F3DC114D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToolBox.Http", "ToolBox.Http\ToolBox.Http.csproj", "{2DBA542C-4F60-404C-8644-40DCCA633250}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToolBox.Http", "ToolBox.Http\ToolBox.Http.csproj", "{2DBA542C-4F60-404C-8644-40DCCA633250}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToolBox.Json", "ToolBox.Json\ToolBox.Json.csproj", "{B94A3D4B-F8B9-4018-AFEA-41FDB62888FA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToolBox.Json", "ToolBox.Json\ToolBox.Json.csproj", "{B94A3D4B-F8B9-4018-AFEA-41FDB62888FA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToolBox.Object", "ToolBox.Object\ToolBox.Object.csproj", "{F90AE6A1-3CE8-4761-9854-2AD8642CFC0C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToolBox.Object", "ToolBox.Object\ToolBox.Object.csproj", "{F90AE6A1-3CE8-4761-9854-2AD8642CFC0C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToolBox.Process", "ToolBox.Process\ToolBox.Process.csproj", "{2C2DFBD3-8D03-4110-8748-721533077EC7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToolBox.Process", "ToolBox.Process\ToolBox.Process.csproj", "{2C2DFBD3-8D03-4110-8748-721533077EC7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToolBox.Reflection", "ToolBox.Reflection\ToolBox.Reflection.csproj", "{331E760C-6309-4608-8874-C5946EC94578}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToolBox.Reflection", "ToolBox.Reflection\ToolBox.Reflection.csproj", "{331E760C-6309-4608-8874-C5946EC94578}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToolBox.Security", "ToolBox.Security\ToolBox.Security.csproj", "{417D3F4F-01C4-4467-A6A6-7DDF687166A6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToolBox.Security", "ToolBox.Security\ToolBox.Security.csproj", "{417D3F4F-01C4-4467-A6A6-7DDF687166A6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToolBox.Socket", "ToolBox.Socket\ToolBox.Socket.csproj", "{C2FF3905-8BB9-429B-9733-24D464B57024}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToolBox.Socket", "ToolBox.Socket\ToolBox.Socket.csproj", "{C2FF3905-8BB9-429B-9733-24D464B57024}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToolBox.String", "ToolBox.String\ToolBox.String.csproj", "{5DD9799F-118D-41BE-A968-DF021424E16A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToolBox.String", "ToolBox.String\ToolBox.String.csproj", "{5DD9799F-118D-41BE-A968-DF021424E16A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToolBox.Test", "ToolBox.Test\ToolBox.Test.csproj", "{964C0B7C-B347-4036-B0A9-9FD6AD1D0050}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,10 +37,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{78A751EB-7739-4BB4-9F07-613BDA41A89A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{78A751EB-7739-4BB4-9F07-613BDA41A89A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{78A751EB-7739-4BB4-9F07-613BDA41A89A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{78A751EB-7739-4BB4-9F07-613BDA41A89A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A25954E2-BC9C-411E-A911-96ABA6CB6F47}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A25954E2-BC9C-411E-A911-96ABA6CB6F47}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A25954E2-BC9C-411E-A911-96ABA6CB6F47}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -93,6 +89,10 @@ Global
 		{5DD9799F-118D-41BE-A968-DF021424E16A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5DD9799F-118D-41BE-A968-DF021424E16A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5DD9799F-118D-41BE-A968-DF021424E16A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{964C0B7C-B347-4036-B0A9-9FD6AD1D0050}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{964C0B7C-B347-4036-B0A9-9FD6AD1D0050}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{964C0B7C-B347-4036-B0A9-9FD6AD1D0050}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{964C0B7C-B347-4036-B0A9-9FD6AD1D0050}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

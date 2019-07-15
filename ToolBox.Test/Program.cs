@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ToolBox
+namespace ToolBox.Test
 {
     class Program
     {
