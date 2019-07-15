@@ -1,0 +1,551 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ToolBox.String</name>
+    </assembly>
+    <members>
+        <member name="T:ToolBox.String.PinyinHelper">
+            <summary>
+            汉字转换拼音
+            </summary>
+        </member>
+        <member name="M:ToolBox.String.PinyinHelper.PinyinString(System.String)">
+            <summary>
+            获取汉字字符串的拼音首字母，含多音字
+            </summary>
+            <param name="HanZiStr"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ToolBox.String.PinyinHelper.GetPinyin(System.Char)">
+            <summary>
+            获取单个汉字对应的拼音首字符字符串
+            </summary>
+            <param name="HanZi"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ToolBox.String.PinyinHelper.Pinyin(System.String)">
+            <summary>
+            定义拼音区编码数组
+            </summary>
+            <param name="Chstr"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ToolBox.String.RMBHelper">
+            <summary>
+            转换人民币大小金额
+            </summary>
+        </member>
+        <member name="M:ToolBox.String.RMBHelper.CmycurD(System.Decimal)">
+            <summary> 
+            转换人民币大小金额 
+            </summary> 
+            <param name="num">金额</param> 
+            <returns>返回大写形式</returns> 
+        </member>
+        <member name="M:ToolBox.String.RMBHelper.CmycurD(System.String)">
+            <summary> 
+            一个重载，将字符串先转换成数字在调用CmycurD(decimal num) 
+            </summary> 
+            <param name="num">用户输入的金额，字符串形式未转成decimal</param> 
+            <returns></returns> 
+        </member>
+        <member name="T:ToolBox.String.SqlFilterHelper">
+            <summary>
+            防注入过滤函数
+            </summary>
+        </member>
+        <member name="M:ToolBox.String.SqlFilterHelper.Filter(System.String)">
+            <summary>
+             防注入过滤函数
+            </summary>
+            <param name="inputString">需要过滤字符串</param>
+            <returns>过滤后的字符串</returns>
+        </member>
+        <member name="M:ToolBox.String.SqlFilterHelper.SqlFilters(System.String)">
+            <summary>
+             过滤字符串中注入SQL脚本的方法
+            </summary>
+            <param name="source">传入的字符串</param>
+            <returns>过滤后的字符串</returns>
+        </member>
+        <member name="T:ToolBox.String.StringUtil">
+            <summary>
+            字符串工具类。
+            </summary>
+        </member>
+        <member name="M:ToolBox.String.StringUtil.ToColor(System.String)">
+            <summary>
+            将字符串转换为Color
+            </summary>
+            <param name="color">字符串颜色，如：#ccc</param>
+            <returns>返回Color对象</returns>
+        </member>
+        <member name="M:ToolBox.String.StringUtil.FormatBytesStr(System.Int32)">
+            <summary>
+            格式化字节数字符串（用于显示文件大小）
+            </summary>
+            <param name="bytes">字节</param>
+            <returns>返回string</returns>
+        </member>
+        <member name="M:ToolBox.String.StringUtil.ToTitleCase(System.String)">
+            <summary>
+            首字母大写
+            </summary>
+            <param name="str">源字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:ToolBox.String.StringUtil.GetStringLength(System.String)">
+            <summary>
+            返回字符串真实长度, 1个汉字长度为2
+            </summary>
+            <returns>返回int</returns>
+        </member>
+        <member name="M:ToolBox.String.StringUtil.GetInArrayID(System.String,System.String[],System.Boolean)">
+            <summary>
+            判断指定字符串在指定字符串数组中的位置
+            </summary>
+            <param name="strSearch">字符串</param>
+            <param name="stringArray">字符串数组</param>
+            <param name="caseInsensetive">是否不区分大小写, true为不区分, false为区分</param>
+            <returns>字符串在指定字符串数组中的位置, 如不存在则返回-1</returns>
+        </member>
+        <member name="M:ToolBox.String.StringUtil.RTrim(System.String)">
+            <summary>
+            删除字符串尾部的回车/换行/空格
+            </summary>
+            <param name="str"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ToolBox.String.StringUtil.ClearBR(System.String)">
+            <summary>
+            清除给定字符串中的回车及换行符
+            </summary>
+            <param name="str">要清除的字符串</param>
+            <returns>清除后返回的字符串</returns>
+        </member>
+        <member name="M:ToolBox.String.StringUtil.GetSubString(System.String,System.Int32,System.String)">
+            <summary>
+            字符串如果操过指定长度则将超出的部分用指定字符串代替
+            </summary>
+            <param name="p_SrcString">要检查的字符串</param>
+            <param name="p_Length">指定长度</param>
+            <param name="p_TailString">用于替换的字符串</param>
+            <returns>截取后的字符串</returns>
+        </member>
+        <member name="M:ToolBox.String.StringUtil.GetSubString(System.String,System.Int32,System.Int32,System.String)">
+            <summary>
+            取指定长度的字符串
+            </summary>
+            <param name="p_SrcString">要检查的字符串</param>
+            <param name="p_StartIndex">起始位置</param>
+            <param name="p_Length">指定长度</param>
+            <param name="p_TailString">用于替换的字符串</param>
+            <returns>截取后的字符串</returns>
+        </member>
+        <member name="M:ToolBox.String.StringUtil.ReplaceString(System.String,System.String,System.String,System.Boolean)">
+            <summary>
+            自定义的替换字符串函数
+            </summary>
+            <param name="SourceString">源字符串</param>
+            <param name="SearchString">待替换字符串</param>
+            <param name="ReplaceString">目标替换字符串</param>
+            <param name="IsCaseInsensetive">是否不区分大小写，true=指定不区分大小写的匹配</param>
+            <returns>返回string</returns>
+        </member>
+        <member name="M:ToolBox.String.StringUtil.SplitString(System.String,System.String)">
+            <summary>
+            分割字符串
+            </summary>
+        </member>
+        <member name="M:ToolBox.String.StringUtil.SplitString(System.String,System.String,System.Int32)">
+            <summary>
+            分割字符串
+            </summary>
+            <param name="strContent">待分割字符串</param>
+            <param name="strSplit">分隔符</param>
+            <param name="p_3">指定分割数组大小</param>
+            <returns>string[]</returns>
+        </member>
+        <member name="M:ToolBox.String.StringUtil.GetStrArray(System.String,System.Char,System.Boolean)">
+            <summary>
+            把字符串按照分隔符转换成 List
+            </summary>
+            <param name="str">源字符串</param>
+            <param name="speater">分隔符</param>
+            <param name="toLower">是否转换为小写</param>
+            <returns></returns>
+        </member>
+        <!-- 对于成员“M:ToolBox.String.StringUtil.GetArrayStr(System.Collections.Generic.List{System.String},System.String)”忽略有格式错误的 XML 注释 -->
+        <member name="M:ToolBox.String.StringUtil.GetArrayStr(System.Collections.Generic.List{System.Int32})">
+            <summary>
+            得到数组列表以逗号分隔的字符串
+            </summary>
+            <param name="list"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ToolBox.String.StringUtil.GetArrayValueStr(System.Collections.Generic.Dictionary{System.Int32,System.Int32})">
+            <summary>
+            得到数组列表以逗号分隔的字符串
+            </summary>
+            <param name="list"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ToolBox.String.StringUtil.DelLastComma(System.String)">
+            <summary>
+            删除最后结尾的一个逗号
+            </summary>
+        </member>
+        <member name="M:ToolBox.String.StringUtil.DelLastChar(System.String,System.String)">
+            <summary>
+            删除最后结尾的指定字符后的字符
+            </summary>
+        </member>
+        <member name="M:ToolBox.String.StringUtil.DelLastLength(System.String,System.Int32)">
+            <summary>
+            删除最后结尾的长度
+            </summary>
+            <param name="str"></param>
+            <param name="Length"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ToolBox.String.StringUtil.ToSBC(System.String)">
+            <summary>
+            转全角的函数(SBC case)
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ToolBox.String.StringUtil.ToDBC(System.String)">
+            <summary>
+             转半角的函数(SBC case)
+            </summary>
+            <param name="input">输入</param>
+            <returns></returns>
+        </member>
+        <member name="M:ToolBox.String.StringUtil.GetKeyPad(System.String)">
+            <summary>
+            获取英文字母对应的小键盘码（数字）
+            </summary>
+            <param name="spStr">英文字母串</param>
+            <returns></returns>
+        </member>
+        <member name="M:ToolBox.String.StringUtil.GetCleanStyle(System.String,System.String)">
+            <summary>
+             将字符串样式转换为纯字符串
+            </summary>
+            <param name="StrList"></param>
+            <param name="SplitString"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ToolBox.String.StringUtil.Between(System.String,System.String,System.String,System.Boolean)">
+            <summary>
+            取中间文本
+            </summary>
+            <param name="str"></param>
+            <param name="leftStr"></param>
+            <param name="rightStr"></param>
+            <param name="ignoreCase">忽略大小写 则为true 默认区分大小写</param>
+            <returns></returns>
+        </member>
+        <member name="M:ToolBox.String.StringUtil.GetLeft(System.String,System.String,System.Boolean)">
+            <summary>
+            取左边文本
+            </summary>
+            <param name="str"></param>
+            <param name="left"></param>
+            <param name="ignoreCase">忽略大小写 则为true 默认区分大小写</param>
+            <returns></returns>
+        </member>
+        <member name="M:ToolBox.String.StringUtil.GetRight(System.String,System.String,System.Boolean)">
+            <summary>
+            取文本右边
+            </summary>
+            <param name="str"></param>
+            <param name="right"></param>
+            <param name="ignoreCase">忽略大小写 则为true 默认区分大小写</param>
+            <returns></returns>
+        </member>
+        <member name="M:ToolBox.String.StringUtil.RegMatch(System.String,System.String,System.String)">
+            <summary>
+            匹配文本 
+            </summary>
+            <param name="regStr">正则</param>
+            <param name="text">源方本</param>
+            <param name="lable">返回的标签</param>
+            <returns></returns>
+        </member>
+        <member name="M:ToolBox.String.StringUtil.HtmlToTxt(System.String)">
+            <summary>
+            HTML转行成TEXT
+            </summary>
+            <param name="strHtml"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ToolBox.String.StringUtil.GetRandNumber(System.Int32,System.Int32)">
+            <summary>
+            返回两个数字之间的随机数
+            </summary>
+            <param name="min">最小数</param>
+            <param name="max">最大数</param>
+        </member>
+        <member name="M:ToolBox.String.StringUtil.GetRandJs">
+            <summary>
+            返回0.8991527960220353 16-18位随机小数
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ToolBox.String.StringUtil.GetRandstr(System.Int32,System.Int32)">
+             <summary>
+             随机生成英文字母 首字母不是数字
+             </summary>
+            <param name="count">长度</param>
+            <param name="char_type">0=小写 1=大写 2=大小写混合</param>
+             <returns></returns>
+        </member>
+        <member name="M:ToolBox.String.StringUtil.GetChineseName">
+            <summary>
+            生成随机中文名字
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ToolBox.String.StringUtil.GenerateSurname">
+            <summary>
+            随机生成英文名字
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ToolBox.String.StringUtil.GetRandomGuid">
+            <summary>
+            Guid 获取随机数种子
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ToolBox.String.StringValidate.GetStringLength(System.String)">
+            <summary>
+            返回字符串真实长度, 1个汉字长度为2
+            </summary>
+            <returns>字符长度</returns>
+        </member>
+        <member name="M:ToolBox.String.StringValidate.IsValidUserName(System.String)">
+            <summary>
+            检测用户名格式是否有效
+            </summary>
+            <param name="userName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ToolBox.String.StringValidate.IsValidPassword(System.String)">
+            <summary>
+            密码有效性
+            </summary>
+            <param name="password"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ToolBox.String.StringValidate.IsValidInt(System.String)">
+            <summary>
+            int有效性
+            </summary>
+            <param name="val"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ToolBox.String.StringValidate.IsNumber(System.String)">
+            <summary>
+            是否数字字符串
+            </summary>
+            <param name="inputData">输入字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:ToolBox.String.StringValidate.IsNumberSign(System.String)">
+            <summary>
+            是否数字字符串 可带正负号
+            </summary>
+            <param name="inputData">输入字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:ToolBox.String.StringValidate.IsDecimal(System.String)">
+            <summary>
+            是否是浮点数
+            </summary>
+            <param name="inputData">输入字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:ToolBox.String.StringValidate.IsDecimalSign(System.String)">
+            <summary>
+            是否是浮点数 可带正负号
+            </summary>
+            <param name="inputData">输入字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:ToolBox.String.StringValidate.IsHasCHZN(System.String)">
+            <summary>
+            检测是否有中文字符
+            </summary>
+            <param name="inputData"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ToolBox.String.StringValidate.GetCHZNLength(System.String)">
+            <summary> 
+            检测含有中文字符串的实际长度 
+            </summary> 
+            <param name="str">字符串</param> 
+        </member>
+        <member name="M:ToolBox.String.StringValidate.IsIdCard(System.String)">
+            <summary>
+            验证身份证是否合法  15 和  18位两种
+            </summary>
+            <param name="idCard">要验证的身份证</param>
+        </member>
+        <member name="M:ToolBox.String.StringValidate.IsEmail(System.String)">
+            <summary>
+            是否是邮件地址
+            </summary>
+            <param name="inputData">输入字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:ToolBox.String.StringValidate.IsValidZip(System.String)">
+            <summary>
+            邮编有效性
+            </summary>
+            <param name="zip"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ToolBox.String.StringValidate.IsValidPhone(System.String)">
+            <summary>
+            固定电话有效性
+            </summary>
+            <param name="phone"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ToolBox.String.StringValidate.IsValidMobile(System.String)">
+            <summary>
+            手机有效性
+            </summary>
+            <param name="strMobile"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ToolBox.String.StringValidate.IsValidPhoneAndMobile(System.String)">
+            <summary>
+            电话有效性（固话和手机 ）
+            </summary>
+            <param name="strVla"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ToolBox.String.StringValidate.IsValidURL(System.String)">
+            <summary>
+            Url有效性
+            </summary>
+            <param name="url"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ToolBox.String.StringValidate.IsValidIP(System.String)">
+            <summary>
+            IP有效性
+            </summary>
+            <param name="ip"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ToolBox.String.StringValidate.IsValidDomain(System.String)">
+            <summary>
+            domain 有效性
+            </summary>
+            <param name="host">域名</param>
+            <returns></returns>
+        </member>
+        <member name="M:ToolBox.String.StringValidate.IsBase64String(System.String)">
+            <summary>
+            判断是否为base64字符串
+            </summary>
+            <param name="str"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ToolBox.String.StringValidate.IsGuid(System.String)">
+            <summary>
+            验证字符串是否是GUID
+            </summary>
+            <param name="guid">字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:ToolBox.String.StringValidate.IsDate(System.String)">
+            <summary>
+            判断输入的字符是否为日期
+            </summary>
+            <param name="strValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ToolBox.String.StringValidate.IsDateHourMinute(System.String)">
+            <summary>
+            判断输入的字符是否为日期,如2004-07-12 14:25|||1900-01-01 00:00|||9999-12-31 23:59
+            </summary>
+            <param name="strValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ToolBox.String.StringValidate.CheckMathLength(System.String,System.Int32)">
+            <summary>
+            检查字符串最大长度，返回指定长度的串
+            </summary>
+            <param name="sqlInput">输入字符串</param>
+            <param name="maxLength">最大长度</param>
+            <returns></returns>			
+        </member>
+        <member name="M:ToolBox.String.StringValidate.Encode(System.String)">
+            <summary>
+            转换成 HTML code
+            </summary>
+            <param name="str">string</param>
+            <returns>string</returns>
+        </member>
+        <member name="M:ToolBox.String.StringValidate.Decode(System.String)">
+             <summary>
+            解析html成 普通文本
+             </summary>
+             <param name="str">string</param>
+             <returns>string</returns>
+        </member>
+        <member name="M:ToolBox.String.StringValidate.IsUpper(System.String)">
+            <summary>
+            判断文本是否是大写 成功返回true
+            </summary>
+            <param name="str"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ToolBox.String.StringValidate.IsLower(System.String)">
+            <summary>
+            判断文本是否为小写 成功返回true
+            </summary>
+            <param name="str"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ToolBox.String.StringValidate.IsInt(System.String)">
+            <summary>
+            判断文本是为数字
+            </summary>
+            <param name="str"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ToolBox.String.StringValidate.HasEnChar(System.String)">
+            <summary>
+            是否包含英文
+            </summary>
+            <param name="str"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ToolBox.String.StringValidate.HasIntChar(System.String)">
+            <summary>
+            是否包含数字
+            </summary>
+            <param name="str"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ToolBox.String.StringValidate.IsJson(System.String)">
+            <summary>
+            是否为json内容判断的是{} 简单的判断
+            </summary>
+            <param name="input">判断的内容</param>
+            <returns>true是json false非json</returns>
+        </member>
+        <member name="M:ToolBox.String.StringValidate.IsNull(System.String)">
+            <summary>
+            判断文本是否为null 空 或仅由空白组成,自动删除\r\n\t
+            </summary>
+        </member>
+    </members>
+</doc>

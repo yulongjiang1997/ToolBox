@@ -19,7 +19,7 @@ namespace ToolBox.Socket
         /// <param name="thread"></param>
         /// <param name="socket"></param>
         /// <param name="id"></param>
-        public ClientMode(string ip, Thread thread, Socket socket, string id)
+        public ClientMode(string ip, Thread thread, System.Net.Sockets.Socket socket, string id)
         {
 
             this.ip = ip;
@@ -31,11 +31,11 @@ namespace ToolBox.Socket
         }
 
 
-        public string ip;                                         //客户端ip
-        public string id;                                         //客户端id
-        public Thread thr;                                        //客户端线程
-        public Socket socket;                                     //客户端套接字
-        public long lastTickTime = long.MinValue;                 //时间标签
+        public string ip { get; set; }                                         //客户端ip
+        public string id { get; set; }                                         //客户端id
+        public Thread thr { get; set; }                                           //客户端线程
+        public System.Net.Sockets.Socket socket { get; set; }                                   //客户端套接字
+        public long lastTickTime { get; set; } = long.MinValue;                 //时间标签
 
 
 

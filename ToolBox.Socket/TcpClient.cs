@@ -14,7 +14,7 @@ namespace ToolBox.Socket
         /// <summary>
         /// 客户端套接字
         /// </summary>
-        public Socket mySocket;
+        public System.Net.Sockets.Socket  mySocket;
 
         /// <summary>
         /// 接收线程
@@ -36,7 +36,7 @@ namespace ToolBox.Socket
 
             try
             {
-                mySocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+                mySocket = new System.Net.Sockets.Socket (AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
                 IPAddress address = IPAddress.Parse(ip);
                 IPEndPoint endPoint = new IPEndPoint(address, port);
 
@@ -49,7 +49,7 @@ namespace ToolBox.Socket
                         mySocket.EndConnect(asyncResult);                        //结束异步连接
                         localEndPointIp = mySocket.LocalEndPoint.ToString();     //得到ip地址
 
-                        HandleConnectSuccess?.BeginInvoke(this, null, null);   //连接成功的回调
+                        OnSuccess?.BeginInvoke(this, null, null);   //连接成功的回调
 
                         recThread = new Thread(RecMsg);
                         recThread.IsBackground = true;
@@ -61,15 +61,17 @@ namespace ToolBox.Socket
                         timer.Elapsed += new ElapsedEventHandler(HandleMainTimer);
                         timer.Start();
 
+                        
+
 
 
                     }
                     catch (Exception ex)
                     {
 
-                        Console.WriteLine("开始异步连接失败：" + ex.ToString());
+                      
 
-                        HandleException?.BeginInvoke(ex, null, null);      //报错的回调
+                        OnError?.BeginInvoke(ex, null, null);      //报错的回调
                     }
 
                 }, null);
@@ -78,8 +80,8 @@ namespace ToolBox.Socket
             catch (Exception ex)
             {
 
-                Console.WriteLine("开始连接失败：" + ex.ToString());
-                HandleException?.BeginInvoke(ex, null, null);    //报错的回调
+               
+                OnError?.BeginInvoke(ex, null, null);    //报错的回调
             }
 
 
@@ -108,7 +110,7 @@ namespace ToolBox.Socket
             int headSize = 4;
             byte[] surplusBuffer = null;
 
-            Socket mySocket = socket as Socket;
+            System.Net.Sockets.Socket  mySocket = socket as System.Net.Sockets.Socket ;
 
             while (true)
             {
@@ -177,7 +179,7 @@ namespace ToolBox.Socket
                             String strc = Encoding.UTF8.GetString(surplusBuffer, haveRead + headSize, bodySize);
 
                             // Console.WriteLine("------------结果：" + strc);
-                            HandleRecMsg?.BeginInvoke(strc, this, null, null);
+                            OnRecMessage?.BeginInvoke(strc, this, null, null);
 
                             haveRead = haveRead + headSize + bodySize;
 
@@ -243,16 +245,22 @@ namespace ToolBox.Socket
 
 
 
+        /// <summary>
+        /// 连接成功
+        /// </summary>
+        public Action<TcpClient> OnSuccess { get; set; }    //连接成功
 
-        public Action<TcpClient> HandleConnectSuccess { get; set; }    //连接成功
 
-        public Action<String, TcpClient> HandleRecMsg { get; set; }     //接收消息
+        /// <summary>
+        /// 接收消息
+        /// </summary>
+        public Action<string, TcpClient> OnRecMessage { get; set; }     //接收消息
 
-        public Action<String, TcpClient> HandleSnedMsg { get; set; }
-
-        public Action<TcpClient> HandleClientClose { get; set; }
-
-        public Action<Exception> HandleException { get; set; }
+       
+        /// <summary>
+        /// 错误处理
+        /// </summary>
+        public Action<Exception> OnError { get; set; }
  
 
 

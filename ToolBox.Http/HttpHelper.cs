@@ -46,7 +46,7 @@ namespace ToolBox.Http
         /// <param name="httpMethod">请求方法</param>
         /// <param name="cookie">cookie</param>
         /// <returns></returns>
-        public async static Task<HttpResult> RequestAsync(string url, HttpMethod httpMethod,string Postdata=null, string cookie=null)
+        public async static Task<HttpResult> HttpAsyncRequest(string url, HttpMethod httpMethod,string Postdata=null, string cookie=null)
         {
 
             HttpItem item = new HttpItem();
@@ -67,7 +67,7 @@ namespace ToolBox.Http
         /// </summary>
         /// <param name="item"></param>
         /// <returns></returns>
-        public async static Task<HttpResult> RequestAsync(HttpItem item) {
+        public async static Task<HttpResult> HttpAsyncRequest(HttpItem item) {
 
            
 

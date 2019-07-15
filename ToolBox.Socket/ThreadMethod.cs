@@ -20,7 +20,7 @@ namespace ToolBox.Socket
         /// <param name="ip"></param>
         /// <param name="socket"></param>
         /// <param name="thread"></param>
-        private void AddSocketClient(string ip, Socket socket, Thread thread)
+        private void AddSocketClient(string ip, System.Net.Sockets.Socket socket, Thread thread)
         {
             lockSlim.EnterWriteLock();
             try
@@ -62,7 +62,7 @@ namespace ToolBox.Socket
             catch (Exception ex)
             {
 
-                HandelExceptionLog?.BeginInvoke("添加客户端时的错误：" + ex, null, null);
+                OnError?.BeginInvoke("添加客户端时的错误：" + ex, null, null);
                
             }
             finally
@@ -88,16 +88,17 @@ namespace ToolBox.Socket
                     string id = dictsocket[ip].id;
                     dictsocket.Remove(ip);
 
-                    Console.WriteLine("移除了{0}号用户，ip地址为{1}", id, ip);
+               
+                    OnClientClose?.BeginInvoke($"移除了{id}号用户，ip地址为{ip}", null, null);
 
-                    
+
                 }
 
             }
             catch (Exception ex)
             {
 
-                HandelExceptionLog?.BeginInvoke("移除一个客户端时发生的错误：" + ex, null, null);
+                OnError?.BeginInvoke("移除一个客户端时发生的错误：" + ex, null, null);
             }
             finally
             {
@@ -123,7 +124,7 @@ namespace ToolBox.Socket
             }
             catch (Exception ex)
             {
-                HandelExceptionLog?.BeginInvoke("得到当前总人数时出错" + ex, null, null);
+                OnError?.BeginInvoke("得到当前总人数时出错" + ex, null, null);
                 return -1;
             }
             finally
@@ -155,8 +156,8 @@ namespace ToolBox.Socket
             }
             catch (Exception ex)
             {
-                
-                HandelExceptionLog?.BeginInvoke("得到当前客户端信息时出错：" + ex, null, null);
+
+                OnError?.BeginInvoke("得到当前客户端信息时出错：" + ex, null, null);
 
                 list.Add("空");
                 return list;
@@ -191,14 +192,17 @@ namespace ToolBox.Socket
                     else
                     {
                         item.Value.socket.Close();
-                        Console.WriteLine("IP已经退出" + item.Key);
+                    //    Console.WriteLine("IP已经退出" + item.Key);
+
+                        OnClientClose?.BeginInvoke("IP已经退出" + item.Key,null,null);
+
                     }
                 }
             }
             catch (Exception ex)
             {
-     
-                HandelExceptionLog?.BeginInvoke("发送给所有客户端时的报错：" + ex, null, null);
+
+                OnError?.BeginInvoke("发送给所有客户端时的报错：" + ex, null, null);
             }
             finally
             {
@@ -244,7 +248,7 @@ namespace ToolBox.Socket
             catch (Exception ex)
             {
 
-                HandelExceptionLog?.BeginInvoke("发送给客户端时的报错：" + ex, null, null);
+                OnError?.BeginInvoke("发送给客户端时的报错：" + ex, null, null);
                 isok = false;
             }
             finally
@@ -293,8 +297,8 @@ namespace ToolBox.Socket
             }
             catch (Exception ex)
             {
-   
-                HandelExceptionLog?.BeginInvoke("从号码移除一个客户端时的报错：" + ex, null, null);
+
+                OnError?.BeginInvoke("从号码移除一个客户端时的报错：" + ex, null, null);
 
                 return false;
             }
@@ -327,7 +331,7 @@ namespace ToolBox.Socket
                      
                         item.Value.socket.Close();
                         //  ?.BeginInvoke(msg, null, null);
-                        HandleClientClose?.BeginInvoke($"id号:{item.Value.id}，{item.Value.ip}用户没有心跳了，送他归家", null, null);
+                        OnClientClose?.BeginInvoke($"id号:{item.Value.id}，{item.Value.ip}用户没有心跳了，送他归家", null, null);
 
                     }
                     //else {
@@ -341,7 +345,7 @@ namespace ToolBox.Socket
             catch (Exception ex)
             {
 
-                HandelExceptionLog?.BeginInvoke("心跳事件里面报错：" + ex, null, null);
+                OnError?.BeginInvoke("心跳事件里面报错：" + ex, null, null);
             
             }
             finally

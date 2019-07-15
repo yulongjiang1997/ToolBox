@@ -62,7 +62,7 @@
             HttpWebRequest对象用来发起请求
             </summary>
         </member>
-        <member name="M:ToolBox.Http.HttpHelper.RequestAsync(System.String,System.Net.Http.HttpMethod,System.String,System.String)">
+        <member name="M:ToolBox.Http.HttpHelper.HttpAsyncRequest(System.String,System.Net.Http.HttpMethod,System.String,System.String)">
             <summary>
             网络请求
             </summary>
@@ -71,7 +71,7 @@
             <param name="cookie">cookie</param>
             <returns></returns>
         </member>
-        <member name="M:ToolBox.Http.HttpHelper.RequestAsync(ToolBox.Http.HttpItem)">
+        <member name="M:ToolBox.Http.HttpHelper.HttpAsyncRequest(ToolBox.Http.HttpItem)">
             <summary>
             网络请求
             </summary>
