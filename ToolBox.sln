@@ -29,7 +29,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToolBox.Socket", "ToolBox.S
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToolBox.String", "ToolBox.String\ToolBox.String.csproj", "{5DD9799F-118D-41BE-A968-DF021424E16A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToolBox.Test", "ToolBox.Test\ToolBox.Test.csproj", "{964C0B7C-B347-4036-B0A9-9FD6AD1D0050}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToolBox.Test", "ToolBox.Test\ToolBox.Test.csproj", "{964C0B7C-B347-4036-B0A9-9FD6AD1D0050}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "测试项目", "测试项目", "{45A09EC5-7EA9-4B71-91EC-7540BFD38827}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp1", "ConsoleApp1\ConsoleApp1.csproj", "{BA538B27-DCF5-479E-B45C-8E659E7F74E4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -93,9 +97,16 @@ Global
 		{964C0B7C-B347-4036-B0A9-9FD6AD1D0050}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{964C0B7C-B347-4036-B0A9-9FD6AD1D0050}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{964C0B7C-B347-4036-B0A9-9FD6AD1D0050}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA538B27-DCF5-479E-B45C-8E659E7F74E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA538B27-DCF5-479E-B45C-8E659E7F74E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA538B27-DCF5-479E-B45C-8E659E7F74E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA538B27-DCF5-479E-B45C-8E659E7F74E4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{BA538B27-DCF5-479E-B45C-8E659E7F74E4} = {45A09EC5-7EA9-4B71-91EC-7540BFD38827}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {69F874AA-9512-48AD-8294-812FDC60C849}
