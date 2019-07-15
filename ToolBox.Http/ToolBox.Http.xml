@@ -1,0 +1,500 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ToolBox.Http</name>
+    </assembly>
+    <members>
+        <member name="T:ToolBox.Http.CookieHelper">
+            <summary>
+            cookite工具量
+            </summary>
+        </member>
+        <member name="M:ToolBox.Http.CookieHelper.GetSmallCookie(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            获取简化的cookite
+            </summary>
+            <param name="cookies"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ToolBox.Http.CookieHelper.UpdateMergeCookie(System.String,System.String)">
+            <summary>
+            合并更新cookite 
+            </summary>
+            <param name="oldCookie">oldCookie</param>
+            <param name="newCookie">newCookie</param>
+            <returns></returns>
+        </member>
+        <member name="M:ToolBox.Http.CookieHelper.HasCookie(System.String,System.String)">
+            <summary>
+            查询是否有cookname值
+            </summary>
+            <param name="cookie"></param>
+            <param name="cook_name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ToolBox.Http.CookieHelper.CookieDelete(System.String,System.String)">
+            <summary>
+            删除指定cookite
+            </summary>
+            <param name="cookie"></param>
+            <param name="cook_name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ToolBox.Http.CookieHelper.GetCookValue(System.String,System.String)">
+            <summary>
+            获取指定cookei值
+            </summary>
+            <param name="cook_name"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ToolBox.Http.HttpHelper">
+            <summary>
+            带cookie的网络请求
+            </summary>
+        </member>
+        <member name="F:ToolBox.Http.HttpHelper.Encoding">
+            <summary>
+            默认的编码
+            </summary>
+        </member>
+        <member name="F:ToolBox.Http.HttpHelper.Client">
+            <summary>
+            HttpWebRequest对象用来发起请求
+            </summary>
+        </member>
+        <member name="M:ToolBox.Http.HttpHelper.RequestAsync(System.String,System.Net.Http.HttpMethod,System.String,System.String)">
+            <summary>
+            网络请求
+            </summary>
+            <param name="url">链接</param>
+            <param name="httpMethod">请求方法</param>
+            <param name="cookie">cookie</param>
+            <returns></returns>
+        </member>
+        <member name="M:ToolBox.Http.HttpHelper.RequestAsync(ToolBox.Http.HttpItem)">
+            <summary>
+            网络请求
+            </summary>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ToolBox.Http.HttpHelper.GetHtml(ToolBox.Http.HttpItem)">
+            <summary>
+            Gethtml
+            </summary>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ToolBox.Http.HttpHelper.SetRequest(ToolBox.Http.HttpItem)">
+            <summary>
+            为请求准备参数
+            </summary>
+            <param name="item"></param>
+        </member>
+        <member name="M:ToolBox.Http.HttpHelper.SetCookie(ToolBox.Http.HttpItem)">
+            <summary>
+            设置cookie
+            </summary>
+            <param name="item"></param>
+        </member>
+        <member name="M:ToolBox.Http.HttpHelper.SetPostData(ToolBox.Http.HttpItem)">
+            <summary>
+            设置Post数据
+            </summary>
+            <param name="item"></param>
+        </member>
+        <member name="M:ToolBox.Http.HttpHelper.SetProxy(ToolBox.Http.HttpItem)">
+            <summary>
+            设置代理
+            </summary>
+            <param name="item"></param>
+        </member>
+        <member name="M:ToolBox.Http.HttpHelper.Finalize">
+            <summary>
+            释放资源
+            </summary>
+        </member>
+        <member name="M:ToolBox.Http.HttpHelper.HttpPut(System.String,System.String,System.Net.CookieContainer)">
+            <summary>
+            Put请求
+            </summary>
+            <param name="url"></param>
+            <param name="paramData"></param>
+            <param name="cookie"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ToolBox.Http.HttpHelper.AsyncHttpPut(System.String,System.String,System.Net.CookieContainer)">
+            <summary>
+            异步put请求
+            </summary>
+            <param name="url"></param>
+            <param name="paramData"></param>
+            <param name="cookie"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ToolBox.Http.HttpHelper.HttpPost(System.String,System.String,System.Net.CookieContainer)">
+            <summary>
+            Post请求
+            </summary>
+            <param name="url"></param>
+            <param name="paramData"></param>
+            <param name="cookie"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ToolBox.Http.HttpHelper.AsyncHttpPost(System.String,System.String,System.Net.CookieContainer)">
+             <summary>
+            异步Post请求
+             </summary>
+             <param name="url"></param>
+             <param name="paramData"></param>
+             <param name="cookie"></param>
+             <returns></returns>
+        </member>
+        <member name="M:ToolBox.Http.HttpHelper.HttpGet(System.String,System.Net.CookieContainer)">
+            <summary>
+            Get请求
+            </summary>
+            <param name="url"></param>
+            <param name="cookie"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ToolBox.Http.HttpHelper.AsyncHttpGet(System.String,System.Net.CookieContainer)">
+            <summary>
+            异步Get请求
+            </summary>
+            <param name="url"></param>
+            <param name="cookie"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ToolBox.Http.HttpHelper.HttpDelete(System.String,System.Net.CookieContainer)">
+            <summary>
+            Delete
+            </summary>
+            <param name="url"></param>
+            <param name="cookie"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ToolBox.Http.HttpHelper.AsyncHttpDelete(System.String,System.Net.CookieContainer)">
+            <summary>
+            异步Delete
+            </summary>
+            <param name="url"></param>
+            <param name="cookie"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ToolBox.Http.HttpHelper.Request(System.String,System.String,System.String,System.Net.CookieContainer)">
+            <summary>
+            网络请求基方法
+            </summary>
+            <param name="url"></param>
+            <param name="paramData"></param>
+            <param name="mode"></param>
+            <param name="cookie"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ToolBox.Http.HttpHelper.Request(System.String,System.String,System.Net.CookieContainer)">
+            <summary>
+            另一个请求基方法
+            </summary>
+            <param name="url"></param>
+            <param name="mode"></param>
+            <param name="cookie"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ToolBox.Http.HttpItem">
+            <summary>
+            http请求类
+            </summary>
+        </member>
+        <member name="F:ToolBox.Http.HttpItem.Decompression">
+            <summary>
+            处理程序使用的自动解压缩方法 Gzip Deflate none=不使用压缩 默认为none
+            </summary>
+        </member>
+        <member name="P:ToolBox.Http.HttpItem.Authorization">
+            <summary>
+            Authorization 认证   Convert.ToBase64String(Encoding.UTF8.GetBytes($"{Username}:{Password}"))
+            </summary>
+        </member>
+        <member name="P:ToolBox.Http.HttpItem.URL">
+            <summary>
+            请求URL必须填写
+            </summary>
+        </member>
+        <member name="F:ToolBox.Http.HttpItem.Method">
+            <summary>
+            请求方式
+            </summary>
+        </member>
+        <member name="P:ToolBox.Http.HttpItem.Timeout">
+            <summary>
+            请求时间
+            </summary>
+        </member>
+        <member name="P:ToolBox.Http.HttpItem.ReadWriteTimeout">
+            <summary>
+            默认写入post数据超时时间
+            </summary>
+        </member>
+        <member name="P:ToolBox.Http.HttpItem.Host">
+            <summary>
+            设置Host的标头信息
+            </summary>
+        </member>
+        <member name="P:ToolBox.Http.HttpItem.KeepAlive">
+            <summary>
+            获取或设置一个值，该值指示是否与 Internet 资源建立持久性连接默认为true。
+            </summary>
+        </member>
+        <member name="P:ToolBox.Http.HttpItem.Accept">
+            <summary>
+            请求标头值 默认为text/html, application/xhtml+xml, */*
+            </summary>
+        </member>
+        <member name="P:ToolBox.Http.HttpItem.ContentType">
+            <summary>
+            请求返回类型默认 text/html
+            </summary>
+        </member>
+        <member name="P:ToolBox.Http.HttpItem.UserAgent">
+            <summary>
+            客户端访问信息默认Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
+            </summary>
+        </member>
+        <member name="P:ToolBox.Http.HttpItem.Encoding">
+            <summary>
+            返回数据编码默认为NUll 一般为utf-8,gbk,gb2312
+            </summary>
+        </member>
+        <member name="P:ToolBox.Http.HttpItem.postDataType">
+            <summary>
+            Post的数据类型,默认为string
+            </summary>
+        </member>
+        <member name="P:ToolBox.Http.HttpItem.Postdata">
+            <summary>
+            Post请求时要发送的字符串Post数据
+            </summary>
+        </member>
+        <member name="P:ToolBox.Http.HttpItem.PostdataByte">
+            <summary>
+            Post请求时要发送的Byte类型的Post数据
+            </summary>
+        </member>
+        <member name="P:ToolBox.Http.HttpItem.CookieContainer">
+            <summary>
+            Cookie对象集合
+            </summary>
+        </member>
+        <member name="P:ToolBox.Http.HttpItem.Cookie">
+            <summary>
+            请求时的Cookie
+            </summary>
+        </member>
+        <member name="P:ToolBox.Http.HttpItem.Referer">
+            <summary>
+            来源地址，上次访问地址
+            </summary>
+        </member>
+        <member name="P:ToolBox.Http.HttpItem.CerPath">
+            <summary>
+            证书绝对路径
+            </summary>
+        </member>
+        <member name="P:ToolBox.Http.HttpItem.WebProxy">
+            <summary>
+            设置代理对象，不想使用IE默认配置就设置为Null，而且不要设置ProxyIp
+            </summary>
+        </member>
+        <member name="P:ToolBox.Http.HttpItem.IsToLower">
+            <summary>
+            是否设置为全文小写，默认为不转化
+            </summary>
+        </member>
+        <member name="P:ToolBox.Http.HttpItem.Allowautoredirect">
+            <summary>
+            支持跳转页面，查询结果将是跳转后的页面，默认是跳转
+            </summary>
+        </member>
+        <member name="P:ToolBox.Http.HttpItem.Connectionlimit">
+            <summary>
+            最大连接数
+            </summary>
+        </member>
+        <member name="P:ToolBox.Http.HttpItem.ProxyUserName">
+            <summary>
+            代理Proxy 服务器用户名
+            </summary>
+        </member>
+        <member name="P:ToolBox.Http.HttpItem.ProxyPwd">
+            <summary>
+            代理 服务器密码
+            </summary>
+        </member>
+        <member name="P:ToolBox.Http.HttpItem.ProxyIp">
+            <summary>
+            代理 服务IP,如果要使用IE代理就设置为ieproxy
+            </summary>
+        </member>
+        <member name="P:ToolBox.Http.HttpItem.ResultType">
+            <summary>
+            设置返回类型String和Byte
+            </summary>
+        </member>
+        <member name="P:ToolBox.Http.HttpItem.Header">
+            <summary>
+            header对象
+            </summary>
+        </member>
+        <member name="P:ToolBox.Http.HttpItem.ProtocolVersion">
+            <summary>
+            获取或设置用于请求的 HTTP 版本。返回结果:用于请求的 HTTP 版本。默认为 System.Net.HttpVersion.Version11。
+            </summary>
+        </member>
+        <member name="P:ToolBox.Http.HttpItem.Expect100Continue">
+            <summary>
+            获取或设置一个 System.Boolean 值，该值确定是否使用 100-Continue 行为。如果 POST 请求需要 100-Continue 响应，则为 true；否则为 false。默认值为 true。
+            </summary>
+        </member>
+        <member name="P:ToolBox.Http.HttpItem.ClentCertificates">
+            <summary>
+            设置509证书集合
+            </summary>
+        </member>
+        <member name="P:ToolBox.Http.HttpItem.PostEncoding">
+            <summary>
+            设置或获取Post参数编码,默认的为Default编码
+            </summary>
+        </member>
+        <member name="P:ToolBox.Http.HttpItem.ResultCookieType">
+            <summary>
+            Cookie返回类型,默认的是只返回字符串类型
+            </summary>
+        </member>
+        <member name="P:ToolBox.Http.HttpItem.ICredentials">
+            <summary>
+            获取或设置请求的身份验证信息。
+            </summary>
+        </member>
+        <member name="P:ToolBox.Http.HttpItem.MaximumAutomaticRedirections">
+            <summary>
+            设置请求将跟随的重定向的最大数目
+            </summary>
+        </member>
+        <member name="P:ToolBox.Http.HttpItem.IfModifiedSince">
+            <summary>
+            获取和设置IfModifiedSince，默认为当前日期和时间
+            </summary>
+        </member>
+        <member name="P:ToolBox.Http.HttpItem.AutoFixCookie">
+            <summary>
+            是否自动合并并更新Cookie 默认为true
+            </summary>
+        </member>
+        <member name="P:ToolBox.Http.HttpItem.AutoHanderCookie">
+            <summary>
+            是否自动处理无效Cookie 默认为true
+            </summary>
+        </member>
+        <member name="T:ToolBox.Http.HttpResult">
+            <summary>
+            请求结果
+            </summary>
+        </member>
+        <member name="P:ToolBox.Http.HttpResult.Cookie">
+            <summary>
+            cookite
+            </summary>
+        </member>
+        <member name="P:ToolBox.Http.HttpResult.Html">
+            <summary>
+            html
+            </summary>
+        </member>
+        <member name="P:ToolBox.Http.HttpResult.ResultByte">
+            <summary>
+            返回的Byte数组 只有ResultType.Byte时才返回数据，其它情况为空
+            </summary>
+        </member>
+        <member name="P:ToolBox.Http.HttpResult.Header">
+            <summary>
+            header对象
+            </summary>
+        </member>
+        <member name="P:ToolBox.Http.HttpResult.IsSuccessStatusCode">
+             <summary>
+            http 是否响应成功
+             </summary>
+        </member>
+        <member name="P:ToolBox.Http.HttpResult.StatusDescription">
+            <summary>
+            http响应 描述信息
+            </summary>
+        </member>
+        <member name="P:ToolBox.Http.HttpResult.StatusCode">
+            <summary>
+            返回状态码,默认为OK
+            </summary>
+        </member>
+        <member name="P:ToolBox.Http.HttpResult.ResponseUri">
+            <summary>
+            最后访问的URl
+            </summary>
+        </member>
+        <member name="P:ToolBox.Http.HttpResult.RedirectUrl">
+            <summary>
+            获取重定向的URl
+            </summary>
+        </member>
+        <member name="T:ToolBox.Http.PostDataType">
+            <summary>
+            Post的数据格式默认为string
+            </summary>
+        </member>
+        <member name="F:ToolBox.Http.PostDataType.String">
+            <summary>
+            字符串类型，这时编码Encoding可不设置
+            </summary>
+        </member>
+        <member name="F:ToolBox.Http.PostDataType.Byte">
+            <summary>
+            Byte类型，需要设置PostdataByte参数的值编码Encoding可设置为空
+            </summary>
+        </member>
+        <member name="F:ToolBox.Http.PostDataType.FilePath">
+            <summary>
+            传文件，Postdata必须设置为文件的绝对路径，必须设置Encoding的值
+            </summary>
+        </member>
+        <member name="T:ToolBox.Http.ResultCookieType">
+            <summary>
+            Cookite返回类型
+            </summary>
+        </member>
+        <member name="F:ToolBox.Http.ResultCookieType.String">
+            <summary>
+            只返回字符串类型的Cookie
+            </summary>
+        </member>
+        <member name="F:ToolBox.Http.ResultCookieType.CookieCollection">
+            <summary>
+            CookieCollection格式的Cookie集合同时也返回String类型的cookie
+            </summary>
+        </member>
+        <member name="T:ToolBox.Http.ResultType">
+            <summary>
+            返回类型
+            </summary>
+        </member>
+        <member name="F:ToolBox.Http.ResultType.String">
+            <summary>
+            字符串
+            </summary>
+        </member>
+        <member name="F:ToolBox.Http.ResultType.Byte">
+            <summary>
+            字节
+            </summary>
+        </member>
+    </members>
+</doc>
