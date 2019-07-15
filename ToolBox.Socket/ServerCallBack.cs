@@ -1,0 +1,51 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace ToolBox.Socket
+{
+    public partial class TcpServer
+    {
+
+        /// <summary>
+        /// 成功启动后的回调函数
+        /// </summary>
+        public Action<ClientMode> HandleStartSuccess { get; set; }             
+
+        /// <summary>
+        /// 添加一个用客户端后的回调函数
+        /// </summary>
+        public Action<ClientMode, String> HanleClientAdd { get; set; }
+
+        /// <summary>
+        /// 服务端异常回调
+        /// </summary>
+        public Action<ClientMode, String> HandleServerException { get; set; }
+
+
+        /// <summary>
+        /// 处理接收消息的回调函数
+        /// </summary>
+        public Action<ClientMode, String> HandleRecMsg { get; set; }                     
+
+        /// <summary>
+        /// 处理消息回调函数
+        /// </summary>
+        public Action<string> HandleMsg { get; set; }                                 
+
+        /// <summary>
+        /// 客户端关闭的回调函数
+        /// </summary>
+        public Action<string > HandleClientClose { get; set; }
+
+
+        /// <summary>
+        /// 异常输出的回调函数
+        /// </summary>
+        public Action<string> HandelExceptionLog { get; set; }
+
+
+
+
+    }
+}
