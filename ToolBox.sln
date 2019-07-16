@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.572
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToolBox.DateTime", "ToolBox.DateTime\ToolBox.DateTime.csproj", "{A25954E2-BC9C-411E-A911-96ABA6CB6F47}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToolBox.DateTimeTool", "ToolBox.DateTime\ToolBox.DateTimeTool.csproj", "{A25954E2-BC9C-411E-A911-96ABA6CB6F47}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToolBox.Cmd", "ToolBox.Cmd\ToolBox.Cmd.csproj", "{621AF054-7FEB-4B7C-B617-D04113BE53F6}"
 EndProject
