@@ -1,0 +1,9 @@
+D:\project\toolbox\ToolBox\ToolBox.Framework.Test\bin\Release\ToolBox.Framework.Test.exe.config
+D:\project\toolbox\ToolBox\ToolBox.Framework.Test\bin\Release\ToolBox.Framework.Test.exe
+D:\project\toolbox\ToolBox\ToolBox.Framework.Test\bin\Release\ToolBox.Framework.Test.pdb
+D:\project\toolbox\ToolBox\ToolBox.Framework.Test\bin\Release\websocket-sharp.dll
+D:\project\toolbox\ToolBox\ToolBox.Framework.Test\obj\Release\ToolBox.Framework.Test.csprojAssemblyReference.cache
+D:\project\toolbox\ToolBox\ToolBox.Framework.Test\obj\Release\ToolBox.Framework.Test.csproj.CoreCompileInputs.cache
+D:\project\toolbox\ToolBox\ToolBox.Framework.Test\obj\Release\ToolBox.Framework.Test.csproj.CopyComplete
+D:\project\toolbox\ToolBox\ToolBox.Framework.Test\obj\Release\ToolBox.Framework.Test.exe
+D:\project\toolbox\ToolBox\ToolBox.Framework.Test\obj\Release\ToolBox.Framework.Test.pdb
