@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Linq;
 
-namespace ToolBox.DateTime
+namespace ToolBox.DateTimeTool
 {
     public static class DateTimeExtend
     {
@@ -314,8 +313,37 @@ namespace ToolBox.DateTime
                 return false;
         }
 
-      
-        //待加功能，  获取当前年的天数  周数
+        /// <summary>
+        /// 获取当前年天数
+        /// </summary>
+        /// <param name="dateTime"></param>
+        /// <returns></returns>
+        public static int GetDaysByYear(this DateTime dateTime)
+        {
+            return (new DateTime(dateTime.Year + 1, 1, 1) - new DateTime(dateTime.Year, 1, 1)).Days;
+        }
+
+        /// <summary>
+        /// 获取当前年天数
+        /// </summary>
+        /// <param name="dateTime"></param>
+        /// <returns></returns>
+        public static int GetWeekCountByYear(this DateTime dateTime)
+        {
+            //找到今年的第一天是周几
+            int firstWeekend = Convert.ToInt32(DateTime.Parse(dateTime.Year + "-1-1").DayOfWeek);
+
+            //获取第一周的差额,如果是周日，则firstWeekend为0，第一周也就是从周天开始的。
+            int weekDay = firstWeekend == 0 ? 1 : (7 - firstWeekend + 1);
+
+            //获取今天是一年当中的第几天
+            int currentDay = dateTime.DayOfYear;
+
+            //（今天 减去 第一周周末）/7 等于 距第一周有多少周 再加上第一周的1 就是今天是今年的第几周了
+            //    刚好考虑了惟一的特殊情况就是，今天刚好在第一周内，那么距第一周就是0 再加上第一周的1 最后还是1
+            int current_week = Convert.ToInt32(Math.Ceiling((currentDay - weekDay) / 7.0)) + 1;
+            return current_week;
+        }
 
     }
 }

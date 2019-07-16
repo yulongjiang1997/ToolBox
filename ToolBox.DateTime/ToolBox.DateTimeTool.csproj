@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>ToolBox.DateTimeTool</AssemblyName>
+    <RootNamespace>ToolBox.DateTimeTool</RootNamespace>
+    <Description>时间工具扩展类</Description>
+    <Authors>yulongjiang,Aidenxl</Authors>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>D:\Projects\ToolBox\ToolBox\ToolBox.DateTime\ToolBox.DateTimeTool.xml</DocumentationFile>
+  </PropertyGroup>
+
+</Project>
