@@ -6,6 +6,9 @@ using System.Text.RegularExpressions;
 
 namespace ToolBox.String
 {
+    /// <summary>
+    /// 字符串验证类
+    /// </summary>
    public static class StringValidate
     {
 
