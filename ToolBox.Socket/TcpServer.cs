@@ -13,7 +13,7 @@ namespace ToolBox.Socket
     {
      
             private Thread threadWatch = null;    //负责监听连接的线程
-            private Socket socketWatch = null;    //服务端监听套接字
+            private System.Net.Sockets.Socket  socketWatch = null;    //服务端监听套接字
 
             //客户端的字典
             private Dictionary<string, ClientMode> dictsocket = new Dictionary<string, ClientMode>();
@@ -35,7 +35,7 @@ namespace ToolBox.Socket
             {
 
               HearTime = hearTime;
-             socketWatch = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+             socketWatch = new System.Net.Sockets.Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
 
                 IPAddress ipAdr = IPAddress.Parse(ip);
                 IPEndPoint iPEnd = new IPEndPoint(ipAdr, port);
@@ -60,7 +60,9 @@ namespace ToolBox.Socket
                 threadWatch.Start();
 
                 TimerInit();
-                writeMsg("服务器启动监听成功~");
+             
+
+               OnSuccess?.BeginInvoke("服务器启动监听成功~", null, null);
 
             }
 
@@ -102,7 +104,7 @@ namespace ToolBox.Socket
         private void writeMsg(string msg)
         {
 
-            HandleMsg?.BeginInvoke(msg, null, null);
+            OnMessage?.BeginInvoke(msg, null, null);
         }
 
 
@@ -114,10 +116,12 @@ namespace ToolBox.Socket
 
             while (true)
             {
-                Socket conn = socketWatch.Accept();
+                System.Net.Sockets.Socket  conn = socketWatch.Accept();
                 string socketip = conn.RemoteEndPoint.ToString();
 
-                writeMsg("进来新的客户端ip:" + socketip);
+           
+
+                OnClientAdd?.BeginInvoke("进来新的客户端ip:" + socketip, null, null);
 
                 Thread thr = new Thread(RecMsg);
                 thr.IsBackground = true;
@@ -138,7 +142,7 @@ namespace ToolBox.Socket
         {
             int headSize = 4;
             byte[] surplusBuffer = null;
-            Socket sokClient = socket as Socket;
+            System.Net.Sockets.Socket  sokClient = socket as System.Net.Sockets.Socket;
             string socketip = sokClient.RemoteEndPoint.ToString();
 
             while (true)
@@ -225,7 +229,9 @@ namespace ToolBox.Socket
                                     }
                                     catch (Exception ex)
                                     {
-                                        Console.WriteLine("心跳事件报错：:" + ex.ToString());
+
+                                        OnError?.BeginInvoke("心跳事件报错：:" + ex.ToString(), null, null);
+                                    
 
                                     }
                                     finally
@@ -236,7 +242,7 @@ namespace ToolBox.Socket
                                 }
                                 else
                                 {
-                                    HandleRecMsg?.BeginInvoke(null, strc, null, null);
+                                    OnRecMessage?.BeginInvoke(null, strc, null, null);
                                 }
 
                                 haveRead = haveRead + headSize + bodySize;

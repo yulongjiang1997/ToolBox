@@ -33,6 +33,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToolBox.Test", "ToolBox.Tes
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "测试项目", "测试项目", "{45A09EC5-7EA9-4B71-91EC-7540BFD38827}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToolBox.Framework.Test", "ToolBox.Framework.Test\ToolBox.Framework.Test.csproj", "{EA2AE0DE-3B56-4B8C-885C-668228872C55}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -95,12 +97,17 @@ Global
 		{964C0B7C-B347-4036-B0A9-9FD6AD1D0050}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{964C0B7C-B347-4036-B0A9-9FD6AD1D0050}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{964C0B7C-B347-4036-B0A9-9FD6AD1D0050}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA2AE0DE-3B56-4B8C-885C-668228872C55}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA2AE0DE-3B56-4B8C-885C-668228872C55}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA2AE0DE-3B56-4B8C-885C-668228872C55}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA2AE0DE-3B56-4B8C-885C-668228872C55}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{964C0B7C-B347-4036-B0A9-9FD6AD1D0050} = {45A09EC5-7EA9-4B71-91EC-7540BFD38827}
+		{EA2AE0DE-3B56-4B8C-885C-668228872C55} = {45A09EC5-7EA9-4B71-91EC-7540BFD38827}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {69F874AA-9512-48AD-8294-812FDC60C849}

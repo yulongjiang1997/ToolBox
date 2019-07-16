@@ -35,7 +35,7 @@ namespace ToolBox.Socket
         /// </summary>
         /// <param name="socket">套接字</param>
         /// <param name="date">要发送的信息</param>
-        public static void SendMsg(Socket socket, string data)
+        public static void SendMsg(System.Net.Sockets.Socket socket , string data)
         {
 
             try
@@ -69,7 +69,7 @@ namespace ToolBox.Socket
         /// </summary>
         /// <param name="socket"></param>
         /// <returns></returns>
-        public static bool IsSocketConnected(Socket socket)
+        public static bool IsSocketConnected(System.Net.Sockets.Socket socket)
         {
 
             bool part1 = socket.Poll(1000, SelectMode.SelectRead);
