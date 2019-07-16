@@ -18,6 +18,12 @@ namespace ToolBox.Http
     /// </summary>
     public  class HttpHelper
     {
+
+        private HttpHelper() {
+
+        }
+
+
         /// <summary>
         /// 默认的编码
         /// </summary>
