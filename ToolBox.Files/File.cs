@@ -6,6 +6,13 @@ namespace ToolBox.Files
 {
     public partial class FileUtil
     {
+
+        private FileUtil() {
+
+        }
+
+
+
         #region 返回文件是否存在
         /// <summary>
         /// 返回文件是否存在
@@ -24,7 +31,7 @@ namespace ToolBox.Files
         /// </summary>
         /// <param name="FileUrl">文件真实路径</param>
         /// <returns></returns>
-        public DateTime GetFileWriteTime(string FileUrl)
+        public static DateTime GetFileLastWriteTime(string FileUrl)
         {
             return System.IO.File.GetLastWriteTime(FileUrl);
         }
@@ -36,7 +43,7 @@ namespace ToolBox.Files
         /// </summary>
         /// <param name="PathFileName">完整路径的文件</param>
         /// <returns></returns>
-        public string GetFileExtension(string PathFileName)
+        public static string GetFileExtension(string PathFileName)
         {
             return System.IO.Path.GetExtension(PathFileName);
         }
@@ -48,7 +55,7 @@ namespace ToolBox.Files
         /// </summary>
         /// <param name="path">文件路径</param>
         /// <returns></returns>
-        public bool IsHiddenFile(string path)
+        public static bool IsHiddenFile(string path)
         {
             System.IO.FileAttributes MyAttributes = System.IO.File.GetAttributes(path);
             string MyFileType = MyAttributes.ToString();
