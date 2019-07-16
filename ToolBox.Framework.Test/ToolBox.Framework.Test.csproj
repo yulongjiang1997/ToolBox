@@ -58,6 +58,10 @@
       <Project>{e337219d-c541-4d44-8c18-4076120355c6}</Project>
       <Name>ToolBox.Files</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ToolBox.Socket\ToolBox.Socket.csproj">
+      <Project>{c2ff3905-8bb9-429b-9733-24d464b57024}</Project>
+      <Name>ToolBox.Socket</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

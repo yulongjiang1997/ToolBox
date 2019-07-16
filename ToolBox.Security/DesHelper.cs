@@ -10,7 +10,7 @@ namespace ToolBox.Security
     /// <summary>
     /// DES加密/解密工具类。
     /// </summary>
-    public class DesHelper
+    public static class DesHelper
     {
 
         private static string encryptKey = "km4250km";
