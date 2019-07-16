@@ -8,6 +8,10 @@ namespace ToolBox.String
 {
     public partial class StringUtil
     {
+
+       
+
+
         /// <summary>
         /// 将字符串转换为Color
         /// </summary>
