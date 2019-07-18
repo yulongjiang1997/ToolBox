@@ -13,9 +13,9 @@ using System.Reflection;
 
 [assembly: System.Reflection.AssemblyCompanyAttribute("yulongjiang,Aidenxl")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
-[assembly: System.Reflection.AssemblyDescriptionAttribute("优化构造函数，添加无参构造函数 默认当前目录")]
+[assembly: System.Reflection.AssemblyDescriptionAttribute("优化方法 修改为静态 增加string扩展类")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.4")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.5")]
 [assembly: System.Reflection.AssemblyProductAttribute("ToolBox.Log")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ToolBox.Log")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

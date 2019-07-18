@@ -4,15 +4,18 @@ using System.Text;
 
 namespace ToolBox.Log
 {
-    public class LogUtil
+    /// <summary>
+    /// 一个超级简单的日志帮助类
+    /// </summary>
+    public static class LogUtil
     {
-        private string LogPath { get; set; }
+        private static string LogPath { get; set; }
 
         /// <summary>
-        /// 构造函数
+        /// 设置指定的日志目录
         /// </summary>
-        /// <param name="path">日志保存目录</param>
-        public LogUtil(string directoryPath)
+        /// <param name="directoryPath">日志保存目录</param>
+        public static void SetdirectoryPath(string directoryPath)
         {
             LogPath = directoryPath + "\\";
         }
@@ -20,7 +23,7 @@ namespace ToolBox.Log
         /// <summary>
         /// 不指定目录默认当前目录
         /// </summary>
-        public LogUtil()
+        static LogUtil()
         {
             LogPath = "logs\\";
         }
@@ -29,7 +32,7 @@ namespace ToolBox.Log
         /// 输出调试信息
         /// </summary>
         /// <param name="message"></param>
-        public void Debug(string message)
+        public static void Debug(string message)
         {
             WriteMessage(LogType.Debug, message);
         }
@@ -38,7 +41,7 @@ namespace ToolBox.Log
         /// 输出普通信息
         /// </summary>
         /// <param name="message"></param>
-        public void Info(string message)
+        public static void Info(string message)
         {
             WriteMessage(LogType.Info, message);
         }
@@ -47,12 +50,39 @@ namespace ToolBox.Log
         /// 输出错误信息
         /// </summary>
         /// <param name="message"></param>
-        public void Error(string message)
+        public static void Error(string message)
         {
             WriteMessage(LogType.Error, message);
         }
 
-        private void WriteMessage(LogType logType, string message)
+        /// <summary>
+        /// 输出调试信息
+        /// </summary>
+        /// <param name="message"></param>
+        public static void WriteDebugLog(this string message)
+        {
+            WriteMessage(LogType.Debug, message);
+        }
+
+        /// <summary>
+        /// 输出普通信息
+        /// </summary>
+        /// <param name="message"></param>
+        public static void WriteInfoLog(this string message)
+        {
+            WriteMessage(LogType.Info, message);
+        }
+
+        /// <summary>
+        /// 输出错误信息
+        /// </summary>
+        /// <param name="message"></param>
+        public static void WriteErrorLog(this string message)
+        {
+            WriteMessage(LogType.Error, message);
+        }
+
+        private static void WriteMessage(LogType logType, string message)
         {
             try
             {
