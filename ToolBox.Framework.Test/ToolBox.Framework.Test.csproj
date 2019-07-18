@@ -58,10 +58,17 @@
       <Project>{e337219d-c541-4d44-8c18-4076120355c6}</Project>
       <Name>ToolBox.Files</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ToolBox.Log\ToolBox.Log.csproj">
+      <Project>{1581cfa6-8e1a-4a24-919a-08e04a8256f3}</Project>
+      <Name>ToolBox.Log</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ToolBox.Socket\ToolBox.Socket.csproj">
       <Project>{c2ff3905-8bb9-429b-9733-24d464b57024}</Project>
       <Name>ToolBox.Socket</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

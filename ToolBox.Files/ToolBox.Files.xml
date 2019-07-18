@@ -36,16 +36,16 @@
             </summary>
             <param name="targetDir">目录路径</param>
         </member>
-        <member name="M:ToolBox.Files.FileUtil.DirectoryIsExists(System.String)">
+        <member name="M:ToolBox.Files.FileUtil.CheckIsExistsDirectory(System.String)">
             <summary>
             检测目录是否存在
             </summary>
             <param name="StrPath">路径</param>
             <returns></returns>
         </member>
-        <member name="M:ToolBox.Files.FileUtil.DirectoryIsExists(System.String,System.Boolean)">
+        <member name="M:ToolBox.Files.FileUtil.CreateDirectoryIfNoExists(System.String)">
             <summary>
-            检测目录是否存在
+            检测目录是否存在，不存在则创建
             </summary>
             <param name="StrPath">路径</param>
             <param name="Create">如果不存在，是否创建</param>
@@ -122,6 +122,19 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:ToolBox.Files.FileUtil.GetAppCurrentDirectory">
+            <summary>
+            获取应用程序当前可执行文件的路径
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ToolBox.Files.FileUtil.GetMD5HashFromFile(System.String)">
+            <summary>
+            获取文件的md5值
+            </summary>
+            <param name="fileName"></param>
+            <returns></returns>
+        </member>
         <member name="M:ToolBox.Files.FileUtil.FileExists(System.String)">
             <summary>
             返回文件是否存在
@@ -129,7 +142,7 @@
             <param name="filename">文件名</param>
             <returns>是否存在</returns>
         </member>
-        <member name="M:ToolBox.Files.FileUtil.GetFileLastWriteTime(System.String)">
+        <member name="M:ToolBox.Files.FileUtil.GetFileLastUpdateTime(System.String)">
             <summary>
             获取文件最后修改时间
             </summary>
@@ -148,19 +161,6 @@
             判断是否是隐藏文件
             </summary>
             <param name="path">文件路径</param>
-            <returns></returns>
-        </member>
-        <member name="M:ToolBox.Files.FileUtil.GetMD5HashFromFile(System.String)">
-            <summary>
-            获取文件的md5值
-            </summary>
-            <param name="fileName"></param>
-            <returns></returns>
-        </member>
-        <member name="M:ToolBox.Files.FileUtil.GetAppCurrentDirectory">
-            <summary>
-            获取应用程序当前可执行文件的路径
-            </summary>
             <returns></returns>
         </member>
         <member name="M:ToolBox.Files.FileUtil.ReadTxtFile(System.String)">

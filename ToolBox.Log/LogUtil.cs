@@ -9,15 +9,56 @@ namespace ToolBox.Log
     /// </summary>
     public static class LogUtil
     {
+
         private static string LogPath { get; set; }
 
         /// <summary>
         /// 设置指定的日志目录
         /// </summary>
         /// <param name="directoryPath">日志保存目录</param>
-        public static void SetdirectoryPath(string directoryPath)
+        public static bool SetdirectoryPath(string directoryPath)
         {
-            LogPath = directoryPath + "\\";
+
+            try
+            {
+                if (Directory.Exists(directoryPath) && File.Exists(directoryPath) == false)
+                {
+
+                    Console.WriteLine(Path.GetFullPath(directoryPath));
+
+                    LogPath = Path.GetFullPath(directoryPath);
+
+                    return true;
+
+                }
+                else if (File.Exists(directoryPath) == false)
+                {
+
+                    string path = Path.Combine(directoryPath);
+
+                    Directory.CreateDirectory(path);
+
+
+                    LogPath = path;
+
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+
+                return false;
+            }
+
+      
+
+
+
+
         }
 
         /// <summary>
@@ -25,7 +66,12 @@ namespace ToolBox.Log
         /// </summary>
         static LogUtil()
         {
-            LogPath = "logs\\";
+         //   LogPath = "logs\\";
+
+            LogPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory,@"logs\");
+
+          
+          
         }
 
         /// <summary>
@@ -91,7 +137,12 @@ namespace ToolBox.Log
                     Directory.CreateDirectory(LogPath);
                 }
 
-                var tLogPath = LogPath + DateTime.Now.ToString("yyyy-MM-dd") + ".txt";
+
+               
+                var tLogPath = Path.Combine(LogPath, DateTime.Now.ToString("yyyy-MM-dd") + ".txt");
+
+
+                Console.WriteLine(tLogPath);
 
                 if (!File.Exists(tLogPath))
                 {

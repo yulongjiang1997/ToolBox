@@ -110,3 +110,6 @@ D:\project\toolbox\ToolBox\ToolBox.Framework.Test\bin\Release\ToolBox.Files.pdb
 D:\project\toolbox\ToolBox\ToolBox.Framework.Test\bin\Release\ToolBox.Files.xml
 D:\project\toolbox\ToolBox\ToolBox.Framework.Test\bin\Release\ToolBox.Socket.pdb
 D:\project\toolbox\ToolBox\ToolBox.Framework.Test\obj\Release\ToolBox.Framework.Test.exe.config
+D:\project\toolbox\ToolBox\ToolBox.Framework.Test\bin\Release\ToolBox.Log.xml
+D:\project\toolbox\ToolBox\ToolBox.Framework.Test\bin\Release\ToolBox.Log.dll
+D:\project\toolbox\ToolBox\ToolBox.Framework.Test\bin\Release\ToolBox.Log.pdb
