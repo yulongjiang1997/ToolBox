@@ -11,11 +11,13 @@ namespace ToolBox.Log
         /// <summary>
         /// 构造函数
         /// </summary>
-        /// <param name="path">日志保存目录</param>
+        /// <param name="directoryPath">日志保存目录</param>
         public LogUtil(string directoryPath)
         {
             LogPath = directoryPath + "\\";
         }
+
+
 
         /// <summary>
         /// 不指定目录默认当前目录
