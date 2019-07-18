@@ -9,13 +9,16 @@ namespace ToolBox.Test
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            //Console.WriteLine("Hello World!");
 
-            Console.WriteLine(((long)1561815867).UnixTimeStamp10ToBeijingTime());
-            Console.WriteLine(((long)1563073506).UnixTimeStamp10ToBeijingTime());
-            string a = "";
-            Console.WriteLine(a == "" ? "0" : a);
-            Console.ReadKey();
+            //Console.WriteLine(((long)1561815867).UnixTimeStamp10ToBeijingTime());
+            //Console.WriteLine(((long)1563073506).UnixTimeStamp10ToBeijingTime());
+            //string a = "";
+            //Console.WriteLine(a == "" ? "0" : a);
+            //Console.ReadKey();
+
+            
+
         }
 
         public enum test

@@ -8,3 +8,13 @@ D:\Projects\ToolBox\ToolBox\ToolBox.Log\obj\Release\netstandard2.0\ToolBox.Log.A
 D:\Projects\ToolBox\ToolBox\ToolBox.Log\obj\Release\netstandard2.0\ToolBox.Log.AssemblyInfo.cs
 D:\Projects\ToolBox\ToolBox\ToolBox.Log\obj\Release\netstandard2.0\ToolBox.Log.dll
 D:\Projects\ToolBox\ToolBox\ToolBox.Log\obj\Release\netstandard2.0\ToolBox.Log.pdb
+D:\project\toolbox\ToolBox\ToolBox.Log\bin\Release\netstandard2.0\ToolBox.Log.xml
+D:\project\toolbox\ToolBox\ToolBox.Log\bin\Release\netstandard2.0\ToolBox.Log.deps.json
+D:\project\toolbox\ToolBox\ToolBox.Log\bin\Release\netstandard2.0\ToolBox.Log.dll
+D:\project\toolbox\ToolBox\ToolBox.Log\bin\Release\netstandard2.0\ToolBox.Log.pdb
+D:\project\toolbox\ToolBox\ToolBox.Log\obj\Release\netstandard2.0\ToolBox.Log.csprojAssemblyReference.cache
+D:\project\toolbox\ToolBox\ToolBox.Log\obj\Release\netstandard2.0\ToolBox.Log.csproj.CoreCompileInputs.cache
+D:\project\toolbox\ToolBox\ToolBox.Log\obj\Release\netstandard2.0\ToolBox.Log.AssemblyInfoInputs.cache
+D:\project\toolbox\ToolBox\ToolBox.Log\obj\Release\netstandard2.0\ToolBox.Log.AssemblyInfo.cs
+D:\project\toolbox\ToolBox\ToolBox.Log\obj\Release\netstandard2.0\ToolBox.Log.dll
+D:\project\toolbox\ToolBox\ToolBox.Log\obj\Release\netstandard2.0\ToolBox.Log.pdb
