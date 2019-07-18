@@ -13,12 +13,8 @@ namespace ToolBox.Test
 
             Console.WriteLine(((long)1561815867).UnixTimeStamp10ToBeijingTime());
             Console.WriteLine(((long)1563073506).UnixTimeStamp10ToBeijingTime());
-
-            LogUtil log = new LogUtil("logs/");
-            log.Debug("这是debug信息");
-            log.Info("这是Info信息");
-            log.Error("这是Error信息");
-
+            string a = "";
+            Console.WriteLine(a == "" ? "0" : a);
             Console.ReadKey();
         }
 

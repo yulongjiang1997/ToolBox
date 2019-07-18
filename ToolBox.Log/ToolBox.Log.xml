@@ -4,13 +4,18 @@
         <name>ToolBox.Log</name>
     </assembly>
     <members>
-        <member name="M:ToolBox.Log.LogUtil.#ctor(System.String)">
+        <member name="T:ToolBox.Log.LogUtil">
             <summary>
-            构造函数
+            一个超级简单的日志帮助类
             </summary>
-            <param name="path">日志保存目录</param>
         </member>
-        <member name="M:ToolBox.Log.LogUtil.#ctor">
+        <member name="M:ToolBox.Log.LogUtil.SetdirectoryPath(System.String)">
+            <summary>
+            设置指定的日志目录
+            </summary>
+            <param name="directoryPath">日志保存目录</param>
+        </member>
+        <member name="M:ToolBox.Log.LogUtil.#cctor">
             <summary>
             不指定目录默认当前目录
             </summary>
@@ -28,6 +33,24 @@
             <param name="message"></param>
         </member>
         <member name="M:ToolBox.Log.LogUtil.Error(System.String)">
+            <summary>
+            输出错误信息
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:ToolBox.Log.LogUtil.WriteDebugLog(System.String)">
+            <summary>
+            输出调试信息
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:ToolBox.Log.LogUtil.WriteInfoLog(System.String)">
+            <summary>
+            输出普通信息
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:ToolBox.Log.LogUtil.WriteErrorLog(System.String)">
             <summary>
             输出错误信息
             </summary>
