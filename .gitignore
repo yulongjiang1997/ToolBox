@@ -8,6 +8,7 @@
 
 .vs
 /ToolBox.Test/obj
+/ToolBox.Framework.Test/obj
 /ToolBox.Cmd/obj
 /ToolBox.Common/obj
 /ToolBox.DateTime/obj
@@ -21,7 +22,9 @@
 /ToolBox.Security/obj
 /ToolBox.Socket/obj
 /ToolBox.String/obj
+/ToolBox.Log/obj
 /ToolBox.Test/bin
+/ToolBox.Framework.Test/bin
 /ToolBox.Cmd/bin
 /ToolBox.Common/bin
 /ToolBox.DateTime/bin
@@ -35,3 +38,4 @@
 /ToolBox.Security/bin
 /ToolBox.Socket/bin
 /ToolBox.String/bin
+/ToolBox.Log/bin
