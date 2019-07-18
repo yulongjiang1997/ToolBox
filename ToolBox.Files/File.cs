@@ -1,16 +1,52 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 
 namespace ToolBox.Files
 {
     public partial class FileUtil
     {
-
-        private FileUtil() {
-
+        private Log.LogUtil Log { get; set; }
+        private FileUtil()
+        {
+            Log = new Log.LogUtil();
         }
 
+        /// <summary>
+        /// 获取应用程序当前可执行文件的路径
+        /// </summary>
+        /// <returns></returns>
+        public static string GetAppCurrentDirectory()
+        {
+            return AppDomain.CurrentDomain.BaseDirectory;
+        }
+
+        /// <summary>
+        /// 获取文件的md5值
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <returns></returns>
+        public static string GetMD5HashFromFile(string fileName)
+        {
+            try
+            {
+                FileStream file = new FileStream(fileName, FileMode.Open);
+                System.Security.Cryptography.MD5 md5 = new System.Security.Cryptography.MD5CryptoServiceProvider();
+                byte[] retVal = md5.ComputeHash(file);
+                file.Close();
+                StringBuilder sb = new StringBuilder();
+                for (int i = 0; i < retVal.Length; i++)
+                {
+                    sb.Append(retVal[i].ToString("x2"));
+                }
+                return sb.ToString();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("GetMD5HashFromFile() fail,error:" + ex.Message);
+            }
+        }
 
 
         #region 返回文件是否存在
@@ -31,7 +67,7 @@ namespace ToolBox.Files
         /// </summary>
         /// <param name="FileUrl">文件真实路径</param>
         /// <returns></returns>
-        public static DateTime GetFileLastWriteTime(string FileUrl)
+        public static DateTime GetFileLastUpdateTime(string FileUrl)
         {
             return System.IO.File.GetLastWriteTime(FileUrl);
         }

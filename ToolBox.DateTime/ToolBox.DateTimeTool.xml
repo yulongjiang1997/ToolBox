@@ -212,5 +212,19 @@
             <param name="dateTime"></param>
             <returns></returns>
         </member>
+        <member name="M:ToolBox.DateTimeTool.DateTimeExtend.GetDaysByYear(System.DateTime)">
+            <summary>
+            获取当前年天数
+            </summary>
+            <param name="dateTime"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ToolBox.DateTimeTool.DateTimeExtend.GetWeekCountByYear(System.DateTime)">
+            <summary>
+            获取当前年天数
+            </summary>
+            <param name="dateTime"></param>
+            <returns></returns>
+        </member>
     </members>
 </doc>

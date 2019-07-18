@@ -7,7 +7,6 @@ namespace ToolBox.Files
 {
     public partial class FileUtil
     {
-        #region 以只读方式读取文本文件
         /// <summary>
         /// 以只读方式读取文本文件
         /// </summary>
@@ -46,10 +45,8 @@ namespace ToolBox.Files
             }
             return text;
         }
-        #endregion
+        
 
-
-        #region 获取文本文件的行数
         /// <summary>
         /// 获取文本文件的行数
         /// </summary>
@@ -62,9 +59,7 @@ namespace ToolBox.Files
             //返回行数
             return rows.Length;
         }
-        #endregion
 
-        #region 从文件的绝对路径中获取扩展名
         /// <summary>
         /// 从文件的绝对路径中获取扩展名
         /// </summary>
@@ -75,9 +70,7 @@ namespace ToolBox.Files
             FileInfo fi = new FileInfo(filePath);
             return fi.Extension;
         }
-        #endregion
 
-        #region 从文件的绝对路径中获取文件名( 不包含扩展名 )
         /// <summary>
         /// 从文件的绝对路径中获取文件名( 不包含扩展名 )
         /// </summary>
@@ -88,7 +81,6 @@ namespace ToolBox.Files
             FileInfo fi = new FileInfo(filePath);
             return fi.Name.Split('.')[0];
         }
-        #endregion
 
 
     }

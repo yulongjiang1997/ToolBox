@@ -7,11 +7,9 @@ namespace ToolBox.Files
 {
     public partial class FileUtil
     {
+        //写入数据流到文件
         public static void SaveStreamToFile(Stream FromStream, string TargetFile)
         {
-            // FromStream=the stream we wanna save to a file 
-            //TargetFile = name&path of file to be created to save to 
-            //i.e"c:\mysong.mp3" 
             try
             {
                 //Creat a file to save to

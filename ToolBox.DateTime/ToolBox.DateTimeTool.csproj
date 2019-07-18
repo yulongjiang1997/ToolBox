@@ -4,12 +4,24 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <AssemblyName>ToolBox.DateTimeTool</AssemblyName>
     <RootNamespace>ToolBox.DateTimeTool</RootNamespace>
-    <Description>时间工具扩展类</Description>
+    <Description>修复方法注释不显示</Description>
     <Authors>yulongjiang,Aidenxl</Authors>
+    <Version>1.0.2</Version>
+    <PackageReleaseNotes>时间工具扩展类</PackageReleaseNotes>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DocumentationFile>D:\Projects\ToolBox\ToolBox\ToolBox.DateTime\ToolBox.DateTimeTool.xml</DocumentationFile>
   </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>D:\Projects\ToolBox\ToolBox\ToolBox.DateTime\ToolBox.DateTimeTool.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Update="ToolBox.DateTimeTool.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 
 </Project>

@@ -6,7 +6,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="ToolBox.DateTimeTool" Version="1.0.2" />
     <PackageReference Include="ToolBox.Http" Version="1.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ToolBox.Log\ToolBox.Log.csproj" />
   </ItemGroup>
 
 </Project>

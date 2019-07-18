@@ -9,4 +9,8 @@
     <DocumentationFile>D:\project\toolbox\ToolBox\ToolBox.Files\ToolBox.Files.xml</DocumentationFile>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="ToolBox.Log" Version="1.0.4" />
+  </ItemGroup>
+
 </Project>

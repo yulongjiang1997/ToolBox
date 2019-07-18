@@ -7,7 +7,6 @@ namespace ToolBox.Files
 {
     public partial class FileUtil
     {
-        #region 删除指定目录的所有文件和子目录
         /// <summary>
         /// 删除指定目录的所有文件和子目录
         /// </summary>
@@ -30,9 +29,7 @@ namespace ToolBox.Files
                 }
             }
         }
-        #endregion
 
-        #region 删除指定目录下的指定文件
         /// <summary>
         /// 删除指定目录下的指定文件
         /// </summary>
@@ -41,9 +38,7 @@ namespace ToolBox.Files
         {
             File.Delete(TargetFileDir);
         }
-        #endregion
 
-        #region 创建指定目录
         /// <summary>
         /// 创建指定目录
         /// </summary>
@@ -54,9 +49,7 @@ namespace ToolBox.Files
             if (!dir.Exists)
                 dir.Create();
         }
-        #endregion
 
-        #region 建立子目录
         /// <summary>
         /// 建立子目录
         /// </summary>
@@ -66,9 +59,7 @@ namespace ToolBox.Files
         {
             CreateDirectory(parentDir + PATH_SPLIT_CHAR + subDirName);
         }
-        #endregion
 
-        #region 重命名文件夹目录
         /// <summary>
         /// 重命名文件夹
         /// </summary>
@@ -90,9 +81,7 @@ namespace ToolBox.Files
         //        return false;
         //    }
         //}
-        #endregion
 
-        #region 删除指定目录
         /// <summary>
         /// 删除指定目录
         /// </summary>
@@ -106,34 +95,29 @@ namespace ToolBox.Files
                 dirInfo.Delete(true);
             }
         }
-        #endregion
 
-        #region 检测目录是否存在
         /// <summary>
         /// 检测目录是否存在
         /// </summary>
         /// <param name="StrPath">路径</param>
         /// <returns></returns>
-        public static bool DirectoryIsExists(string StrPath)
+        public static bool CheckIsExistsDirectory(string StrPath)
         {
-            DirectoryInfo dirInfo = new DirectoryInfo(StrPath);
-            return dirInfo.Exists;
+            return Directory.Exists(StrPath);
         }
+
         /// <summary>
-        /// 检测目录是否存在
+        /// 检测目录是否存在，不存在则创建
         /// </summary>
         /// <param name="StrPath">路径</param>
         /// <param name="Create">如果不存在，是否创建</param>
-        public static void DirectoryIsExists(string StrPath, bool Create)
+        public static void CreateDirectoryIfNoExists(string StrPath)
         {
-            DirectoryInfo dirInfo = new DirectoryInfo(StrPath);
-            //return dirInfo.Exists;
-            if (!dirInfo.Exists)
+            if (!CheckIsExistsDirectory(StrPath))
             {
-                if (Create) dirInfo.Create();
+                Directory.CreateDirectory(StrPath);
             }
         }
-
 
         /// <summary>
         /// 检测指定目录是否存在
@@ -144,9 +128,7 @@ namespace ToolBox.Files
         {
             return Directory.Exists(directoryPath);
         }
-        #endregion
 
-        #region 删除指定目录的所有子目录,不包括对当前目录文件的删除
         /// <summary>
         /// 删除指定目录的所有子目录,不包括对当前目录文件的删除
         /// </summary>
@@ -158,9 +140,7 @@ namespace ToolBox.Files
                 DeleteDirectory(subDir);
             }
         }
-        #endregion
 
-        #region 复制指定目录的所有文件
         /// <summary>
         /// 复制指定目录的所有文件
         /// </summary>
@@ -189,9 +169,7 @@ namespace ToolBox.Files
                 }
             }
         }
-        #endregion
 
-        #region 移动指定目录的所有文件
         /// <summary>
         /// 移动指定目录的所有文件
         /// </summary>
@@ -231,10 +209,7 @@ namespace ToolBox.Files
                 }
             }
         }
-        #endregion
 
-
-        #region 获取指定目录及子目录中所有文件列表
         /// <summary>
         /// 获取指定目录及子目录中所有文件列表
         /// </summary>
@@ -266,10 +241,7 @@ namespace ToolBox.Files
                 throw ex;
             }
         }
-        #endregion
 
-
-        #region 检测指定目录中是否存在指定的文件
         /// <summary>
         /// 检测指定目录中是否存在指定的文件,若要搜索子目录请使用重载方法.
         /// </summary>
@@ -299,12 +271,7 @@ namespace ToolBox.Files
                 //LogHelper.WriteTraceLog(TraceLogLevel.Error, ex.Message);
             }
         }
-
-
-        #endregion
-
-
-        #region 获取指定目录中所有子目录列表,若要搜索嵌套的子目录列表,请使用重载方法.
+        
         /// <summary>
         /// 获取指定目录中所有子目录列表,若要搜索嵌套的子目录列表,请使用重载方法.
         /// </summary>
@@ -320,10 +287,7 @@ namespace ToolBox.Files
                 throw ex;
             }
         }
-        #endregion
 
-
-        #region 获取指定目录中的文件列表
         /// <summary>
         /// 获取指定目录中所有文件列表
         /// </summary>
@@ -339,9 +303,7 @@ namespace ToolBox.Files
             //获取文件列表
             return Directory.GetFiles(directoryPath);
         }
-        #endregion
 
-        #region 检测指定目录是否为空
         /// <summary>
         /// 检测指定目录是否为空
         /// </summary>
@@ -373,8 +335,6 @@ namespace ToolBox.Files
                 return true;
             }
         }
-        #endregion
-
 
     }
 }

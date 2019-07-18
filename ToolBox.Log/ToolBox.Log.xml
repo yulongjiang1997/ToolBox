@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ToolBox.Log</name>
+    </assembly>
+    <members>
+        <member name="M:ToolBox.Log.LogUtil.#ctor(System.String)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="path">日志保存目录</param>
+        </member>
+        <member name="M:ToolBox.Log.LogUtil.#ctor">
+            <summary>
+            不指定目录默认当前目录
+            </summary>
+        </member>
+        <member name="M:ToolBox.Log.LogUtil.Debug(System.String)">
+            <summary>
+            输出调试信息
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:ToolBox.Log.LogUtil.Info(System.String)">
+            <summary>
+            输出普通信息
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:ToolBox.Log.LogUtil.Error(System.String)">
+            <summary>
+            输出错误信息
+            </summary>
+            <param name="message"></param>
+        </member>
+    </members>
+</doc>
