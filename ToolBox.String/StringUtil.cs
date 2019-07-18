@@ -10,6 +10,11 @@ namespace ToolBox.String
     /// </summary>
     public partial class StringUtil
     {
+
+        private StringUtil() {
+        }
+
+
         private static Regex RegexBr = new Regex(@"(\r\n)", RegexOptions.IgnoreCase);
 
         /// <summary>

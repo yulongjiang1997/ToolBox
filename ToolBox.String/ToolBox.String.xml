@@ -320,6 +320,11 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:ToolBox.String.StringValidate">
+            <summary>
+            字符串验证类
+            </summary>
+        </member>
         <member name="M:ToolBox.String.StringValidate.GetStringLength(System.String)">
             <summary>
             返回字符串真实长度, 1个汉字长度为2

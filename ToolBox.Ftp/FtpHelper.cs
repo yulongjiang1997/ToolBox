@@ -6,6 +6,7 @@ using System.Text;
 
 namespace ToolBox.Ftp
 {
+
    public class FtpHelper
     {
 

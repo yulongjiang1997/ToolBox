@@ -7,7 +7,7 @@ namespace ToolBox.String
     /// <summary>
     /// 转换人民币大小金额
     /// </summary>
-    public class RMBHelper
+    public static class RMBHelper
     {
         /// <summary> 
         /// 转换人民币大小金额 

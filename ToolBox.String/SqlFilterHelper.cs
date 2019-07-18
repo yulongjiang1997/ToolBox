@@ -8,7 +8,7 @@ namespace ToolBox.String
     /// <summary>
     /// 防注入过滤函数
     /// </summary>
-    public class SqlFilterHelper
+    public static class SqlFilterHelper
     {
         ///<summary>
         /// 防注入过滤函数

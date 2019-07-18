@@ -9,7 +9,7 @@ namespace ToolBox.String
         /// <summary>
         /// 汉字转换拼音
         /// </summary>
-        public class PinyinHelper
+        public static class PinyinHelper
         {
             #region 获取汉字转换拼音 首字母
 
