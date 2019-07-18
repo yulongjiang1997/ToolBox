@@ -13,9 +13,10 @@ namespace ToolBox.Log
         private static string LogPath { get; set; }
 
         /// <summary>
-        /// 设置指定的日志目录
+        /// 设置日志文件夹路径，true是成功，flase是失败（默认软件运行目录下log文件夹中写入）
         /// </summary>
-        /// <param name="directoryPath">日志保存目录</param>
+        /// <param name="directoryPath"></param>
+        /// <returns></returns>
         public static bool SetdirectoryPath(string directoryPath)
         {
 
@@ -54,7 +55,7 @@ namespace ToolBox.Log
                 return false;
             }
 
-      
+
 
 
 
