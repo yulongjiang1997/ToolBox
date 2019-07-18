@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.IO;
+using ToolBox.Log;
 
 namespace ToolBox.Files
 {
@@ -45,7 +46,7 @@ namespace ToolBox.Files
             }
             return text;
         }
-        
+
 
         /// <summary>
         /// 获取文本文件的行数
@@ -61,25 +62,42 @@ namespace ToolBox.Files
         }
 
         /// <summary>
-        /// 从文件的绝对路径中获取扩展名
+        /// 获得文件的拓展名
         /// </summary>
         /// <param name="filePath">文件的绝对路径</param>        
         public static string GetExtension(string filePath)
         {
-            //获取文件的名称
-            FileInfo fi = new FileInfo(filePath);
-            return fi.Extension;
+            try
+            {
+                //获取文件的名称
+                FileInfo fi = new FileInfo(filePath);
+                return fi.Extension;
+            }
+            catch (Exception ex)
+            {
+                ex.Message.WriteErrorLog();
+                return ex.Message;
+            }
         }
 
         /// <summary>
-        /// 从文件的绝对路径中获取文件名( 不包含扩展名 )
+        /// 获得文件名，不包含扩展名
         /// </summary>
         /// <param name="filePath">文件的绝对路径</param>        
         public static string GetFileNameNoExtension(string filePath)
         {
-            //获取文件的名称
-            FileInfo fi = new FileInfo(filePath);
-            return fi.Name.Split('.')[0];
+            try
+            {
+                //获取文件的名称
+                FileInfo fi = new FileInfo(filePath);
+                return fi.Name.Split('.')[0];
+            }
+            catch (Exception ex)
+            {
+                ex.Message.WriteErrorLog();
+                return ex.Message;
+            }
+
         }
 
 

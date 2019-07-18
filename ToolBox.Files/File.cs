@@ -7,11 +7,6 @@ namespace ToolBox.Files
 {
     public partial class FileUtil
     {
-        private Log.LogUtil Log { get; set; }
-        private FileUtil()
-        {
-            Log = new Log.LogUtil();
-        }
 
         /// <summary>
         /// 获取应用程序当前可执行文件的路径
