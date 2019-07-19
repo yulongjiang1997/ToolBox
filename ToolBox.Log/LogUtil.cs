@@ -19,10 +19,9 @@ namespace ToolBox.Log
         /// <returns></returns>
         public static bool SetdirectoryPath(string directoryPath)
         {
-
             try
             {
-                if (Directory.Exists(directoryPath) && File.Exists(directoryPath) == false)
+                if (Directory.Exists(directoryPath) && !File.Exists(directoryPath))
                 {
 
                     Console.WriteLine(Path.GetFullPath(directoryPath));
@@ -32,13 +31,12 @@ namespace ToolBox.Log
                     return true;
 
                 }
-                else if (File.Exists(directoryPath) == false)
+                else if (!File.Exists(directoryPath))
                 {
 
                     string path = Path.Combine(directoryPath);
 
                     Directory.CreateDirectory(path);
-
 
                     LogPath = path;
 
@@ -51,15 +49,9 @@ namespace ToolBox.Log
             }
             catch (Exception ex)
             {
-
+                ex.Message.WriteErrorLog();
                 return false;
             }
-
-
-
-
-
-
         }
 
         /// <summary>
@@ -67,12 +59,7 @@ namespace ToolBox.Log
         /// </summary>
         static LogUtil()
         {
-         //   LogPath = "logs\\";
-
-            LogPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory,@"logs\");
-
-          
-          
+            LogPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"logs\");
         }
 
         /// <summary>
@@ -103,7 +90,7 @@ namespace ToolBox.Log
         }
 
         /// <summary>
-        /// 输出调试信息
+        /// 扩展方法 输出调试信息
         /// </summary>
         /// <param name="message"></param>
         public static void WriteDebugLog(this string message)
@@ -112,7 +99,7 @@ namespace ToolBox.Log
         }
 
         /// <summary>
-        /// 输出普通信息
+        /// 扩展方法 输出普通信息
         /// </summary>
         /// <param name="message"></param>
         public static void WriteInfoLog(this string message)
@@ -121,7 +108,7 @@ namespace ToolBox.Log
         }
 
         /// <summary>
-        /// 输出错误信息
+        /// 扩展方法 输出错误信息
         /// </summary>
         /// <param name="message"></param>
         public static void WriteErrorLog(this string message)
@@ -138,8 +125,6 @@ namespace ToolBox.Log
                     Directory.CreateDirectory(LogPath);
                 }
 
-
-               
                 var tLogPath = Path.Combine(LogPath, DateTime.Now.ToString("yyyy-MM-dd") + ".txt");
 
 

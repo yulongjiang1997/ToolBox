@@ -2,10 +2,10 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Description>优化方法 修改为静态 增加string扩展类</Description>
+    <Description>优化路径设置及其他文件路径相关</Description>
     <PackageReleaseNotes>一个超级简单的日志输出帮助类</PackageReleaseNotes>
     <Authors>yulongjiang,Aidenxl</Authors>
-    <Version>1.0.5</Version>
+    <Version>1.0.6</Version>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
   </PropertyGroup>
 
