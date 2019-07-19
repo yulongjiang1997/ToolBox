@@ -2,41 +2,43 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using ToolBox.Log;
 
 namespace ToolBox.Files
 {
     public partial class FileUtil
     {
-        /// <summary>
-        /// 删除指定目录的所有文件和子目录
-        /// </summary>
-        /// <param name="TargetDir">操作目录</param>
-        /// <param name="delSubDir">如果为true,包含对子目录的操作</param>
-        public static void DeleteDirectoryFiles(string TargetDir, bool delSubDir)
-        {
-            foreach (string fileName in Directory.GetFiles(TargetDir))
-            {
-                File.SetAttributes(fileName, FileAttributes.Normal);
-                File.Delete(fileName);
-            }
-            if (delSubDir)
-            {
-                DirectoryInfo dir = new DirectoryInfo(TargetDir);
-                foreach (DirectoryInfo subDi in dir.GetDirectories())
-                {
-                    DeleteDirectoryFiles(subDi.FullName, true);
-                    subDi.Delete();
-                }
-            }
-        }
 
         /// <summary>
-        /// 删除指定目录下的指定文件
+        /// 删除指定目录的所有文件
         /// </summary>
-        /// <param name="TargetFileDir">指定文件的目录</param>
-        public static void DeleteFiles(string TargetFileDir)
+        /// <param name="TargetDir">操作目录</param>
+        /// <param name="delSubDir">默认为false 如果为true,包含对子目录的操作</param>
+        public static void DeleteDirectoryFiles(string TargetDir, bool delSubDir = false)
         {
-            File.Delete(TargetFileDir);
+            try
+            {
+                foreach (string fileName in Directory.GetFiles(TargetDir))
+                {
+                    File.SetAttributes(fileName, FileAttributes.Normal);
+                    File.Delete(fileName);
+                }
+                if (delSubDir)
+                {
+                    DirectoryInfo dir = new DirectoryInfo(TargetDir);
+                    foreach (DirectoryInfo subDi in dir.GetDirectories())
+                    {
+                        DeleteDirectoryFiles(subDi.FullName, true);
+                        subDi.Delete();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.LogUtil.Error("删除指定目录的所有文件和子目录失败：" + ex.Message);
+                throw;
+            }
+
         }
 
         /// <summary>
@@ -45,9 +47,15 @@ namespace ToolBox.Files
         /// <param name="targetDir"></param>
         public static void CreateDirectory(string targetDir)
         {
-            DirectoryInfo dir = new DirectoryInfo(targetDir);
-            if (!dir.Exists)
-                dir.Create();
+            try
+            {
+                if (!Directory.Exists(targetDir))
+                    Directory.CreateDirectory(targetDir);
+            }
+            catch (Exception ex)
+            {
+                $"创建目录发生错误{ex.Message}".WriteErrorLog();
+            }
         }
 
         /// <summary>
@@ -57,30 +65,32 @@ namespace ToolBox.Files
         /// <param name="subDirName">子目录名称</param>
         public static void CreateDirectory(string parentDir, string subDirName)
         {
-            CreateDirectory(parentDir + PATH_SPLIT_CHAR + subDirName);
+            CreateDirectory($@"{parentDir}/{subDirName}");
         }
 
         /// <summary>
         /// 重命名文件夹
         /// </summary>
-        /// <param name="OldFloderName">原路径文件夹名称</param>
-        /// <param name="NewFloderName">新路径文件夹名称</param>
+        /// <param name="directoryPath">文件夹路径</param>
+        /// <param name="OldFloderName">原文件夹名称</param>
+        /// <param name="NewFloderName">新文件夹名称</param>
         /// <returns></returns>
-        //public static bool ReNameFloder(string OldFloderName, string NewFloderName)
-        //{
-        //    try
-        //    {
-        //        if (Directory.Exists(HttpContext.Current.Server.MapPath("//") + OldFloderName))
-        //        {
-        //            Directory.Move(HttpContext.Current.Server.MapPath("//") + OldFloderName, HttpContext.Current.Server.MapPath("//") + NewFloderName);
-        //        }
-        //        return true;
-        //    }
-        //    catch
-        //    {
-        //        return false;
-        //    }
-        //}
+        public static bool ReNameFloder(string directoryPath, string OldFloderName, string NewFloderName)
+        {
+            try
+            {
+                if (Directory.Exists($@"{directoryPath}/{OldFloderName}"))
+                {
+                    Directory.Move($@"{directoryPath}/{OldFloderName}", $@"{directoryPath}/{NewFloderName}");
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                $"重命名文件夹出错：{ex.Message}".WriteErrorLog();
+                return false;
+            }
+        }
 
         /// <summary>
         /// 删除指定目录
@@ -88,12 +98,20 @@ namespace ToolBox.Files
         /// <param name="targetDir">目录路径</param>
         public static void DeleteDirectory(string targetDir)
         {
-            DirectoryInfo dirInfo = new DirectoryInfo(targetDir);
-            if (dirInfo.Exists)
+            try
             {
-                DeleteDirectoryFiles(targetDir, true);
-                dirInfo.Delete(true);
+                DirectoryInfo dirInfo = new DirectoryInfo(targetDir);
+                if (dirInfo.Exists)
+                {
+                    DeleteDirectoryFiles(targetDir, true);
+                    dirInfo.Delete(true);
+                }
             }
+            catch (Exception ex)
+            {
+                $"删除指定目录失败：{ex.Message}".WriteErrorLog();
+            }
+
         }
 
         /// <summary>
@@ -113,32 +131,38 @@ namespace ToolBox.Files
         /// <param name="Create">如果不存在，是否创建</param>
         public static void CreateDirectoryIfNoExists(string StrPath)
         {
-            if (!CheckIsExistsDirectory(StrPath))
+            try
             {
-                Directory.CreateDirectory(StrPath);
+                if (!CheckIsExistsDirectory(StrPath))
+                {
+                    Directory.CreateDirectory(StrPath);
+                }
             }
+            catch (Exception ex)
+            {
+                $"检测目录是否存在，不存在则创建  方法出错：{ex.Message}".WriteErrorLog();
+            }
+
         }
 
         /// <summary>
-        /// 检测指定目录是否存在
-        /// </summary>
-        /// <param name="directoryPath">目录的绝对路径</param>
-        /// <returns></returns>
-        public static bool IsExistDirectory(string directoryPath)
-        {
-            return Directory.Exists(directoryPath);
-        }
-
-        /// <summary>
-        /// 删除指定目录的所有子目录,不包括对当前目录文件的删除
+        /// 删除指定目录下的所有文件夹
         /// </summary>
         /// <param name="targetDir">目录路径</param>
         public static void DeleteSubDirectory(string targetDir)
         {
-            foreach (string subDir in Directory.GetDirectories(targetDir))
+            try
             {
-                DeleteDirectory(subDir);
+                foreach (string subDir in Directory.GetDirectories(targetDir))
+                {
+                    DeleteDirectory(subDir);
+                }
             }
+            catch (Exception ex)
+            {
+                $"删除指定目录下的所有文件夹 出错：{ex.Message}".WriteErrorLog();
+            }
+
         }
 
         /// <summary>
@@ -150,24 +174,32 @@ namespace ToolBox.Files
         /// <param name="copySubDir">如果为true,包含目录,否则不包含</param>
         public static void CopyFiles(string sourceDir, string targetDir, bool overWrite, bool copySubDir)
         {
-            //复制当前目录文件
-            foreach (string sourceFileName in Directory.GetFiles(sourceDir))
+            try
             {
-                string targetFileName = Path.Combine(targetDir, sourceFileName.Substring(sourceFileName.LastIndexOf(PATH_SPLIT_CHAR) + 1));
-
-                if (File.Exists(targetFileName))
+                //复制当前目录文件
+                foreach (string sourceFileName in Directory.GetFiles(sourceDir))
                 {
-                    if (overWrite == true)
+                    string targetFileName = Path.Combine(targetDir, sourceFileName.Substring(sourceFileName.LastIndexOf("\\") + 1));
+
+                    if (File.Exists(targetFileName))
                     {
-                        File.SetAttributes(targetFileName, FileAttributes.Normal);
+                        if (overWrite == true)
+                        {
+                            File.SetAttributes(targetFileName, FileAttributes.Normal);
+                            File.Copy(sourceFileName, targetFileName, overWrite);
+                        }
+                    }
+                    else
+                    {
                         File.Copy(sourceFileName, targetFileName, overWrite);
                     }
                 }
-                else
-                {
-                    File.Copy(sourceFileName, targetFileName, overWrite);
-                }
             }
+            catch (Exception ex)
+            {
+                $"复制指定目录的所有文件 出错：{ex.Message}".WriteErrorLog();
+            }
+
         }
 
         /// <summary>
@@ -182,7 +214,7 @@ namespace ToolBox.Files
             //移动当前目录文件
             foreach (string sourceFileName in Directory.GetFiles(sourceDir))
             {
-                string targetFileName = Path.Combine(targetDir, sourceFileName.Substring(sourceFileName.LastIndexOf(PATH_SPLIT_CHAR) + 1));
+                string targetFileName = Path.Combine(targetDir, sourceFileName.Substring(sourceFileName.LastIndexOf("\\") + 1));
                 if (File.Exists(targetFileName))
                 {
                     if (overWrite == true)
@@ -201,7 +233,7 @@ namespace ToolBox.Files
             {
                 foreach (string sourceSubDir in Directory.GetDirectories(sourceDir))
                 {
-                    string targetSubDir = Path.Combine(targetDir, sourceSubDir.Substring(sourceSubDir.LastIndexOf(PATH_SPLIT_CHAR) + 1));
+                    string targetSubDir = Path.Combine(targetDir, sourceSubDir.Substring(sourceSubDir.LastIndexOf("\\") + 1));
                     if (!Directory.Exists(targetSubDir))
                         Directory.CreateDirectory(targetSubDir);
                     MoveFiles(sourceSubDir, targetSubDir, overWrite, true);
@@ -220,9 +252,9 @@ namespace ToolBox.Files
         public static string[] GetFileNames(string directoryPath, string searchPattern, bool isSearchChild)
         {
             //如果目录不存在，则抛出异常
-            if (!IsExistDirectory(directoryPath))
+            if (!CheckIsExistsDirectory(directoryPath))
             {
-                throw new FileNotFoundException();
+                return new string[] { };
             }
 
             try
@@ -238,7 +270,8 @@ namespace ToolBox.Files
             }
             catch (IOException ex)
             {
-                throw ex;
+                $"获取指定目录及子目录中所有文件列表 出错:{ex.Message}".WriteErrorLog();
+                return new string[] { };
             }
         }
 
@@ -267,11 +300,11 @@ namespace ToolBox.Files
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message);
-                //LogHelper.WriteTraceLog(TraceLogLevel.Error, ex.Message);
+                $"检测指定目录中是否存在指定的文件. 出错:{ex.Message}".WriteErrorLog();
+                return false;
             }
         }
-        
+
         /// <summary>
         /// 获取指定目录中所有子目录列表,若要搜索嵌套的子目录列表,请使用重载方法.
         /// </summary>
@@ -294,14 +327,23 @@ namespace ToolBox.Files
         /// <param name="directoryPath">指定目录的绝对路径</param>        
         public static string[] GetFileNames(string directoryPath)
         {
-            //如果目录不存在，则抛出异常
-            if (!IsExistDirectory(directoryPath))
+            try
             {
-                throw new FileNotFoundException();
+                //如果目录不存在，则抛出异常
+                if (!CheckIsExistsDirectory(directoryPath))
+                {
+                    return new string[] { };
+                }
+
+                //获取文件列表
+                return Directory.GetFiles(directoryPath);
+            }
+            catch (Exception ex)
+            {
+                $"获取指定目录中所有文件列表 错误：{ex.Message}".WriteErrorLog();
+                return new string[] { };
             }
 
-            //获取文件列表
-            return Directory.GetFiles(directoryPath);
         }
 
         /// <summary>
@@ -328,11 +370,10 @@ namespace ToolBox.Files
 
                 return true;
             }
-            catch
+            catch (Exception ex)
             {
-                //这里记录日志
-                //LogHelper.WriteTraceLog(TraceLogLevel.Error, ex.Message);
-                return true;
+                $"检测指定目录是否为空 错误：{ex.Message}".WriteErrorLog();
+                return false;
             }
         }
 
