@@ -16,3 +16,4 @@ D:\project\toolbox\ToolBox\ToolBox.Log\obj\Debug\netstandard2.0\ToolBox.Log.Asse
 D:\project\toolbox\ToolBox\ToolBox.Log\obj\Debug\netstandard2.0\ToolBox.Log.AssemblyInfo.cs
 D:\project\toolbox\ToolBox\ToolBox.Log\obj\Debug\netstandard2.0\ToolBox.Log.dll
 D:\project\toolbox\ToolBox\ToolBox.Log\obj\Debug\netstandard2.0\ToolBox.Log.pdb
+D:\project\toolbox\ToolBox\ToolBox.Log\obj\Debug\netstandard2.0\ToolBox.Log.csprojAssemblyReference.cache
