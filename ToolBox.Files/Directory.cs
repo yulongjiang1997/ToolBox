@@ -35,7 +35,7 @@ namespace ToolBox.Files
             }
             catch (Exception ex)
             {
-                Log.LogUtil.Error("删除指定目录的所有文件和子目录失败：" + ex.Message);
+                LogUtil.Error("删除指定目录的所有文件和子目录失败：" + ex.Message);
                 throw;
             }
 

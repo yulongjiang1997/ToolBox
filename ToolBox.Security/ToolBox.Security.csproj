@@ -2,6 +2,12 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <Description>各种加密工具</Description>
+    <Authors>Aidenxl  , Yulongjiang</Authors>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>D:\project\toolbox\ToolBox\ToolBox.Security\ToolBox.Security.xml</DocumentationFile>
   </PropertyGroup>
 
 </Project>

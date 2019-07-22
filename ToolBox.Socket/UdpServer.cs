@@ -7,7 +7,9 @@ using System.Threading;
 
 namespace ToolBox.Socket
 {
-
+    /// <summary>
+    /// 消息参数
+    /// </summary>
     public class MsgArgs : EventArgs {
 
         public string message { get; set; }

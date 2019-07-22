@@ -6,16 +6,10 @@
     <members>
         <member name="M:ToolBox.Files.FileUtil.DeleteDirectoryFiles(System.String,System.Boolean)">
             <summary>
-            删除指定目录的所有文件和子目录
+            删除指定目录的所有文件
             </summary>
             <param name="TargetDir">操作目录</param>
-            <param name="delSubDir">如果为true,包含对子目录的操作</param>
-        </member>
-        <member name="M:ToolBox.Files.FileUtil.DeleteFiles(System.String)">
-            <summary>
-            删除指定目录下的指定文件
-            </summary>
-            <param name="TargetFileDir">指定文件的目录</param>
+            <param name="delSubDir">默认为false 如果为true,包含对子目录的操作</param>
         </member>
         <member name="M:ToolBox.Files.FileUtil.CreateDirectory(System.String)">
             <summary>
@@ -29,6 +23,15 @@
             </summary>
             <param name="parentDir">目录路径</param>
             <param name="subDirName">子目录名称</param>
+        </member>
+        <member name="M:ToolBox.Files.FileUtil.ReNameFloder(System.String,System.String,System.String)">
+            <summary>
+            重命名文件夹
+            </summary>
+            <param name="directoryPath">文件夹路径</param>
+            <param name="OldFloderName">原文件夹名称</param>
+            <param name="NewFloderName">新文件夹名称</param>
+            <returns></returns>
         </member>
         <member name="M:ToolBox.Files.FileUtil.DeleteDirectory(System.String)">
             <summary>
@@ -50,16 +53,9 @@
             <param name="StrPath">路径</param>
             <param name="Create">如果不存在，是否创建</param>
         </member>
-        <member name="M:ToolBox.Files.FileUtil.IsExistDirectory(System.String)">
-            <summary>
-            检测指定目录是否存在
-            </summary>
-            <param name="directoryPath">目录的绝对路径</param>
-            <returns></returns>
-        </member>
         <member name="M:ToolBox.Files.FileUtil.DeleteSubDirectory(System.String)">
             <summary>
-            删除指定目录的所有子目录,不包括对当前目录文件的删除
+            删除指定目录下的所有文件夹
             </summary>
             <param name="targetDir">目录路径</param>
         </member>
@@ -135,6 +131,12 @@
             <param name="fileName"></param>
             <returns></returns>
         </member>
+        <member name="M:ToolBox.Files.FileUtil.DeleteFiles(System.String)">
+            <summary>
+            删除指定文件
+            </summary>
+            <param name="TargetFileDir">指定文件的目录</param>
+        </member>
         <member name="M:ToolBox.Files.FileUtil.FileExists(System.String)">
             <summary>
             返回文件是否存在
@@ -149,12 +151,11 @@
             <param name="FileUrl">文件真实路径</param>
             <returns></returns>
         </member>
-        <member name="M:ToolBox.Files.FileUtil.GetFileExtension(System.String)">
+        <member name="M:ToolBox.Files.FileUtil.GetFileExtensionName(System.String)">
             <summary>
-            返回指定路径的文件的扩展名
+            获得文件的拓展名
             </summary>
-            <param name="PathFileName">完整路径的文件</param>
-            <returns></returns>
+            <param name="filePath">文件的绝对路径</param>        
         </member>
         <member name="M:ToolBox.Files.FileUtil.IsHiddenFile(System.String)">
             <summary>
@@ -163,30 +164,60 @@
             <param name="path">文件路径</param>
             <returns></returns>
         </member>
-        <member name="M:ToolBox.Files.FileUtil.ReadTxtFile(System.String)">
-            <summary>
-            以只读方式读取文本文件
-            </summary>
-            <param name="FilePath">文件路径及文件名</param>
-            <returns></returns>
-        </member>
-        <member name="M:ToolBox.Files.FileUtil.GetLineCount(System.String)">
+        <member name="M:ToolBox.Files.FileUtil.GetFileLineCount(System.String)">
             <summary>
             获取文本文件的行数
             </summary>
             <param name="filePath">文件的绝对路径</param>        
         </member>
-        <member name="M:ToolBox.Files.FileUtil.GetExtension(System.String)">
+        <member name="M:ToolBox.Files.FileUtil.ReadTxtFileByUTF8(System.String)">
             <summary>
-            从文件的绝对路径中获取扩展名
+            以UTF8编码格式读取文本文件
             </summary>
-            <param name="filePath">文件的绝对路径</param>        
+            <param name="FilePath">文件路径及文件名</param>
+            <returns></returns>
+        </member>
+        <member name="M:ToolBox.Files.FileUtil.ReadTxtFileByGb2312(System.String)">
+            <summary>
+            以GB2312编码格式读取文本文件
+            </summary>
+            <param name="FilePath">文件路径及文件名</param>
+            <returns></returns>
         </member>
         <member name="M:ToolBox.Files.FileUtil.GetFileNameNoExtension(System.String)">
             <summary>
-            从文件的绝对路径中获取文件名( 不包含扩展名 )
+            获得文件名，不包含扩展名
             </summary>
             <param name="filePath">文件的绝对路径</param>        
+        </member>
+        <member name="M:ToolBox.Files.FileUtil.WriteStrToTxtFile(System.String,System.String,System.Boolean)">
+            <summary>
+            将内容写入文本文件(如果文件path存在就打开，不存在就新建)
+            </summary>
+            <param name="FilePath">文件路径</param>
+            <param name="WriteStr">要写入的内容</param>
+            <param name="isAppend">是否追加写入，true追加，flase覆盖  默认追加</param>
+        </member>
+        <member name="M:ToolBox.Files.FileUtil.Copy(System.String,System.String,System.Boolean)">
+            <summary>
+            将源文件的内容复制到目标文件中
+            </summary>
+            <param name="sourceFilePath">源文件的绝对路径</param>
+            <param name="destFilePath">目标文件的绝对路径</param>
+            <param name="isOverwrite">是否覆盖，true 覆盖，flase 不覆盖，默认true</param>
+        </member>
+        <member name="M:ToolBox.Files.FileUtil.ClearFile(System.String)">
+            <summary>
+            清空文件内容
+            </summary>
+            <param name="filePath">文件的绝对路径</param>
+        </member>
+        <member name="M:ToolBox.Files.FileUtil.SaveStreamToFile(System.IO.Stream,System.String)">
+            <summary>
+            写入数据流到文件
+            </summary>
+            <param name="FromStream">数据</param>
+            <param name="TargetFile">目标文件</param>
         </member>
         <member name="M:ToolBox.Files.FileUtil.GetFileSize(System.IO.FileInfo)">
             <summary>
@@ -201,41 +232,6 @@
             </summary>
             <param name="FilePath">文件的具体路径</param>
             <returns></returns>
-        </member>
-        <member name="M:ToolBox.Files.FileUtil.WriteStrToTxtFile(System.String,System.String,System.IO.FileMode)">
-            <summary>
-            将内容写入文本文件(如果文件path存在就打开，不存在就新建)
-            </summary>
-            <param name="FilePath">文件路径</param>
-            <param name="WriteStr">要写入的内容</param>
-            <param name="FileModes">写入模式：append 是追加写, CreateNew 是覆盖</param>
-        </member>
-        <member name="M:ToolBox.Files.FileUtil.AppendText(System.String,System.String)">
-            <summary>
-            向文本文件的尾部追加内容
-            </summary>
-            <param name="filePath">文件的绝对路径</param>
-            <param name="content">写入的内容</param>
-        </member>
-        <member name="M:ToolBox.Files.FileUtil.Copy(System.String,System.String)">
-            <summary>
-            将源文件的内容复制到目标文件中
-            </summary>
-            <param name="sourceFilePath">源文件的绝对路径</param>
-            <param name="destFilePath">目标文件的绝对路径</param>
-        </member>
-        <member name="M:ToolBox.Files.FileUtil.CreateFileContent(System.String,System.String)">
-            <summary>
-            创建文件
-            </summary>
-            <param name="path">路径</param>
-            <param name="content">内容</param>
-        </member>
-        <member name="M:ToolBox.Files.FileUtil.ClearFile(System.String)">
-            <summary>
-            清空文件内容
-            </summary>
-            <param name="filePath">文件的绝对路径</param>
         </member>
     </members>
 </doc>

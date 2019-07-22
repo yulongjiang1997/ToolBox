@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <Authors>Aidenxl YuLongJiang</Authors>
-    <Version>1.0.2</Version>
+    <Version>1.0.3</Version>
     <PackageReleaseNotes>文件工具类</PackageReleaseNotes>
     <Description>整理工具类并加上异常检测和日志输出</Description>
   </PropertyGroup>

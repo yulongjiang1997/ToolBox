@@ -231,6 +231,11 @@
             错误处理
             </summary>
         </member>
+        <member name="T:ToolBox.Socket.MsgArgs">
+            <summary>
+            消息参数
+            </summary>
+        </member>
         <member name="T:ToolBox.Socket.UdpServer">
             <summary>
             udp服务器
