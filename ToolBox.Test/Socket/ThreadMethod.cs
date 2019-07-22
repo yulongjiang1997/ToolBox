@@ -6,7 +6,8 @@ using System.Text;
 using System.Threading;
 
 
-namespace ToolBox.Socket
+ namespace ToolBox.SocketCore
+
 {
     public partial class TcpServer
     {
@@ -44,8 +45,7 @@ namespace ToolBox.Socket
                             id = i.ToString();
                             ClientMode socketClient = new ClientMode(ip, thread, socket, id);
                             dictsocket.Add(ip, socketClient);
-                           // Console.WriteLine("添加了id号：" + id.ToString());
-                            writeMsg("添加了id号：" + id.ToString());
+                            Console.WriteLine("添加了id号：" + id.ToString());
                             break;
 
                         }
@@ -56,16 +56,14 @@ namespace ToolBox.Socket
 
                     ClientMode socketClient = new ClientMode(ip, thread, socket, id);
                     dictsocket.Add(ip, socketClient);
-
-                    writeMsg("首次的添加了id号：" + id.ToString());
-                   
+                    Console.WriteLine("首次的添加了id号：" + id.ToString());
 
                 }
             }
             catch (Exception ex)
             {
 
-                OnError?.Invoke("添加客户端时的错误：" + ex);
+                OnError?.BeginInvoke("添加客户端时的错误：" + ex, null, null);
                
             }
             finally
@@ -92,7 +90,7 @@ namespace ToolBox.Socket
                     dictsocket.Remove(ip);
 
                
-                    OnClientClose?.Invoke($"移除了{id}号用户，ip地址为{ip}");
+                    OnClientClose?.BeginInvoke($"移除了{id}号用户，ip地址为{ip}", null, null);
 
 
                 }
@@ -101,7 +99,7 @@ namespace ToolBox.Socket
             catch (Exception ex)
             {
 
-                OnError?.Invoke("移除一个客户端时发生的错误：" + ex);
+                OnError?.BeginInvoke("移除一个客户端时发生的错误：" + ex, null, null);
             }
             finally
             {
@@ -127,7 +125,7 @@ namespace ToolBox.Socket
             }
             catch (Exception ex)
             {
-                OnError?.Invoke("得到当前总人数时出错" + ex);
+                OnError?.BeginInvoke("得到当前总人数时出错" + ex, null, null);
                 return -1;
             }
             finally
@@ -160,7 +158,7 @@ namespace ToolBox.Socket
             catch (Exception ex)
             {
 
-                OnError?.Invoke("得到当前客户端信息时出错：" + ex);
+                OnError?.BeginInvoke("得到当前客户端信息时出错：" + ex, null, null);
 
                 list.Add("空");
                 return list;
@@ -197,7 +195,7 @@ namespace ToolBox.Socket
                         item.Value.socket.Close();
                     //    Console.WriteLine("IP已经退出" + item.Key);
 
-                        OnClientClose?.Invoke("IP已经退出" + item.Key);
+                        OnClientClose?.BeginInvoke("IP已经退出" + item.Key,null,null);
 
                     }
                 }
@@ -205,7 +203,7 @@ namespace ToolBox.Socket
             catch (Exception ex)
             {
 
-                OnError?.Invoke("发送给所有客户端时的报错：" + ex);
+                OnError?.BeginInvoke("发送给所有客户端时的报错：" + ex, null, null);
             }
             finally
             {
@@ -240,8 +238,7 @@ namespace ToolBox.Socket
                     else
                     {
                         clientMode.socket.Close();
-                     //   Console.WriteLine("IP已经退出" + clientMode.ip);
-                        writeMsg("IP已经退出" + clientMode.ip);
+                        Console.WriteLine("IP已经退出" + clientMode.ip);
                         isok = false;
                     }
 
@@ -252,7 +249,7 @@ namespace ToolBox.Socket
             catch (Exception ex)
             {
 
-                OnError?.Invoke("发送给客户端时的报错：" + ex);
+                OnError?.BeginInvoke("发送给客户端时的报错：" + ex, null, null);
                 isok = false;
             }
             finally
@@ -290,9 +287,7 @@ namespace ToolBox.Socket
                             dictsocket[str[1].Trim()].socket.Close();  //关闭连接，就在线程报异常，到时自己清除
 
                         }
-                    //    Console.WriteLine("删除了" + str[0] + "" + str[1]);
-
-                        writeMsg("删除了" + str[0] + "" + str[1]);
+                        Console.WriteLine("删除了" + str[0] + "" + str[1]);
                         break;
 
                     }
@@ -304,7 +299,7 @@ namespace ToolBox.Socket
             catch (Exception ex)
             {
 
-                OnError?.Invoke("从号码移除一个客户端时的报错：" + ex);
+                OnError?.BeginInvoke("从号码移除一个客户端时的报错：" + ex, null, null);
 
                 return false;
             }
@@ -336,8 +331,8 @@ namespace ToolBox.Socket
                     {
                      
                         item.Value.socket.Close();
-                       
-                        OnClientClose?.Invoke($"id号:{item.Value.id}，{item.Value.ip}用户没有心跳了，送他归家");
+                        //  ?.BeginInvoke(msg, null, null);
+                        OnClientClose?.BeginInvoke($"id号:{item.Value.id}，{item.Value.ip}用户没有心跳了，送他归家", null, null);
 
                     }
                     //else {
@@ -351,7 +346,7 @@ namespace ToolBox.Socket
             catch (Exception ex)
             {
 
-                OnError?.Invoke("心跳事件里面报错：" + ex);
+                OnError?.BeginInvoke("心跳事件里面报错：" + ex, null, null);
             
             }
             finally

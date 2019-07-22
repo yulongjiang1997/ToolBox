@@ -2,6 +2,7 @@
 using ToolBox.Http;
 using ToolBox.DateTimeTool;
 using ToolBox.Log;
+using ToolBox.SocketCore;
 
 namespace ToolBox.Test
 {
@@ -17,7 +18,30 @@ namespace ToolBox.Test
             //Console.WriteLine(a == "" ? "0" : a);
             //Console.ReadKey();
 
-            
+
+            TcpServer tcpServer = new TcpServer();
+
+
+
+            //tcpServer.OnSuccess = new Action<string>((s) =>
+            //{
+
+            //    Console.WriteLine(s);
+            //});
+
+
+            //tcpServer.OnMessage = new Action<string>((s) =>
+            //{
+
+            //    Console.WriteLine(s);
+            //});
+
+            tcpServer.StartServer(1669);
+
+            Console.WriteLine("5555");
+
+            Console.ReadLine();
+
 
         }
 

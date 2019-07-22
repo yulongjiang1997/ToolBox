@@ -6,19 +6,11 @@ using System.Threading.Tasks;
 using WebSocketSharp;
 using WebSocketSharp.Server;
 using ToolBox.Log;
-using ToolBox.Socket;
+
 
 namespace ToolBox.Framework.Test
 {
-    public class Laputa : WebSocketBehavior
-    {
-        protected override void OnMessage(MessageEventArgs e)
-        {
-            
-            Send(e.Data);
-         
-        }     
-    }
+
 
 
     class Program
@@ -26,22 +18,22 @@ namespace ToolBox.Framework.Test
         static void Main(string[] args)
         {
 
-            UdpServer udpServer = new UdpServer("127.0.0.1", 1569);
+            //UdpServer udpServer = new UdpServer("127.0.0.1", 1569);
 
-            udpServer.OnSuccess += (a, b) =>
-            {
+            //udpServer.OnSuccess += (a, b) =>
+            //{
 
-                Console.WriteLine(b.message);
+            //    Console.WriteLine(b.message);
 
-            };
+            //};
 
-            udpServer.OnReciveMsg += (a, b) =>
-            {
+            //udpServer.OnReciveMsg += (a, b) =>
+            //{
 
-                Console.WriteLine(b.message);
-            };
+            //    Console.WriteLine(b.message);
+            //};
 
-            udpServer.Connect();
+            //udpServer.Connect();
 
             //LogUtil.SetdirectoryPath(@"C:\log\dsjad\dsad.txt");
             //LogUtil.WriteDebugLog("dsadsdasdasds");

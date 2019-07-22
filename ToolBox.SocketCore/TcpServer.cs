@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading;
 using System.Timers;
 
-namespace ToolBox.Socket
+namespace ToolBox.SocketCore
 {
     public partial class TcpServer
     {
@@ -35,7 +35,7 @@ namespace ToolBox.Socket
             {
 
               HearTime = hearTime;
-              socketWatch = new System.Net.Sockets.Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+             socketWatch = new System.Net.Sockets.Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
 
                 IPAddress ipAdr = IPAddress.Parse(ip);
                 IPEndPoint iPEnd = new IPEndPoint(ipAdr, port);
@@ -62,9 +62,7 @@ namespace ToolBox.Socket
                 TimerInit();
              
 
-              // OnSuccess?.BeginInvoke("服务器启动监听成功~", null, null);
-
-               OnSuccess?.Invoke("服务器启动监听成功~");
+               OnSuccess?.BeginInvoke("服务器启动监听成功~", null, null);
 
             }
 
@@ -106,7 +104,7 @@ namespace ToolBox.Socket
         private void writeMsg(string msg)
         {
 
-            OnMessage?.Invoke(msg);
+            OnMessage?.BeginInvoke(msg, null, null);
         }
 
 
@@ -122,7 +120,8 @@ namespace ToolBox.Socket
                 string socketip = conn.RemoteEndPoint.ToString();
 
            
-                OnClientAdd?.Invoke("进来新的客户端ip:" + socketip);
+
+                OnClientAdd?.BeginInvoke("进来新的客户端ip:" + socketip, null, null);
 
                 Thread thr = new Thread(RecMsg);
                 thr.IsBackground = true;
@@ -231,7 +230,7 @@ namespace ToolBox.Socket
                                     catch (Exception ex)
                                     {
 
-                                        OnError?.Invoke("心跳事件报错：:" + ex.ToString());
+                                        OnError?.BeginInvoke("心跳事件报错：:" + ex.ToString(), null, null);
                                     
 
                                     }
@@ -263,8 +262,7 @@ namespace ToolBox.Socket
                 catch (Exception ex)
                 {
                     ReMoveSocketClient(socketip);
-                   // Console.WriteLine("接收客户端的线程报错" + socketip);
-                    OnError?.Invoke("接收客户端的线程报错" + socketip);
+                    Console.WriteLine("接收客户端的线程报错" + socketip);
                     break;
                 }
 

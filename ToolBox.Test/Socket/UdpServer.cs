@@ -5,7 +5,7 @@ using System.Net.Sockets;
 using System.Net;
 using System.Threading;
 
-namespace ToolBox.Socket
+namespace ToolBox.SocketCore
 {
     /// <summary>
     /// 消息参数
@@ -81,11 +81,11 @@ namespace ToolBox.Socket
                 Thread t2 = new Thread(ReciveMsg);
                 t2.Start();
                 
-                OnSuccess?.Invoke(this, new MsgArgs("成功启动"));
+                OnSuccess?.BeginInvoke(this, new MsgArgs("成功启动"), null, null);
             }
             catch (Exception ex)
             {        
-                OnError?.Invoke(this, new MsgArgs(ex.ToString()));
+                OnError?.BeginInvoke(this, new MsgArgs(ex.ToString()), null, null);
             }
 
 
@@ -111,9 +111,11 @@ namespace ToolBox.Socket
             catch (Exception ex)
             {
 
-                OnError?.Invoke(this, new MsgArgs(ex.ToString()));
+                OnError?.BeginInvoke(this, new MsgArgs(ex.ToString()), null, null);
             }
 
+
+            
 
         }
 
@@ -136,14 +138,14 @@ namespace ToolBox.Socket
 
                     //  Console.WriteLine(point.ToString() + message);
 
-                    OnReciveMsg?.Invoke(this, new MsgArgs(point.ToString()+","+ message));
+                    OnReciveMsg?.BeginInvoke(this, new MsgArgs(point.ToString()+","+ message), null, null);
 
                 }
             }
             catch (Exception ex)
             {
 
-                OnError?.Invoke(this, new MsgArgs(ex.ToString()));
+                OnError?.BeginInvoke(this, new MsgArgs(ex.ToString()), null, null);
             }
 
    

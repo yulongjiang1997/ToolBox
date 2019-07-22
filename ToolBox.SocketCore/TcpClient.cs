@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading;
 using System.Timers;
 
-namespace ToolBox.Socket
+namespace ToolBox.SocketCore
 {
     public  class TcpClient
     {
@@ -49,7 +49,7 @@ namespace ToolBox.Socket
                         mySocket.EndConnect(asyncResult);                        //结束异步连接
                         localEndPointIp = mySocket.LocalEndPoint.ToString();     //得到ip地址
 
-                        OnSuccess?.Invoke(this);   //连接成功的回调
+                        OnSuccess?.BeginInvoke(this, null, null);   //连接成功的回调
 
                         recThread = new Thread(RecMsg);
                         recThread.IsBackground = true;
@@ -69,9 +69,9 @@ namespace ToolBox.Socket
                     catch (Exception ex)
                     {
 
-                        OnError?.Invoke(ex);
+                      
 
-                     
+                        OnError?.BeginInvoke(ex, null, null);      //报错的回调
                     }
 
                 }, null);
@@ -81,7 +81,7 @@ namespace ToolBox.Socket
             {
 
                
-                OnError?.Invoke(ex);    //报错的回调
+                OnError?.BeginInvoke(ex, null, null);    //报错的回调
             }
 
 
@@ -179,7 +179,7 @@ namespace ToolBox.Socket
                             String strc = Encoding.UTF8.GetString(surplusBuffer, haveRead + headSize, bodySize);
 
                             // Console.WriteLine("------------结果：" + strc);
-                            OnRecMessage?.Invoke(strc, this);
+                            OnRecMessage?.BeginInvoke(strc, this, null, null);
 
                             haveRead = haveRead + headSize + bodySize;
 
@@ -197,9 +197,7 @@ namespace ToolBox.Socket
                 }
                 catch (Exception ex)
                 {
-                  //  Console.WriteLine("接收的线程组错误信息：" + ex);
-
-                    OnError?.Invoke(ex);
+                    Console.WriteLine("接收的线程组错误信息：" + ex);
                     break;
 
                 }
@@ -238,8 +236,7 @@ namespace ToolBox.Socket
             }
             else
             {
-              Console.WriteLine("没有跟服务器连接~");
-                    
+                Console.WriteLine("没有跟服务器连接~");
 
             }
         }
