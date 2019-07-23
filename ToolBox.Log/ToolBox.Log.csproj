@@ -2,10 +2,10 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Description>优化路径设置及其他文件路径相关</Description>
+    <Description>设置文件路径方法名变动，</Description>
     <PackageReleaseNotes>一个超级简单的日志输出帮助类</PackageReleaseNotes>
     <Authors>yulongjiang,Aidenxl</Authors>
-    <Version>1.0.6</Version>
+    <Version>1.0.7</Version>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
   </PropertyGroup>
 

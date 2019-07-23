@@ -2,7 +2,7 @@
 using ToolBox.Http;
 using ToolBox.DateTimeTool;
 using ToolBox.Log;
-using ToolBox.SocketCore;
+using System.Threading.Tasks;
 
 namespace ToolBox.Test
 {
@@ -17,38 +17,177 @@ namespace ToolBox.Test
             //string a = "";
             //Console.WriteLine(a == "" ? "0" : a);
             //Console.ReadKey();
-
-
-            TcpServer tcpServer = new TcpServer();
-
-
-
-            //tcpServer.OnSuccess = new Action<string>((s) =>
-            //{
-
-            //    Console.WriteLine(s);
-            //});
-
-
-            //tcpServer.OnMessage = new Action<string>((s) =>
-            //{
-
-            //    Console.WriteLine(s);
-            //});
-
-            tcpServer.StartServer(1669);
-
-            Console.WriteLine("5555");
-
-            Console.ReadLine();
-
-
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            Console.ReadKey();
         }
 
         public enum test
         {
             test1,
             test2
+        }
+
+        private static void RunTask()
+        {
+            Task.Run(() =>
+            {
+                "test1".WriteErrorLog();
+                "test2".WriteErrorLog();
+                "test3".WriteErrorLog();
+                "test4".WriteErrorLog();
+                "test5".WriteErrorLog();
+                "test6".WriteErrorLog();
+                "test7".WriteErrorLog();
+                "test8".WriteErrorLog();
+                "test9".WriteErrorLog();
+                "test10".WriteErrorLog();
+                "test11".WriteErrorLog();
+                "test1".WriteDebugLog();
+                "test2".WriteDebugLog();
+                "test3".WriteDebugLog();
+                "test4".WriteDebugLog();
+                "test5".WriteDebugLog();
+                "test6".WriteDebugLog();
+                "test7".WriteDebugLog();
+                "test8".WriteDebugLog();
+                "test9".WriteDebugLog();
+                "test10".WriteDebugLog();
+                "test11".WriteDebugLog();
+            });
         }
     }
 }
