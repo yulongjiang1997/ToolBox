@@ -2,7 +2,7 @@
 using ToolBox.Http;
 using ToolBox.DateTimeTool;
 using ToolBox.Log;
-using ToolBox.Socket;
+using System.Threading.Tasks;
 
 namespace ToolBox.Test
 {
@@ -10,50 +10,184 @@ namespace ToolBox.Test
     {
         static void Main(string[] args)
         {
+            //Console.WriteLine("Hello World!");
 
-            TcpClient tcpClient = new TcpClient();
-
-            tcpClient.StartConnect(1956);
-
-         
-            tcpClient.OnSuccess = new Action<TcpClient>((c) =>
-            {
-             
-                tcpClient.SendMsg("6666");
-
-
-
-            });
-
-            tcpClient.OnMessage = (s) =>
-            {
-                Console.WriteLine(s);
-            };
-
-            tcpClient.OnRecMessage = (s, c) =>
-            {
-
-                Console.WriteLine("接收回来的"+s);
-            };
-
-
-            tcpClient.OnError = (ex) =>
-            {
-                Console.WriteLine(ex);
-            };
-
-
-        
-
-            Console.ReadLine();
-
-
+            //Console.WriteLine(((long)1561815867).UnixTimeStamp10ToBeijingTime());
+            //Console.WriteLine(((long)1563073506).UnixTimeStamp10ToBeijingTime());
+            //string a = "";
+            //Console.WriteLine(a == "" ? "0" : a);
+            //Console.ReadKey();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            RunTask();
+            Console.ReadKey();
         }
 
         public enum test
         {
             test1,
             test2
+        }
+
+        private static void RunTask()
+        {
+            Task.Run(() =>
+            {
+                "test1".WriteErrorLog();
+                "test2".WriteErrorLog();
+                "test3".WriteErrorLog();
+                "test4".WriteErrorLog();
+                "test5".WriteErrorLog();
+                "test6".WriteErrorLog();
+                "test7".WriteErrorLog();
+                "test8".WriteErrorLog();
+                "test9".WriteErrorLog();
+                "test10".WriteErrorLog();
+                "test11".WriteErrorLog();
+                "test1".WriteDebugLog();
+                "test2".WriteDebugLog();
+                "test3".WriteDebugLog();
+                "test4".WriteDebugLog();
+                "test5".WriteDebugLog();
+                "test6".WriteDebugLog();
+                "test7".WriteDebugLog();
+                "test8".WriteDebugLog();
+                "test9".WriteDebugLog();
+                "test10".WriteDebugLog();
+                "test11".WriteDebugLog();
+            });
         }
     }
 }

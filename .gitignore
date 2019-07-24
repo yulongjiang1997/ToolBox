@@ -23,6 +23,9 @@
 /ToolBox.Socket/obj
 /ToolBox.String/obj
 /ToolBox.Log/obj
+/ToolBox.SocketCore/obj
+
+
 /ToolBox.Test/bin
 /ToolBox.Framework.Test/bin
 /ToolBox.Cmd/bin
@@ -39,3 +42,4 @@
 /ToolBox.Socket/bin
 /ToolBox.String/bin
 /ToolBox.Log/bin
+/ToolBox.SocketCore/bin

@@ -29,7 +29,7 @@
             一个超级简单的日志帮助类
             </summary>
         </member>
-        <member name="M:ToolBox.Log.LogUtil.SetdirectoryPath(System.String)">
+        <member name="M:ToolBox.Log.LogUtil.SetDirectoryPath(System.String)">
             <summary>
             设置日志文件夹路径，true是成功，flase是失败（默认软件运行目录下log文件夹中写入）
             </summary>
@@ -39,6 +39,11 @@
         <member name="M:ToolBox.Log.LogUtil.#cctor">
             <summary>
             不指定目录默认当前目录
+            </summary>
+        </member>
+        <member name="M:ToolBox.Log.LogUtil.Start">
+            <summary>
+            循环检测队列
             </summary>
         </member>
         <member name="M:ToolBox.Log.LogUtil.Debug(System.String)">
@@ -76,6 +81,21 @@
             扩展方法 输出错误信息
             </summary>
             <param name="message"></param>
+        </member>
+        <member name="T:ToolBox.Log.QueueModel">
+            <summary>
+            队列类
+            </summary>
+        </member>
+        <member name="P:ToolBox.Log.QueueModel.Path">
+            <summary>
+            路径
+            </summary>
+        </member>
+        <member name="P:ToolBox.Log.QueueModel.Msg">
+            <summary>
+            日志消息
+            </summary>
         </member>
     </members>
 </doc>

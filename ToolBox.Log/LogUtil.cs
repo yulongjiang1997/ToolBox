@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace ToolBox.Log
 {
@@ -11,13 +14,14 @@ namespace ToolBox.Log
     {
 
         private static string LogPath { get; set; }
+        private static List<QueueModel> LogQueue { get; set; }
 
         /// <summary>
         /// 设置日志文件夹路径，true是成功，flase是失败（默认软件运行目录下log文件夹中写入）
         /// </summary>
         /// <param name="directoryPath"></param>
         /// <returns></returns>
-        public static bool SetdirectoryPath(string directoryPath)
+        public static bool SetDirectoryPath(string directoryPath)
         {
             try
             {
@@ -59,7 +63,45 @@ namespace ToolBox.Log
         /// </summary>
         static LogUtil()
         {
+            LogQueue = new List<QueueModel>();
             LogPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"logs\");
+            Start();
+        }
+
+        /// <summary>
+        /// 循环检测队列
+        /// </summary>
+        private static void Start()
+        {
+            Task.Run(() =>
+            {
+                while (true)
+                {
+                    if (LogQueue.Count > 0)
+                    {
+                        try
+                        {
+                            using (StreamWriter sw = new StreamWriter(LogQueue[0].Path, true, Encoding.UTF8))
+                            {
+                                sw.Write(LogQueue[0].Msg);
+                                LogQueue.Remove(LogQueue[0]);
+                                sw.Close();
+                                sw.Dispose();
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            WriteMessage(LogType.Error, ex.Message + "----WriteMessage：" + LogQueue[0].Msg);
+                            LogQueue.Remove(LogQueue[0]);
+                        }
+                        Thread.Sleep(2);
+                    }
+                    else
+                    {
+                        Thread.Sleep(500);
+                    }
+                }
+            });
         }
 
         /// <summary>
@@ -128,7 +170,7 @@ namespace ToolBox.Log
                 var tLogPath = Path.Combine(LogPath, DateTime.Now.ToString("yyyy-MM-dd") + ".txt");
 
 
-                Console.WriteLine(tLogPath);
+                // Console.WriteLine(tLogPath);
 
                 if (!File.Exists(tLogPath))
                 {
@@ -138,12 +180,8 @@ namespace ToolBox.Log
                     }
                 }
 
-                using (StreamWriter sw = new StreamWriter(tLogPath, true, Encoding.UTF8))
-                {
-                    sw.Write($"{DateTime.Now}----【{logType.ToString()}】：{message}\r\n");
-                    sw.Close();
-                    sw.Dispose();
-                }
+                //添加队列
+                LogQueue.Add(new QueueModel { Msg = $"{DateTime.Now}----【{logType.ToString()}】：{message}\r\n", Path = tLogPath });
             }
             catch (Exception ex)
             {

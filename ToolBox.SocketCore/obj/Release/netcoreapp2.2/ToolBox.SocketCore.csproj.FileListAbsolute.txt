@@ -1,9 +1,0 @@
-D:\project\toolbox\ToolBox\ToolBox.SocketCore\bin\Release\netcoreapp2.2\ToolBox.SocketCore.deps.json
-D:\project\toolbox\ToolBox\ToolBox.SocketCore\bin\Release\netcoreapp2.2\ToolBox.SocketCore.dll
-D:\project\toolbox\ToolBox\ToolBox.SocketCore\bin\Release\netcoreapp2.2\ToolBox.SocketCore.pdb
-D:\project\toolbox\ToolBox\ToolBox.SocketCore\obj\Release\netcoreapp2.2\ToolBox.SocketCore.csprojAssemblyReference.cache
-D:\project\toolbox\ToolBox\ToolBox.SocketCore\obj\Release\netcoreapp2.2\ToolBox.SocketCore.csproj.CoreCompileInputs.cache
-D:\project\toolbox\ToolBox\ToolBox.SocketCore\obj\Release\netcoreapp2.2\ToolBox.SocketCore.AssemblyInfoInputs.cache
-D:\project\toolbox\ToolBox\ToolBox.SocketCore\obj\Release\netcoreapp2.2\ToolBox.SocketCore.AssemblyInfo.cs
-D:\project\toolbox\ToolBox\ToolBox.SocketCore\obj\Release\netcoreapp2.2\ToolBox.SocketCore.dll
-D:\project\toolbox\ToolBox\ToolBox.SocketCore\obj\Release\netcoreapp2.2\ToolBox.SocketCore.pdb
