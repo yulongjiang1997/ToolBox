@@ -238,8 +238,9 @@ namespace ToolBox.Socket
             }
             else
             {
-              Console.WriteLine("没有跟服务器连接~");
-                    
+              //  Console.WriteLine("没有跟服务器连接~");
+
+                OnMessage?.Invoke("没有跟服务器连接~");
 
             }
         }
@@ -264,6 +265,11 @@ namespace ToolBox.Socket
         /// 错误处理
         /// </summary>
         public Action<Exception> OnError { get; set; }
+
+        /// <summary>
+        /// 接收信息
+        /// </summary>
+        public Action<string> OnMessage { get; set; }
  
 
 

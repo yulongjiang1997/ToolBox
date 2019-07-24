@@ -2,7 +2,7 @@
 using ToolBox.Http;
 using ToolBox.DateTimeTool;
 using ToolBox.Log;
-using ToolBox.SocketCore;
+using ToolBox.Socket;
 
 namespace ToolBox.Test
 {
@@ -10,35 +10,40 @@ namespace ToolBox.Test
     {
         static void Main(string[] args)
         {
-            //Console.WriteLine("Hello World!");
 
-            //Console.WriteLine(((long)1561815867).UnixTimeStamp10ToBeijingTime());
-            //Console.WriteLine(((long)1563073506).UnixTimeStamp10ToBeijingTime());
-            //string a = "";
-            //Console.WriteLine(a == "" ? "0" : a);
-            //Console.ReadKey();
+            TcpClient tcpClient = new TcpClient();
 
+            tcpClient.StartConnect(1956);
 
-            TcpServer tcpServer = new TcpServer();
-
-
-
-            //tcpServer.OnSuccess = new Action<string>((s) =>
-            //{
-
-            //    Console.WriteLine(s);
-            //});
+         
+            tcpClient.OnSuccess = new Action<TcpClient>((c) =>
+            {
+             
+                tcpClient.SendMsg("6666");
 
 
-            //tcpServer.OnMessage = new Action<string>((s) =>
-            //{
 
-            //    Console.WriteLine(s);
-            //});
+            });
 
-            tcpServer.StartServer(1669);
+            tcpClient.OnMessage = (s) =>
+            {
+                Console.WriteLine(s);
+            };
 
-            Console.WriteLine("5555");
+            tcpClient.OnRecMessage = (s, c) =>
+            {
+
+                Console.WriteLine("接收回来的"+s);
+            };
+
+
+            tcpClient.OnError = (ex) =>
+            {
+                Console.WriteLine(ex);
+            };
+
+
+        
 
             Console.ReadLine();
 

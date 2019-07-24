@@ -30,7 +30,7 @@ namespace ToolBox.Socket
         /// <summary>
         /// 处理接收消息的回调函数
         /// </summary>
-        public Action<ClientMode, string> OnRecMessage { get; set; }                     
+        public Action<string , string> OnRecMessage { get; set; }                     
 
         /// <summary>
         /// 处理消息回调函数
