@@ -13,7 +13,7 @@ namespace ToolBox.Security
     public static class DesHelper
     {
 
-        private static string encryptKey = "km4250km";
+        public static string encryptKey = "km4250km";
 
         #region ========加密========
 
@@ -22,7 +22,7 @@ namespace ToolBox.Security
         /// </summary>
         /// <param name="text">字符串</param>
         /// <returns>返回string</returns>
-        public static string Encrypt(string text)
+        public static string Encrypt(this string text)
         {
             return Encrypt(text, encryptKey);
         }
@@ -65,9 +65,10 @@ namespace ToolBox.Security
         /// </summary>
         /// <param name="text">字符串</param> 
         /// <returns>返回string</returns>
-        public static string Decrypt(string text)
-        {
-            return Decrypt(text, encryptKey);
+        public static string Decrypt(this string text)
+        {   
+             return Decrypt(text, encryptKey);
+                
         }
 
         /// <summary> 
@@ -78,15 +79,25 @@ namespace ToolBox.Security
         /// <returns>返回string</returns> 
         public static string Decrypt(string text, string key)
         {
-            byte[] keyBytes = Encoding.UTF8.GetBytes(key.Substring(0, 8));
-            byte[] keyIV = keyBytes;
-            byte[] inputByteArray = Convert.FromBase64String(text);
-            DESCryptoServiceProvider provider = new DESCryptoServiceProvider();
-            MemoryStream mStream = new MemoryStream();
-            CryptoStream cStream = new CryptoStream(mStream, provider.CreateDecryptor(keyBytes, keyIV), CryptoStreamMode.Write);
-            cStream.Write(inputByteArray, 0, inputByteArray.Length);
-            cStream.FlushFinalBlock();
-            return Encoding.UTF8.GetString(mStream.ToArray());
+            try
+            {
+                byte[] keyBytes = Encoding.UTF8.GetBytes(key.Substring(0, 8));
+                byte[] keyIV = keyBytes;
+                byte[] inputByteArray = Convert.FromBase64String(text);
+                DESCryptoServiceProvider provider = new DESCryptoServiceProvider();
+                MemoryStream mStream = new MemoryStream();
+                CryptoStream cStream = new CryptoStream(mStream, provider.CreateDecryptor(keyBytes, keyIV), CryptoStreamMode.Write);
+                cStream.Write(inputByteArray, 0, inputByteArray.Length);
+                cStream.FlushFinalBlock();
+                return Encoding.UTF8.GetString(mStream.ToArray());
+            }
+            catch (Exception ex)
+            {
+                return "";
+             
+            }
+
+
         }
 
         #endregion

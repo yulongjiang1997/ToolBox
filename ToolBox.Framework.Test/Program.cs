@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using WebSocketSharp;
 using WebSocketSharp.Server;
 using ToolBox.Log;
+using ToolBox.Security;
 
 
 namespace ToolBox.Framework.Test
@@ -18,38 +19,18 @@ namespace ToolBox.Framework.Test
         static void Main(string[] args)
         {
 
-            //UdpServer udpServer = new UdpServer("127.0.0.1", 1569);
-
-            //udpServer.OnSuccess += (a, b) =>
-            //{
-
-            //    Console.WriteLine(b.message);
-
-            //};
-
-            //udpServer.OnReciveMsg += (a, b) =>
-            //{
-
-            //    Console.WriteLine(b.message);
-            //};
-
-            //udpServer.Connect();
-
-            //LogUtil.SetdirectoryPath(@"C:\log\dsjad\dsad.txt");
-            //LogUtil.WriteDebugLog("dsadsdasdasds");
+            DesHelper.encryptKey = "abc1231a";
 
 
-
-            //var wssv = new WebSocketServer("ws://127.0.0.1:8081");
-
+           string aa=  DesHelper.Encrypt("aidenxl55445465");
 
 
-            //wssv.AddWebSocketService<Laputa>("/");
+            Console.WriteLine(aa);
 
-            //wssv.Start();
+          string ss=   DesHelper.Decrypt(aa);
 
-
-
+            Console.WriteLine();
+            Console.WriteLine(ss);
 
             Console.ReadLine();
             //wssv.Stop();

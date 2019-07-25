@@ -62,6 +62,10 @@
       <Project>{1581cfa6-8e1a-4a24-919a-08e04a8256f3}</Project>
       <Name>ToolBox.Log</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ToolBox.Security\ToolBox.Security.csproj">
+      <Project>{417d3f4f-01c4-4467-a6a6-7ddf687166a6}</Project>
+      <Name>ToolBox.Security</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />

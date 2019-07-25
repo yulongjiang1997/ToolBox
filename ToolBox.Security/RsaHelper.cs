@@ -6,7 +6,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CommomTools
+namespace ToolBox.Security
 {
     /// <summary>
     /// RSA密钥对

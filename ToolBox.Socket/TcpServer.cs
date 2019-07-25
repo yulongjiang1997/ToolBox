@@ -22,7 +22,7 @@ namespace ToolBox.Socket
             private ReaderWriterLockSlim lockSlim = new ReaderWriterLockSlim();
 
             System.Timers.Timer timer;        //计时器
-            private long HearTime = 10;         //心跳时间
+            private long HearTime = 7;         //心跳时间
 
 
             /// <summary>
@@ -31,7 +31,7 @@ namespace ToolBox.Socket
             /// <param name="port">端口号</param>
             /// <param name="count">连接队列总数（默认50）</param>
             /// <param name="ip">ip地址（默认本机ip）</param>
-            public void StartServer(int port, int count = 50, int time = 2000,long hearTime=10, string ip = "127.0.0.1")
+            public void StartServer(int port, int count = 50, int time = 2000,long hearTime=7, string ip = "127.0.0.1")
             {
 
               HearTime = hearTime;
@@ -61,9 +61,6 @@ namespace ToolBox.Socket
 
                 TimerInit();
              
-
-              // OnSuccess?.BeginInvoke("服务器启动监听成功~", null, null);
-
                OnSuccess?.Invoke("服务器启动监听成功~");
 
             }
@@ -120,8 +117,7 @@ namespace ToolBox.Socket
             {
                 System.Net.Sockets.Socket  conn = socketWatch.Accept();
                 string socketip = conn.RemoteEndPoint.ToString();
-
-           
+      
                 OnClientAdd?.Invoke("进来新的客户端ip:" + socketip);
 
                 Thread thr = new Thread(RecMsg);
@@ -230,10 +226,8 @@ namespace ToolBox.Socket
                                     }
                                     catch (Exception ex)
                                     {
-
                                         OnError?.Invoke("心跳事件报错：:" + ex.ToString());
                                     
-
                                     }
                                     finally
                                     {

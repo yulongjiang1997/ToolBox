@@ -56,17 +56,13 @@ namespace ToolBox.Socket
 
                     ClientMode socketClient = new ClientMode(ip, thread, socket, id);
                     dictsocket.Add(ip, socketClient);
-
                     writeMsg("首次的添加了id号：" + id.ToString());
                    
-
                 }
             }
             catch (Exception ex)
             {
-
-                OnError?.Invoke("添加客户端时的错误：" + ex);
-               
+                OnError?.Invoke("添加客户端时的错误：" + ex);            
             }
             finally
             {
@@ -90,22 +86,18 @@ namespace ToolBox.Socket
                 {
                     string id = dictsocket[ip].id;
                     dictsocket.Remove(ip);
-
-               
+        
                     OnClientClose?.Invoke($"移除了{id}号用户，ip地址为{ip}");
-
 
                 }
 
             }
             catch (Exception ex)
             {
-
                 OnError?.Invoke("移除一个客户端时发生的错误：" + ex);
             }
             finally
             {
-
                 lockSlim.ExitWriteLock();
             }
 
@@ -231,7 +223,6 @@ namespace ToolBox.Socket
                 if (dictsocket.ContainsKey(ip.Trim()))
                 {
                      ClientMode clientMode= dictsocket[ip.Trim()];
-
                     if (SocketTools.IsSocketConnected(clientMode.socket))
                     {
                         clientMode.socket.Send(SocketTools.GetBytes(msg));
@@ -244,14 +235,10 @@ namespace ToolBox.Socket
                         writeMsg("IP已经退出" + clientMode.ip);
                         isok = false;
                     }
-
-                }
-             
-                
+                }                          
             }
             catch (Exception ex)
             {
-
                 OnError?.Invoke("发送给客户端时的报错：" + ex);
                 isok = false;
             }
@@ -273,7 +260,6 @@ namespace ToolBox.Socket
         /// <returns></returns>
         public bool ReMoveClientForId(string id)
         {
-
             List<string> vs = GetAllClientInfo();
             lockSlim.EnterWriteLock();
             try
@@ -281,10 +267,8 @@ namespace ToolBox.Socket
                 for (int i = 0; i < vs.Count; i++)
                 {
                     string[] str = vs[i].ToString().Trim().Split('-');
-
                     if (str[0].Trim().Equals(id))
                     {
-
                         if (dictsocket.ContainsKey(str[1].Trim()))
                         {
                             dictsocket[str[1].Trim()].socket.Close();  //关闭连接，就在线程报异常，到时自己清除
@@ -296,21 +280,16 @@ namespace ToolBox.Socket
                         break;
 
                     }
-
                 }
-
                 return true;
             }
             catch (Exception ex)
             {
-
                 OnError?.Invoke("从号码移除一个客户端时的报错：" + ex);
-
                 return false;
             }
             finally
             {
-
                 lockSlim.ExitWriteLock();
             }
 

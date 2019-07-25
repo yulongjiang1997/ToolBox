@@ -174,6 +174,211 @@
             <param name="filePath">文件路径</param>
             <returns>MD5</returns>
         </member>
+        <member name="T:ToolBox.Security.RsaKey">
+            <summary>
+            RSA密钥对
+            </summary>
+        </member>
+        <member name="F:ToolBox.Security.RsaKey.PublicKey">
+            <summary>
+            公钥
+            </summary>
+        </member>
+        <member name="F:ToolBox.Security.RsaKey.PrivateKey">
+            <summary>
+            私钥
+            </summary>
+        </member>
+        <member name="T:ToolBox.Security.RsaHelper">
+            <summary> 
+            RSA加密解密及RSA签名和验证
+            </summary> 
+        </member>
+        <member name="M:ToolBox.Security.RsaHelper.GenerateRsaKeys">
+            <summary>
+            生成 RSA 公钥和私钥
+            </summary>
+        </member>
+        <member name="M:ToolBox.Security.RsaHelper.RSAEncrypt(System.String,System.String)">
+            <summary>
+            RSA的加密函数 string
+            </summary>
+            <param name="publicKey">公钥</param>
+            <param name="mStrEncryptString">需要加密的字符串</param>
+            <returns>加密后的内容</returns>
+            <exception cref="T:System.Security.Cryptography.CryptographicException">The cryptographic service provider (CSP) cannot be acquired. </exception>
+        </member>
+        <member name="M:ToolBox.Security.RsaHelper.RSAEncrypt(System.String)">
+            <summary>
+            RSA的加密函数 string
+            </summary>
+            <param name="mStrEncryptString">需要加密的字符串</param>
+            <returns>加密后的内容</returns>
+            <exception cref="T:System.Security.Cryptography.CryptographicException">The cryptographic service provider (CSP) cannot be acquired. </exception>
+        </member>
+        <member name="M:ToolBox.Security.RsaHelper.RSAEncrypt(System.Byte[],System.String)">
+            <summary>
+            RSA的加密函数 byte[]
+            </summary>
+            <param name="encryptString">需要加密的字节数组</param>
+            <param name="publicKey">公钥</param>
+            <returns>加密后的内容</returns>
+            <exception cref="T:System.Security.Cryptography.CryptographicException">The cryptographic service provider (CSP) cannot be acquired. </exception>
+        </member>
+        <member name="M:ToolBox.Security.RsaHelper.RSAEncrypt(System.Byte[])">
+            <summary>
+            RSA的加密函数 byte[]
+            </summary>
+            <param name="encryptString">需要加密的字节数组</param>
+            <returns>加密后的内容</returns>
+            <exception cref="T:System.Security.Cryptography.CryptographicException">The cryptographic service provider (CSP) cannot be acquired. </exception>
+        </member>
+        <member name="M:ToolBox.Security.RsaHelper.RSADecrypt(System.String,System.String)">
+            <summary>
+            RSA的解密函数  string
+            </summary>
+            <param name="mStrDecryptString">需要解密的字符串</param>
+            <param name="privateKey">私钥</param>
+            <returns>解密后的内容</returns>
+            <exception cref="T:System.Security.Cryptography.CryptographicException">The cryptographic service provider (CSP) cannot be acquired. </exception>
+        </member>
+        <member name="M:ToolBox.Security.RsaHelper.RSADecrypt(System.String)">
+            <summary>
+            RSA的解密函数  string
+            </summary>
+            <param name="mStrDecryptString">需要解密的字符串</param>
+            <returns>解密后的内容</returns>
+            <exception cref="T:System.Security.Cryptography.CryptographicException">The cryptographic service provider (CSP) cannot be acquired. </exception>
+        </member>
+        <member name="M:ToolBox.Security.RsaHelper.RSADecrypt(System.Byte[],System.String)">
+            <summary>
+            RSA的解密函数  byte
+            </summary>
+            <param name="decryptString">需要解密的字符串</param>
+            <param name="privateKey">私钥</param>
+            <returns>解密后的内容</returns>
+            <exception cref="T:System.Security.Cryptography.CryptographicException">The cryptographic service provider (CSP) cannot be acquired. </exception>
+        </member>
+        <member name="M:ToolBox.Security.RsaHelper.RSADecrypt(System.Byte[])">
+            <summary>
+            RSA的解密函数  byte
+            </summary>
+            <param name="decryptString">需要解密的字符串</param>
+            <returns>解密后的内容</returns>
+            <exception cref="T:System.Security.Cryptography.CryptographicException">The cryptographic service provider (CSP) cannot be acquired. </exception>
+        </member>
+        <member name="M:ToolBox.Security.RsaHelper.GetHashBytes(System.String)">
+            <summary>
+            获取Hash描述表
+            </summary>
+            <param name="mStrSource">源数据</param>
+            <returns>Hash描述表</returns>
+        </member>
+        <member name="M:ToolBox.Security.RsaHelper.GetHashString(System.String)">
+            <summary>
+            获取Hash描述表
+            </summary>
+            <param name="mStrSource">源数据</param>
+            <returns>Hash描述表</returns>
+        </member>
+        <member name="M:ToolBox.Security.RsaHelper.GetHashBytes(System.IO.FileStream)">
+            <summary>
+            从文件流获取Hash描述表
+            </summary>
+            <param name="objFile">源文件</param>
+            <returns>Hash描述表</returns>
+        </member>
+        <member name="M:ToolBox.Security.RsaHelper.GetHashString(System.IO.FileStream)">
+            <summary>
+            从文件流获取Hash描述表
+            </summary>
+            <param name="objFile">源文件</param>
+            <returns>Hash描述表</returns>
+        </member>
+        <member name="M:ToolBox.Security.RsaHelper.SignatureBytes(System.Byte[],System.String)">
+            <summary>
+            RSA签名
+            </summary>
+            <param name="hashbyteSignature">签名字节数据</param>
+            <param name="privateKey">私钥</param>
+            <returns>处理结果</returns>
+            <exception cref="T:System.Security.Cryptography.CryptographicException">The cryptographic service provider (CSP) cannot be acquired. </exception>
+            <exception cref="T:System.Security.Cryptography.CryptographicUnexpectedOperationException">The key is null.-or- The hash algorithm is null. </exception>
+        </member>
+        <member name="M:ToolBox.Security.RsaHelper.SignatureString(System.Byte[],System.String)">
+            <summary>
+            RSA签名
+            </summary>
+            <param name="hashbyteSignature">签名字节数据</param>
+            <param name="privateKey">私钥</param>
+            <returns>处理结果</returns>
+            <exception cref="T:System.Security.Cryptography.CryptographicException">The cryptographic service provider (CSP) cannot be acquired. </exception>
+            <exception cref="T:System.Security.Cryptography.CryptographicUnexpectedOperationException">The key is null.-or- The hash algorithm is null. </exception>
+        </member>
+        <member name="M:ToolBox.Security.RsaHelper.SignatureBytes(System.String,System.String)">
+            <summary>
+            RSA签名
+            </summary>
+            <param name="mStrHashbyteSignature">签名字符串数据</param>
+            <param name="pStrKeyPrivate">私钥</param>
+            <returns>处理结果</returns>
+            <exception cref="T:System.Security.Cryptography.CryptographicException">The cryptographic service provider (CSP) cannot be acquired. </exception>
+            <exception cref="T:System.Security.Cryptography.CryptographicUnexpectedOperationException">The key is null.-or- The hash algorithm is null. </exception>
+        </member>
+        <member name="M:ToolBox.Security.RsaHelper.SignatureString(System.String,System.String)">
+            <summary>
+            RSA签名
+            </summary>
+            <param name="mStrHashbyteSignature">签名字符串数据</param>
+            <param name="pStrKeyPrivate">私钥</param>
+            <returns>处理结果</returns>
+            <exception cref="T:System.Security.Cryptography.CryptographicException">The cryptographic service provider (CSP) cannot be acquired. </exception>
+            <exception cref="T:System.Security.Cryptography.CryptographicUnexpectedOperationException">The key is null.-or- The hash algorithm is null. </exception>
+        </member>
+        <member name="M:ToolBox.Security.RsaHelper.SignatureDeformatter(System.Byte[],System.String,System.Byte[])">
+            <summary>
+            RSA 签名验证 
+            </summary>
+            <param name="deformatterData">反格式化字节数据</param>
+            <param name="publicKey">公钥</param>
+            <param name="hashbyteDeformatter">哈希字节数据</param>
+            <returns>处理结果</returns>
+            <exception cref="T:System.Security.Cryptography.CryptographicException">The cryptographic service provider (CSP) cannot be acquired. </exception>
+            <exception cref="T:System.Security.Cryptography.CryptographicUnexpectedOperationException">The key is null.-or- The hash algorithm is null. </exception>
+        </member>
+        <member name="M:ToolBox.Security.RsaHelper.SignatureDeformatter(System.Byte[],System.String,System.String)">
+            <summary>
+            RSA 签名验证 
+            </summary>
+            <param name="deformatterData">反格式化字节数据</param>
+            <param name="publicKey">公钥</param>
+            <param name="pStrHashbyteDeformatter">哈希字符串数据</param>
+            <returns>处理结果</returns>
+            <exception cref="T:System.Security.Cryptography.CryptographicException">The cryptographic service provider (CSP) cannot be acquired. </exception>
+            <exception cref="T:System.Security.Cryptography.CryptographicUnexpectedOperationException">The key is null.-or- The hash algorithm is null. </exception>
+        </member>
+        <member name="M:ToolBox.Security.RsaHelper.SignatureDeformatter(System.String,System.String,System.Byte[])">
+            <summary>
+            RSA 签名验证
+            </summary>
+            <param name="pStrDeformatterData">反格式化字符串数据</param>
+            <param name="publicKey">公钥</param>
+            <param name="hashbyteDeformatter">哈希字节数据</param>
+            <returns>处理结果</returns>
+            <exception cref="T:System.Security.Cryptography.CryptographicException">The cryptographic service provider (CSP) cannot be acquired. </exception>
+            <exception cref="T:System.Security.Cryptography.CryptographicUnexpectedOperationException">The key is null.-or- The hash algorithm is null. </exception>
+        </member>
+        <member name="M:ToolBox.Security.RsaHelper.SignatureDeformatter(System.String,System.String,System.String)">
+            <summary>
+            RSA 签名验证
+            </summary>
+            <param name="pStrDeformatterData">格式字符串数据</param>
+            <param name="publicKey">公钥</param>
+            <param name="pStrHashbyteDeformatter">哈希字符串数据</param>
+            <returns>处理结果</returns>
+            <exception cref="T:System.Security.Cryptography.CryptographicException">The cryptographic service provider (CSP) cannot be acquired. </exception>
+            <exception cref="T:System.Security.Cryptography.CryptographicUnexpectedOperationException">The key is null.-or- The hash algorithm is null. </exception>
+        </member>
         <member name="M:ToolBox.Security.SHA256Helper.SHA256(System.String)">
             <summary>
             SHA256函数
@@ -253,211 +458,6 @@
             </summary>
             <param name="security">需要加密的字符串</param>
             <returns>加密后的数据</returns>
-        </member>
-        <member name="T:CommomTools.RsaKey">
-            <summary>
-            RSA密钥对
-            </summary>
-        </member>
-        <member name="F:CommomTools.RsaKey.PublicKey">
-            <summary>
-            公钥
-            </summary>
-        </member>
-        <member name="F:CommomTools.RsaKey.PrivateKey">
-            <summary>
-            私钥
-            </summary>
-        </member>
-        <member name="T:CommomTools.RsaHelper">
-            <summary> 
-            RSA加密解密及RSA签名和验证
-            </summary> 
-        </member>
-        <member name="M:CommomTools.RsaHelper.GenerateRsaKeys">
-            <summary>
-            生成 RSA 公钥和私钥
-            </summary>
-        </member>
-        <member name="M:CommomTools.RsaHelper.RSAEncrypt(System.String,System.String)">
-            <summary>
-            RSA的加密函数 string
-            </summary>
-            <param name="publicKey">公钥</param>
-            <param name="mStrEncryptString">需要加密的字符串</param>
-            <returns>加密后的内容</returns>
-            <exception cref="T:System.Security.Cryptography.CryptographicException">The cryptographic service provider (CSP) cannot be acquired. </exception>
-        </member>
-        <member name="M:CommomTools.RsaHelper.RSAEncrypt(System.String)">
-            <summary>
-            RSA的加密函数 string
-            </summary>
-            <param name="mStrEncryptString">需要加密的字符串</param>
-            <returns>加密后的内容</returns>
-            <exception cref="T:System.Security.Cryptography.CryptographicException">The cryptographic service provider (CSP) cannot be acquired. </exception>
-        </member>
-        <member name="M:CommomTools.RsaHelper.RSAEncrypt(System.Byte[],System.String)">
-            <summary>
-            RSA的加密函数 byte[]
-            </summary>
-            <param name="encryptString">需要加密的字节数组</param>
-            <param name="publicKey">公钥</param>
-            <returns>加密后的内容</returns>
-            <exception cref="T:System.Security.Cryptography.CryptographicException">The cryptographic service provider (CSP) cannot be acquired. </exception>
-        </member>
-        <member name="M:CommomTools.RsaHelper.RSAEncrypt(System.Byte[])">
-            <summary>
-            RSA的加密函数 byte[]
-            </summary>
-            <param name="encryptString">需要加密的字节数组</param>
-            <returns>加密后的内容</returns>
-            <exception cref="T:System.Security.Cryptography.CryptographicException">The cryptographic service provider (CSP) cannot be acquired. </exception>
-        </member>
-        <member name="M:CommomTools.RsaHelper.RSADecrypt(System.String,System.String)">
-            <summary>
-            RSA的解密函数  string
-            </summary>
-            <param name="mStrDecryptString">需要解密的字符串</param>
-            <param name="privateKey">私钥</param>
-            <returns>解密后的内容</returns>
-            <exception cref="T:System.Security.Cryptography.CryptographicException">The cryptographic service provider (CSP) cannot be acquired. </exception>
-        </member>
-        <member name="M:CommomTools.RsaHelper.RSADecrypt(System.String)">
-            <summary>
-            RSA的解密函数  string
-            </summary>
-            <param name="mStrDecryptString">需要解密的字符串</param>
-            <returns>解密后的内容</returns>
-            <exception cref="T:System.Security.Cryptography.CryptographicException">The cryptographic service provider (CSP) cannot be acquired. </exception>
-        </member>
-        <member name="M:CommomTools.RsaHelper.RSADecrypt(System.Byte[],System.String)">
-            <summary>
-            RSA的解密函数  byte
-            </summary>
-            <param name="decryptString">需要解密的字符串</param>
-            <param name="privateKey">私钥</param>
-            <returns>解密后的内容</returns>
-            <exception cref="T:System.Security.Cryptography.CryptographicException">The cryptographic service provider (CSP) cannot be acquired. </exception>
-        </member>
-        <member name="M:CommomTools.RsaHelper.RSADecrypt(System.Byte[])">
-            <summary>
-            RSA的解密函数  byte
-            </summary>
-            <param name="decryptString">需要解密的字符串</param>
-            <returns>解密后的内容</returns>
-            <exception cref="T:System.Security.Cryptography.CryptographicException">The cryptographic service provider (CSP) cannot be acquired. </exception>
-        </member>
-        <member name="M:CommomTools.RsaHelper.GetHashBytes(System.String)">
-            <summary>
-            获取Hash描述表
-            </summary>
-            <param name="mStrSource">源数据</param>
-            <returns>Hash描述表</returns>
-        </member>
-        <member name="M:CommomTools.RsaHelper.GetHashString(System.String)">
-            <summary>
-            获取Hash描述表
-            </summary>
-            <param name="mStrSource">源数据</param>
-            <returns>Hash描述表</returns>
-        </member>
-        <member name="M:CommomTools.RsaHelper.GetHashBytes(System.IO.FileStream)">
-            <summary>
-            从文件流获取Hash描述表
-            </summary>
-            <param name="objFile">源文件</param>
-            <returns>Hash描述表</returns>
-        </member>
-        <member name="M:CommomTools.RsaHelper.GetHashString(System.IO.FileStream)">
-            <summary>
-            从文件流获取Hash描述表
-            </summary>
-            <param name="objFile">源文件</param>
-            <returns>Hash描述表</returns>
-        </member>
-        <member name="M:CommomTools.RsaHelper.SignatureBytes(System.Byte[],System.String)">
-            <summary>
-            RSA签名
-            </summary>
-            <param name="hashbyteSignature">签名字节数据</param>
-            <param name="privateKey">私钥</param>
-            <returns>处理结果</returns>
-            <exception cref="T:System.Security.Cryptography.CryptographicException">The cryptographic service provider (CSP) cannot be acquired. </exception>
-            <exception cref="T:System.Security.Cryptography.CryptographicUnexpectedOperationException">The key is null.-or- The hash algorithm is null. </exception>
-        </member>
-        <member name="M:CommomTools.RsaHelper.SignatureString(System.Byte[],System.String)">
-            <summary>
-            RSA签名
-            </summary>
-            <param name="hashbyteSignature">签名字节数据</param>
-            <param name="privateKey">私钥</param>
-            <returns>处理结果</returns>
-            <exception cref="T:System.Security.Cryptography.CryptographicException">The cryptographic service provider (CSP) cannot be acquired. </exception>
-            <exception cref="T:System.Security.Cryptography.CryptographicUnexpectedOperationException">The key is null.-or- The hash algorithm is null. </exception>
-        </member>
-        <member name="M:CommomTools.RsaHelper.SignatureBytes(System.String,System.String)">
-            <summary>
-            RSA签名
-            </summary>
-            <param name="mStrHashbyteSignature">签名字符串数据</param>
-            <param name="pStrKeyPrivate">私钥</param>
-            <returns>处理结果</returns>
-            <exception cref="T:System.Security.Cryptography.CryptographicException">The cryptographic service provider (CSP) cannot be acquired. </exception>
-            <exception cref="T:System.Security.Cryptography.CryptographicUnexpectedOperationException">The key is null.-or- The hash algorithm is null. </exception>
-        </member>
-        <member name="M:CommomTools.RsaHelper.SignatureString(System.String,System.String)">
-            <summary>
-            RSA签名
-            </summary>
-            <param name="mStrHashbyteSignature">签名字符串数据</param>
-            <param name="pStrKeyPrivate">私钥</param>
-            <returns>处理结果</returns>
-            <exception cref="T:System.Security.Cryptography.CryptographicException">The cryptographic service provider (CSP) cannot be acquired. </exception>
-            <exception cref="T:System.Security.Cryptography.CryptographicUnexpectedOperationException">The key is null.-or- The hash algorithm is null. </exception>
-        </member>
-        <member name="M:CommomTools.RsaHelper.SignatureDeformatter(System.Byte[],System.String,System.Byte[])">
-            <summary>
-            RSA 签名验证 
-            </summary>
-            <param name="deformatterData">反格式化字节数据</param>
-            <param name="publicKey">公钥</param>
-            <param name="hashbyteDeformatter">哈希字节数据</param>
-            <returns>处理结果</returns>
-            <exception cref="T:System.Security.Cryptography.CryptographicException">The cryptographic service provider (CSP) cannot be acquired. </exception>
-            <exception cref="T:System.Security.Cryptography.CryptographicUnexpectedOperationException">The key is null.-or- The hash algorithm is null. </exception>
-        </member>
-        <member name="M:CommomTools.RsaHelper.SignatureDeformatter(System.Byte[],System.String,System.String)">
-            <summary>
-            RSA 签名验证 
-            </summary>
-            <param name="deformatterData">反格式化字节数据</param>
-            <param name="publicKey">公钥</param>
-            <param name="pStrHashbyteDeformatter">哈希字符串数据</param>
-            <returns>处理结果</returns>
-            <exception cref="T:System.Security.Cryptography.CryptographicException">The cryptographic service provider (CSP) cannot be acquired. </exception>
-            <exception cref="T:System.Security.Cryptography.CryptographicUnexpectedOperationException">The key is null.-or- The hash algorithm is null. </exception>
-        </member>
-        <member name="M:CommomTools.RsaHelper.SignatureDeformatter(System.String,System.String,System.Byte[])">
-            <summary>
-            RSA 签名验证
-            </summary>
-            <param name="pStrDeformatterData">反格式化字符串数据</param>
-            <param name="publicKey">公钥</param>
-            <param name="hashbyteDeformatter">哈希字节数据</param>
-            <returns>处理结果</returns>
-            <exception cref="T:System.Security.Cryptography.CryptographicException">The cryptographic service provider (CSP) cannot be acquired. </exception>
-            <exception cref="T:System.Security.Cryptography.CryptographicUnexpectedOperationException">The key is null.-or- The hash algorithm is null. </exception>
-        </member>
-        <member name="M:CommomTools.RsaHelper.SignatureDeformatter(System.String,System.String,System.String)">
-            <summary>
-            RSA 签名验证
-            </summary>
-            <param name="pStrDeformatterData">格式字符串数据</param>
-            <param name="publicKey">公钥</param>
-            <param name="pStrHashbyteDeformatter">哈希字符串数据</param>
-            <returns>处理结果</returns>
-            <exception cref="T:System.Security.Cryptography.CryptographicException">The cryptographic service provider (CSP) cannot be acquired. </exception>
-            <exception cref="T:System.Security.Cryptography.CryptographicUnexpectedOperationException">The key is null.-or- The hash algorithm is null. </exception>
         </member>
     </members>
 </doc>

@@ -37,8 +37,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToolBox.Framework.Test", "T
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToolBox.Log", "ToolBox.Log\ToolBox.Log.csproj", "{1581CFA6-8E1A-4A24-919A-08E04A8256F3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToolBox.SocketCore", "ToolBox.SocketCore\ToolBox.SocketCore.csproj", "{0BDBBA50-AD7F-46AC-8749-FD9A075020F2}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -109,10 +107,6 @@ Global
 		{1581CFA6-8E1A-4A24-919A-08E04A8256F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1581CFA6-8E1A-4A24-919A-08E04A8256F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1581CFA6-8E1A-4A24-919A-08E04A8256F3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0BDBBA50-AD7F-46AC-8749-FD9A075020F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0BDBBA50-AD7F-46AC-8749-FD9A075020F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0BDBBA50-AD7F-46AC-8749-FD9A075020F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0BDBBA50-AD7F-46AC-8749-FD9A075020F2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
