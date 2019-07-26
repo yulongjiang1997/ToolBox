@@ -18,6 +18,8 @@ namespace ToolBox.Socket
             //客户端的字典
             private Dictionary<string, ClientMode> dictsocket = new Dictionary<string, ClientMode>();
 
+           
+
             //线程锁
             private ReaderWriterLockSlim lockSlim = new ReaderWriterLockSlim();
 
@@ -76,6 +78,7 @@ namespace ToolBox.Socket
 
             timer.Elapsed += new ElapsedEventHandler(HandleMainTimer);
             timer.AutoReset = false;
+            
             timer.Enabled = true;
 
         }
@@ -119,6 +122,9 @@ namespace ToolBox.Socket
                 string socketip = conn.RemoteEndPoint.ToString();
       
                 OnClientAdd?.Invoke("进来新的客户端ip:" + socketip);
+
+                conn.Send(SocketTools.GetBytes("YouIP," + socketip));
+
 
                 Thread thr = new Thread(RecMsg);
                 thr.IsBackground = true;
@@ -205,6 +211,8 @@ namespace ToolBox.Socket
                             {
                                 string strc = Encoding.UTF8.GetString(surplusBuffer, haveRead + headSize, bodySize);
 
+
+                                
                                 string[] ss = strc.Split(',');
 
                                 //心跳事件，更新客户端的最后登陆时间
@@ -220,6 +228,8 @@ namespace ToolBox.Socket
                                         ClientMode socketClient;
                                         if (dictsocket.TryGetValue(ss[1].ToString(), out socketClient))
                                         {
+
+                                            writeMsg("更新时间便签：" + SocketTools.GetTimeStamp() + ss[1].ToString());
                                             socketClient.lastTickTime = SocketTools.GetTimeStamp();
 
                                         }

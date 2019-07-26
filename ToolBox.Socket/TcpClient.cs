@@ -9,6 +9,9 @@ using System.Timers;
 
 namespace ToolBox.Socket
 {
+    /// <summary>
+    /// TCP客户端
+    /// </summary>
     public  class TcpClient
     {
         /// <summary>
@@ -24,13 +27,21 @@ namespace ToolBox.Socket
         /// <summary>
         /// 本地ip
         /// </summary>
-        public string localEndPointIp;
+        public string EndPointIp;
 
         /// <summary>
         /// 定时心跳计时器
         /// </summary>
-        System.Timers.Timer timer;       
+        System.Timers.Timer timer;
 
+        private bool IsReceive = false;
+
+        /// <summary>
+        /// 开始连接服务器
+        /// </summary>
+        /// <param name="port"></param>
+        /// <param name="time"></param>
+        /// <param name="ip"></param>
         public void StartConnect(int port, int time = 2000, string ip = "127.0.0.1")
         {
 
@@ -47,7 +58,7 @@ namespace ToolBox.Socket
                     try
                     {
                         mySocket.EndConnect(asyncResult);                        //结束异步连接
-                        localEndPointIp = mySocket.LocalEndPoint.ToString();     //得到ip地址
+                       // localEndPointIp = mySocket.LocalEndPoint.ToString();     //得到ip地址
 
                         OnSuccess?.Invoke(this);   //连接成功的回调
 
@@ -58,20 +69,14 @@ namespace ToolBox.Socket
                         timer = new System.Timers.Timer(time);
 
                         timer.AutoReset = true;
+                        
                         timer.Elapsed += new ElapsedEventHandler(HandleMainTimer);
                         timer.Start();
-
-                        
-
-
-
+             
                     }
                     catch (Exception ex)
                     {
-
                         OnError?.Invoke(ex);
-
-                     
                     }
 
                 }, null);
@@ -79,8 +84,7 @@ namespace ToolBox.Socket
             }
             catch (Exception ex)
             {
-
-               
+      
                 OnError?.Invoke(ex);    //报错的回调
             }
 
@@ -94,9 +98,9 @@ namespace ToolBox.Socket
         /// <param name="e"></param>
         private void HandleMainTimer(object sender, ElapsedEventArgs e)
         {
-            if (mySocket != null)
+            if (mySocket != null&& IsReceive)
             {
-                string ss = mySocket.LocalEndPoint.ToString();
+                string ss = EndPointIp;
                 SendMsg("hear," + ss);
             }
         }
@@ -176,10 +180,25 @@ namespace ToolBox.Socket
                         else
                         {
 
-                            String strc = Encoding.UTF8.GetString(surplusBuffer, haveRead + headSize, bodySize);
+                            string strc = Encoding.UTF8.GetString(surplusBuffer, haveRead + headSize, bodySize);
 
-                            // Console.WriteLine("------------结果：" + strc);
-                            OnRecMessage?.Invoke(strc, this);
+
+                            if (IsReceive == false)
+                            {
+                                string[] ss = strc.Split(',');
+                                if (ss.Count()== 2 && ss[0].ToString().Equals("YouIP")) {
+                                    EndPointIp = ss[1].ToString().Trim();
+                                }
+                                IsReceive = true;
+
+                            }
+                            else {
+
+                                // Console.WriteLine("------------结果：" + strc);
+                                OnRecMessage?.Invoke(strc, this);
+
+                            }
+
 
                             haveRead = haveRead + headSize + bodySize;
 

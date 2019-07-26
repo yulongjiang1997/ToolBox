@@ -7,6 +7,7 @@ using WebSocketSharp;
 using WebSocketSharp.Server;
 using ToolBox.Log;
 using ToolBox.Security;
+using ToolBox.Socket;
 
 
 namespace ToolBox.Framework.Test
@@ -19,18 +20,27 @@ namespace ToolBox.Framework.Test
         static void Main(string[] args)
         {
 
-            DesHelper.encryptKey = "abc1231a";
+            TcpClient tcpClient = new TcpClient();
+            tcpClient.StartConnect(1956, ip:"129.204.236.96");
 
+            tcpClient.OnSuccess = (s) =>
+            {
 
-           string aa=  DesHelper.Encrypt("aidenxl55445465");
+                Console.WriteLine("成功");
+            };
 
+            tcpClient.OnMessage = (s) =>
+            {
 
-            Console.WriteLine(aa);
+                Console.WriteLine(s);
 
-          string ss=   DesHelper.Decrypt(aa);
+            };
 
-            Console.WriteLine();
-            Console.WriteLine(ss);
+            tcpClient.OnError = (s) =>
+            {
+                Console.WriteLine(s);
+            };
+
 
             Console.ReadLine();
             //wssv.Stop();

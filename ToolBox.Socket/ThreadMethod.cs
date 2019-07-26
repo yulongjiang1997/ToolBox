@@ -302,7 +302,7 @@ namespace ToolBox.Socket
         /// </summary>
         private void HearBeat()
         {
-            // Console.WriteLine("进入了心跳协议");
+         
             long timeNow = SocketTools.GetTimeStamp();
             lockSlim.EnterWriteLock();
 
@@ -311,6 +311,9 @@ namespace ToolBox.Socket
                 foreach (var item in dictsocket)
                 {
                     long now = timeNow - item.Value.lastTickTime;
+
+                 //   writeMsg("timeNow:"+ timeNow+"  lastTickTime:"+ item.Value.lastTickTime+  " now:"+ now);
+
                     if (now > HearTime)
                     {
                      
