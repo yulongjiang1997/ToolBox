@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Timers;
 
 namespace ToolBox.Socket
@@ -29,20 +30,21 @@ namespace ToolBox.Socket
         /// </summary>
         public string EndPointIp;
 
-        /// <summary>
-        /// 定时心跳计时器
-        /// </summary>
-        System.Timers.Timer timer;
 
         private bool IsReceive = false;
+
+
+        /// <summary>
+        /// 心跳检查间隔（Heartbeat check interval）
+        /// </summary>
+        public int HeartbeatCheckInterval { get; set; } = 3000;
 
         /// <summary>
         /// 开始连接服务器
         /// </summary>
         /// <param name="port"></param>
-        /// <param name="time"></param>
         /// <param name="ip"></param>
-        public void StartConnect(int port, int time = 2000, string ip = "127.0.0.1")
+        public void StartConnect(int port, string ip = "127.0.0.1")
         {
 
             try
@@ -66,13 +68,24 @@ namespace ToolBox.Socket
                         recThread.IsBackground = true;
                         recThread.Start(mySocket);
 
-                        timer = new System.Timers.Timer(time);
 
-                        timer.AutoReset = true;
-                        
-                        timer.Elapsed += new ElapsedEventHandler(HandleMainTimer);
-                        timer.Start();
-             
+                        Task.Run(() =>
+                        {
+                            while (true) {
+
+                                if (mySocket != null && IsReceive)
+                                {
+                                    string ss = EndPointIp;
+                                    SendMsg("hear," + ss);
+
+                                }
+                                Thread.Sleep(HeartbeatCheckInterval);
+
+                            }
+
+                        });
+
+   
                     }
                     catch (Exception ex)
                     {
@@ -91,19 +104,7 @@ namespace ToolBox.Socket
 
         }
 
-        /// <summary>
-        /// 定时任务
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void HandleMainTimer(object sender, ElapsedEventArgs e)
-        {
-            if (mySocket != null&& IsReceive)
-            {
-                string ss = EndPointIp;
-                SendMsg("hear," + ss);
-            }
-        }
+
 
 
         /// <summary>
@@ -182,7 +183,6 @@ namespace ToolBox.Socket
 
                             string strc = Encoding.UTF8.GetString(surplusBuffer, haveRead + headSize, bodySize);
 
-
                             if (IsReceive == false)
                             {
                                 string[] ss = strc.Split(',');
@@ -190,7 +190,6 @@ namespace ToolBox.Socket
                                     EndPointIp = ss[1].ToString().Trim();
                                 }
                                 IsReceive = true;
-
                             }
                             else {
 
@@ -198,7 +197,6 @@ namespace ToolBox.Socket
                                 OnRecMessage?.Invoke(strc, this);
 
                             }
-
 
                             haveRead = haveRead + headSize + bodySize;
 
@@ -209,9 +207,7 @@ namespace ToolBox.Socket
                             }
                         }
 
-
                     }
-
 
                 }
                 catch (Exception ex)
@@ -224,7 +220,6 @@ namespace ToolBox.Socket
                 }
 
             }
-
 
         }
 
@@ -253,18 +248,13 @@ namespace ToolBox.Socket
             if (mySocket.Connected)
             {
                 mySocket.Send(SocketTools.GetBytes(msg));
-
             }
             else
             {
-              //  Console.WriteLine("没有跟服务器连接~");
-
-                OnMessage?.Invoke("没有跟服务器连接~");
+                 OnMessage?.Invoke("没有跟服务器连接~");
 
             }
         }
-
-
 
 
 

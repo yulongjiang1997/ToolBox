@@ -5,98 +5,111 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Timers;
 
 namespace ToolBox.Socket
 {
     public partial class TcpServer
     {
-     
-            private Thread threadWatch = null;    //负责监听连接的线程
-            private System.Net.Sockets.Socket  socketWatch = null;    //服务端监听套接字
 
-            //客户端的字典
-            private Dictionary<string, ClientMode> dictsocket = new Dictionary<string, ClientMode>();
-
-           
-
-            //线程锁
-            private ReaderWriterLockSlim lockSlim = new ReaderWriterLockSlim();
-
-            System.Timers.Timer timer;        //计时器
-            private long HearTime = 7;         //心跳时间
-
-
-            /// <summary>
-            /// 开始服务器
-            /// </summary>
-            /// <param name="port">端口号</param>
-            /// <param name="count">连接队列总数（默认50）</param>
-            /// <param name="ip">ip地址（默认本机ip）</param>
-            public void StartServer(int port, int count = 50, int time = 2000,long hearTime=7, string ip = "127.0.0.1")
-            {
-
-              HearTime = hearTime;
-              socketWatch = new System.Net.Sockets.Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-
-                IPAddress ipAdr = IPAddress.Parse(ip);
-                IPEndPoint iPEnd = new IPEndPoint(ipAdr, port);
-
-                try
-                {
-                    socketWatch.Bind(iPEnd);
-                }
-                catch (Exception ex)
-                {
-                    writeMsg("启动服务时的异常：" + ex.ToString());
-                    return;
-
-                }
-
-                socketWatch.Listen(count);
-
-                timer = new System.Timers.Timer(time);
-
-                threadWatch = new Thread(WatchConnecting);
-                threadWatch.IsBackground = true;
-                threadWatch.Start();
-
-                TimerInit();
-             
-               OnSuccess?.Invoke("服务器启动监听成功~");
-
-            }
-
-
-        #region 心跳事件方法
+        #region 变量
 
         /// <summary>
-        /// 初始化计时函数
+        /// 负责监听连接的线程
         /// </summary>
-        private void TimerInit()
-        {
-
-            timer.Elapsed += new ElapsedEventHandler(HandleMainTimer);
-            timer.AutoReset = false;
-            
-            timer.Enabled = true;
-
-        }
+        private Thread threadWatch = null;
 
         /// <summary>
-        /// 线程handleMainTimer函数
+        /// 服务端监听套接字
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void HandleMainTimer(object sender, ElapsedEventArgs e)
-        {
+        private System.Net.Sockets.Socket socketWatch = null;   
 
-            HearBeat();
-            timer.Start();
+        /// <summary>
+        /// 客户端的字典
+        /// </summary>
+        private Dictionary<string, ClientMode> dictsocket = new Dictionary<string, ClientMode>();
 
-        }
+        /// <summary>
+        /// 读写线程锁
+        /// </summary>
+        private ReaderWriterLockSlim lockSlim = new ReaderWriterLockSlim();
+
+        /// <summary>
+        /// 心跳时间（默认超过7秒没收到心跳事件就把客户端清除）
+        /// </summary>
+        public long HearTime { get; set; } = 7;         
+
+        /// <summary>
+        /// 心跳检查间隔（Heartbeat check interval）
+        /// </summary>
+        public int HeartbeatCheckInterval { get; set; } = 3000;
+
 
         #endregion
+
+        /// <summary>
+        /// 开始服务器
+        /// </summary>
+        /// <param name="port">端口号</param>
+        /// <param name="count">连接队列总数（默认50）</param>
+        /// <param name="ip">ip地址（默认本机ip）</param>
+        public void StartServer(int port, int count = 50, string ip = "127.0.0.1")
+        {
+            socketWatch = new System.Net.Sockets.Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+
+            IPAddress ipAdr = IPAddress.Parse(ip);
+            IPEndPoint iPEnd = new IPEndPoint(ipAdr, port);
+
+            try
+            {
+                socketWatch.Bind(iPEnd);
+            }
+            catch (Exception ex)
+            {
+                writeMsg("启动服务时的异常：" + ex.ToString());
+                return;
+            }
+
+            socketWatch.Listen(count);
+
+            //开启心脏检测
+            Task.Run(() =>
+            {
+                while (true)
+                {
+                    HearBeat();
+                    Thread.Sleep(HeartbeatCheckInterval);
+                }
+
+            });
+
+           // 监听客户端请求的方法，线程
+            Task.Run(() =>
+            {
+
+                while (true)
+                {
+                  
+                    System.Net.Sockets.Socket conn = socketWatch.Accept();
+                    string socketip = conn.RemoteEndPoint.ToString();
+
+                    OnClientAdd?.Invoke("进来新的客户端ip:" + socketip);
+                    conn.Send(SocketTools.GetBytes("YouIP," + socketip));
+
+                    Thread thr = new Thread(RecMsg);
+                    thr.IsBackground = true;
+                    thr.Start(conn);
+
+                    AddSocketClient(socketip, conn, thr);
+
+                }
+
+            });
+
+            OnSuccess?.Invoke("服务器启动监听成功~");
+
+        }
 
 
         /// <summary>
@@ -105,35 +118,7 @@ namespace ToolBox.Socket
         /// <param name="msg"></param>
         private void writeMsg(string msg)
         {
-
             OnMessage?.Invoke(msg);
-        }
-
-
-        /// <summary>
-        /// 监听客户端请求的方法，线程
-        /// </summary>
-        private void WatchConnecting()
-        {
-
-            while (true)
-            {
-                System.Net.Sockets.Socket  conn = socketWatch.Accept();
-                string socketip = conn.RemoteEndPoint.ToString();
-      
-                OnClientAdd?.Invoke("进来新的客户端ip:" + socketip);
-
-                conn.Send(SocketTools.GetBytes("YouIP," + socketip));
-
-
-                Thread thr = new Thread(RecMsg);
-                thr.IsBackground = true;
-                thr.Start(conn);
-
-                AddSocketClient(socketip, conn, thr);
-
-            }
-
         }
 
 
@@ -229,7 +214,7 @@ namespace ToolBox.Socket
                                         if (dictsocket.TryGetValue(ss[1].ToString(), out socketClient))
                                         {
 
-                                            writeMsg("更新时间便签：" + SocketTools.GetTimeStamp() + ss[1].ToString());
+                                           // writeMsg("更新时间便签：" + SocketTools.GetTimeStamp() + ss[1].ToString());
                                             socketClient.lastTickTime = SocketTools.GetTimeStamp();
 
                                         }
@@ -267,8 +252,8 @@ namespace ToolBox.Socket
                 catch (Exception ex)
                 {
                     ReMoveSocketClient(socketip);
-                   // Console.WriteLine("接收客户端的线程报错" + socketip);
-                    OnError?.Invoke("接收客户端的线程报错" + socketip);
+                
+                    OnError?.Invoke("接收客户端的线程报错: " + socketip);
                     break;
                 }
 
@@ -276,9 +261,6 @@ namespace ToolBox.Socket
             }
 
         }
-
-
-
 
 
 

@@ -44,7 +44,7 @@ namespace ToolBox.Socket
                             id = i.ToString();
                             ClientMode socketClient = new ClientMode(ip, thread, socket, id);
                             dictsocket.Add(ip, socketClient);
-                           // Console.WriteLine("添加了id号：" + id.ToString());
+                         
                             writeMsg("添加了id号：" + id.ToString());
                             break;
 
@@ -87,7 +87,7 @@ namespace ToolBox.Socket
                     string id = dictsocket[ip].id;
                     dictsocket.Remove(ip);
         
-                    OnClientClose?.Invoke($"移除了{id}号用户，ip地址为{ip}");
+                    OnClientClose?.Invoke($"移除了{id}号用户，ip地址为：{ip}");
 
                 }
 
@@ -119,7 +119,7 @@ namespace ToolBox.Socket
             }
             catch (Exception ex)
             {
-                OnError?.Invoke("得到当前总人数时出错" + ex);
+                OnError?.Invoke("得到当前总人数时出错： " + ex);
                 return -1;
             }
             finally
@@ -189,7 +189,7 @@ namespace ToolBox.Socket
                         item.Value.socket.Close();
                     //    Console.WriteLine("IP已经退出" + item.Key);
 
-                        OnClientClose?.Invoke("IP已经退出" + item.Key);
+                        OnClientClose?.Invoke("IP已经退出：" + item.Key);
 
                     }
                 }
@@ -232,7 +232,7 @@ namespace ToolBox.Socket
                     {
                         clientMode.socket.Close();
                      //   Console.WriteLine("IP已经退出" + clientMode.ip);
-                        writeMsg("IP已经退出" + clientMode.ip);
+                        writeMsg("IP已经退出： " + clientMode.ip);
                         isok = false;
                     }
                 }                          
@@ -274,8 +274,7 @@ namespace ToolBox.Socket
                             dictsocket[str[1].Trim()].socket.Close();  //关闭连接，就在线程报异常，到时自己清除
 
                         }
-                    //    Console.WriteLine("删除了" + str[0] + "" + str[1]);
-
+               
                         writeMsg("删除了" + str[0] + "" + str[1]);
                         break;
 
@@ -312,7 +311,6 @@ namespace ToolBox.Socket
                 {
                     long now = timeNow - item.Value.lastTickTime;
 
-                 //   writeMsg("timeNow:"+ timeNow+"  lastTickTime:"+ item.Value.lastTickTime+  " now:"+ now);
 
                     if (now > HearTime)
                     {
@@ -322,12 +320,7 @@ namespace ToolBox.Socket
                         OnClientClose?.Invoke($"id号:{item.Value.id}，{item.Value.ip}用户没有心跳了，送他归家");
 
                     }
-                    //else {
 
-                    //    Console.WriteLine(timeNow);
-                    //    Console.WriteLine(item.Value.lastTickTime);
-                        
-                    //}
                 }
             }
             catch (Exception ex)

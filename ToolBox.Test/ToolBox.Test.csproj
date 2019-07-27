@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ToolBox.Log\ToolBox.Log.csproj" />
+    <ProjectReference Include="..\ToolBox.Socket\ToolBox.Socket.csproj" />
   </ItemGroup>
 
 </Project>
