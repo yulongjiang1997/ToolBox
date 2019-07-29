@@ -23,11 +23,6 @@
             成功启动后的回调函数
             </summary>
         </member>
-        <member name="P:ToolBox.Socket.TcpServer.OnClientAdd">
-            <summary>
-            添加一个用客户端后的回调函数
-            </summary>
-        </member>
         <member name="P:ToolBox.Socket.TcpServer.OnServerError">
             <summary>
             服务端异常回调
@@ -48,12 +43,47 @@
             客户端关闭的回调函数
             </summary>
         </member>
+        <member name="P:ToolBox.Socket.TcpServer.OnClientAdd">
+            <summary>
+            添加一个用客户端后的回调函数
+            </summary>
+        </member>
         <member name="P:ToolBox.Socket.TcpServer.OnError">
             <summary>
             异常输出的回调函数
             </summary>
         </member>
-        <member name="M:ToolBox.Socket.TcpServer.StartServer(System.Int32,System.Int32,System.Int32,System.Int64,System.String)">
+        <member name="F:ToolBox.Socket.TcpServer.threadWatch">
+            <summary>
+            负责监听连接的线程
+            </summary>
+        </member>
+        <member name="F:ToolBox.Socket.TcpServer.socketWatch">
+            <summary>
+            服务端监听套接字
+            </summary>
+        </member>
+        <member name="F:ToolBox.Socket.TcpServer.dictsocket">
+            <summary>
+            客户端的字典
+            </summary>
+        </member>
+        <member name="F:ToolBox.Socket.TcpServer.lockSlim">
+            <summary>
+            读写线程锁
+            </summary>
+        </member>
+        <member name="P:ToolBox.Socket.TcpServer.HearTime">
+            <summary>
+            心跳时间（默认超过7秒没收到心跳事件就把客户端清除）
+            </summary>
+        </member>
+        <member name="P:ToolBox.Socket.TcpServer.HeartbeatCheckInterval">
+            <summary>
+            心跳检查间隔（Heartbeat check interval）
+            </summary>
+        </member>
+        <member name="M:ToolBox.Socket.TcpServer.StartServer(System.Int32,System.Int32,System.String)">
             <summary>
             开始服务器
             </summary>
@@ -61,28 +91,11 @@
             <param name="count">连接队列总数（默认50）</param>
             <param name="ip">ip地址（默认本机ip）</param>
         </member>
-        <member name="M:ToolBox.Socket.TcpServer.TimerInit">
-            <summary>
-            初始化计时函数
-            </summary>
-        </member>
-        <member name="M:ToolBox.Socket.TcpServer.HandleMainTimer(System.Object,System.Timers.ElapsedEventArgs)">
-            <summary>
-            线程handleMainTimer函数
-            </summary>
-            <param name="sender"></param>
-            <param name="e"></param>
-        </member>
         <member name="M:ToolBox.Socket.TcpServer.writeMsg(System.String)">
             <summary>
             写入输出信息
             </summary>
             <param name="msg"></param>
-        </member>
-        <member name="M:ToolBox.Socket.TcpServer.WatchConnecting">
-            <summary>
-            监听客户端请求的方法，线程
-            </summary>
         </member>
         <member name="M:ToolBox.Socket.TcpServer.RecMsg(System.Object)">
             <summary>
@@ -193,25 +206,17 @@
             本地ip
             </summary>
         </member>
-        <member name="F:ToolBox.Socket.TcpClient.timer">
+        <member name="P:ToolBox.Socket.TcpClient.HeartbeatCheckInterval">
             <summary>
-            定时心跳计时器
+            心跳检查间隔（Heartbeat check interval）
             </summary>
         </member>
-        <member name="M:ToolBox.Socket.TcpClient.StartConnect(System.Int32,System.Int32,System.String)">
+        <member name="M:ToolBox.Socket.TcpClient.StartConnect(System.Int32,System.String)">
             <summary>
             开始连接服务器
             </summary>
             <param name="port"></param>
-            <param name="time"></param>
             <param name="ip"></param>
-        </member>
-        <member name="M:ToolBox.Socket.TcpClient.HandleMainTimer(System.Object,System.Timers.ElapsedEventArgs)">
-            <summary>
-            定时任务
-            </summary>
-            <param name="sender"></param>
-            <param name="e"></param>
         </member>
         <member name="M:ToolBox.Socket.TcpClient.RecMsg(System.Object)">
             <summary>

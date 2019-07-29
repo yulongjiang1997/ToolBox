@@ -48,6 +48,9 @@ namespace ToolBox.Socket
 
         #endregion
 
+
+        #region 开始服务器
+
         /// <summary>
         /// 开始服务器
         /// </summary>
@@ -67,7 +70,9 @@ namespace ToolBox.Socket
             }
             catch (Exception ex)
             {
-                writeMsg("启动服务时的异常：" + ex.ToString());
+         
+                OnError?.Invoke($"Startup exception : {ex.ToString()}");
+                OnSuccess?.Invoke(false);
                 return;
             }
 
@@ -107,9 +112,12 @@ namespace ToolBox.Socket
 
             });
 
-            OnSuccess?.Invoke("服务器启动监听成功~");
+            OnSuccess?.Invoke(true);
 
         }
+
+        #endregion
+
 
 
         /// <summary>
@@ -121,6 +129,8 @@ namespace ToolBox.Socket
             OnMessage?.Invoke(msg);
         }
 
+
+        #region 接收信息
 
         /// <summary>
         /// 接收信息
@@ -195,8 +205,6 @@ namespace ToolBox.Socket
                             else
                             {
                                 string strc = Encoding.UTF8.GetString(surplusBuffer, haveRead + headSize, bodySize);
-
-
                                 
                                 string[] ss = strc.Split(',');
 
@@ -214,15 +222,15 @@ namespace ToolBox.Socket
                                         if (dictsocket.TryGetValue(ss[1].ToString(), out socketClient))
                                         {
 
-                                           // writeMsg("更新时间便签：" + SocketTools.GetTimeStamp() + ss[1].ToString());
+                                            OnDebug?.Invoke($"Update timestamp：{SocketTools.GetTimeStamp()} -  ss[1].ToString()");
+                                          
                                             socketClient.lastTickTime = SocketTools.GetTimeStamp();
 
                                         }
                                     }
                                     catch (Exception ex)
                                     {
-                                        OnError?.Invoke("心跳事件报错：:" + ex.ToString());
-                                    
+                                        OnError?.Invoke($"Heartbeat error: {ex.ToString()}");                                 
                                     }
                                     finally
                                     {
@@ -253,7 +261,7 @@ namespace ToolBox.Socket
                 {
                     ReMoveSocketClient(socketip);
                 
-                    OnError?.Invoke("接收客户端的线程报错: " + socketip);
+                    OnError?.Invoke($"Client thread error:{socketip} " );
                     break;
                 }
 
@@ -262,10 +270,10 @@ namespace ToolBox.Socket
 
         }
 
-
+        #endregion
 
     }
 
 
-    
+
 }

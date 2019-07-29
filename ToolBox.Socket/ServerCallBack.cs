@@ -9,14 +9,15 @@ namespace ToolBox.Socket
     {
 
         /// <summary>
-        /// 成功启动后的回调函数
+        /// all debug info Output
         /// </summary>
-        public Action<string> OnSuccess { get; set; }             
+        public Action<string> OnDebug { get; set; }
 
         /// <summary>
-        /// 服务端异常回调
+        /// 成功启动后的回调函数
         /// </summary>
-        public Action<ClientMode, string> OnServerError { get; set; }
+        public Action<bool> OnSuccess { get; set; }             
+
 
 
         /// <summary>

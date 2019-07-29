@@ -126,6 +126,7 @@ namespace ToolBox.Socket
             {
                 lockSlim.ExitReadLock();
             }
+            
         }
 
         /// <summary>
@@ -296,6 +297,8 @@ namespace ToolBox.Socket
         }
 
 
+
+
         /// <summary>
         /// 心跳协议
         /// </summary>
@@ -311,13 +314,14 @@ namespace ToolBox.Socket
                 {
                     long now = timeNow - item.Value.lastTickTime;
 
+                    OnDebug?.Invoke($"nottimeStamp: {timeNow} lastTickTime: {item.Value.lastTickTime} Time difference {now}");
 
                     if (now > HearTime)
                     {
                      
                         item.Value.socket.Close();
                        
-                        OnClientClose?.Invoke($"id号:{item.Value.id}，{item.Value.ip}用户没有心跳了，送他归家");
+                        OnClientClose?.Invoke($"id号:{item.Value.id}，{item.Value.ip} 用户没有心跳了，送他归家");
 
                     }
 
@@ -325,9 +329,8 @@ namespace ToolBox.Socket
             }
             catch (Exception ex)
             {
-
                 OnError?.Invoke("心跳事件里面报错：" + ex);
-            
+           
             }
             finally
             {

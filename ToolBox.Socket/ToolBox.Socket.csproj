@@ -3,8 +3,8 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <Authors>Aidenxl YuLongJiang</Authors>
-    <Description>简单易用的tcp udp socket，解决粘包问题</Description>
-    <Version>1.0.7</Version>
+    <Description>easy  tcp,udp socket</Description>
+    <Version>1.0.8</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
