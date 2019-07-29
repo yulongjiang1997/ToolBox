@@ -99,14 +99,19 @@ namespace ToolBox.Socket
                     System.Net.Sockets.Socket conn = socketWatch.Accept();
                     string socketip = conn.RemoteEndPoint.ToString();
 
-                    OnClientAdd?.Invoke("进来新的客户端ip:" + socketip);
+
                     conn.Send(SocketTools.GetBytes("YouIP," + socketip));
 
                     Thread thr = new Thread(RecMsg);
                     thr.IsBackground = true;
                     thr.Start(conn);
 
-                    AddSocketClient(socketip, conn, thr);
+                    string id;
+
+                    AddSocketClient(socketip, conn, thr,out id);
+
+                  
+                    OnClientAdd?.Invoke(this,new SocketArgs (new ClientInfo() { ip= socketip ,id=id}));
 
                 }
 
@@ -261,7 +266,7 @@ namespace ToolBox.Socket
                 {
                     ReMoveSocketClient(socketip);
                 
-                    OnError?.Invoke($"Client thread error:{socketip} " );
+                    //OnError?.Invoke($"Client thread error:{socketip} " );
                     break;
                 }
 

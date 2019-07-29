@@ -20,9 +20,11 @@ namespace ToolBox.Socket
         /// <param name="ip"></param>
         /// <param name="socket"></param>
         /// <param name="thread"></param>
-        private void AddSocketClient(string ip, System.Net.Sockets.Socket socket, Thread thread)
+        private void AddSocketClient(string ip, System.Net.Sockets.Socket socket, Thread thread,out string outid)
         {
             lockSlim.EnterWriteLock();
+
+             outid="0";
             try
             {
                 int count = dictsocket.Count;         //目前的客户端数量
@@ -42,10 +44,12 @@ namespace ToolBox.Socket
 
                             //是否有当前id号
                             id = i.ToString();
+                            outid = id;
                             ClientMode socketClient = new ClientMode(ip, thread, socket, id);
                             dictsocket.Add(ip, socketClient);
+                            OnDebug?.Invoke($"Added {id.ToString()} number");
                          
-                            writeMsg("添加了id号：" + id.ToString());
+                        
                             break;
 
                         }
@@ -53,16 +57,16 @@ namespace ToolBox.Socket
                 }
                 else
                 {
-
+                    outid = id;
                     ClientMode socketClient = new ClientMode(ip, thread, socket, id);
                     dictsocket.Add(ip, socketClient);
-                    writeMsg("首次的添加了id号：" + id.ToString());
+                    OnDebug?.Invoke($"Added id {id.ToString()} for the first time");
                    
                 }
             }
             catch (Exception ex)
             {
-                OnError?.Invoke("添加客户端时的错误：" + ex);            
+                OnError?.Invoke($"Error when adding a client：{ex.ToString()}");            
             }
             finally
             {
@@ -86,15 +90,15 @@ namespace ToolBox.Socket
                 {
                     string id = dictsocket[ip].id;
                     dictsocket.Remove(ip);
-        
-                    OnClientClose?.Invoke($"移除了{id}号用户，ip地址为：{ip}");
+
+                    OnClientClose?.Invoke(this, new SocketArgs(new ClientInfo() { ip = ip.Trim(), id = id.Trim() }));
 
                 }
 
             }
             catch (Exception ex)
             {
-                OnError?.Invoke("移除一个客户端时发生的错误：" + ex);
+                OnError?.Invoke($"Error when removing a client：{ex.ToString()}" );
             }
             finally
             {
@@ -119,7 +123,7 @@ namespace ToolBox.Socket
             }
             catch (Exception ex)
             {
-                OnError?.Invoke("得到当前总人数时出错： " + ex);
+                OnError?.Invoke($"There was an error getting the current total number of people：{ex.ToString()} ");
                 return -1;
             }
             finally
@@ -153,7 +157,7 @@ namespace ToolBox.Socket
             catch (Exception ex)
             {
 
-                OnError?.Invoke("得到当前客户端信息时出错：" + ex);
+                OnError?.Invoke($"Error getting current client information：{ex.ToString()}");
 
                 list.Add("空");
                 return list;
@@ -188,9 +192,8 @@ namespace ToolBox.Socket
                     else
                     {
                         item.Value.socket.Close();
-                    //    Console.WriteLine("IP已经退出" + item.Key);
 
-                        OnClientClose?.Invoke("IP已经退出：" + item.Key);
+                        OnDebug?.Invoke($"The client with ip {item.Key} has logged out and can't send a message.");
 
                     }
                 }
@@ -198,7 +201,7 @@ namespace ToolBox.Socket
             catch (Exception ex)
             {
 
-                OnError?.Invoke("发送给所有客户端时的报错：" + ex);
+                OnError?.Invoke($"Error when sending to all clients：{ex.ToString()}");
             }
             finally
             {
@@ -232,15 +235,15 @@ namespace ToolBox.Socket
                     else
                     {
                         clientMode.socket.Close();
-                     //   Console.WriteLine("IP已经退出" + clientMode.ip);
-                        writeMsg("IP已经退出： " + clientMode.ip);
+            
+                        OnDebug?.Invoke($"The client with ip {clientMode.ip} has logged out and can't send a message.");
                         isok = false;
                     }
                 }                          
             }
             catch (Exception ex)
             {
-                OnError?.Invoke("发送给客户端时的报错：" + ex);
+                OnError?.Invoke($"Error when sending to the client：{ex.ToString()}");
                 isok = false;
             }
             finally
@@ -263,6 +266,7 @@ namespace ToolBox.Socket
         {
             List<string> vs = GetAllClientInfo();
             lockSlim.EnterWriteLock();
+             bool  IsRemove = false;
             try
             {
                 for (int i = 0; i < vs.Count; i++)
@@ -275,17 +279,18 @@ namespace ToolBox.Socket
                             dictsocket[str[1].Trim()].socket.Close();  //关闭连接，就在线程报异常，到时自己清除
 
                         }
-               
-                        writeMsg("删除了" + str[0] + "" + str[1]);
+
+                        OnDebug?.Invoke($"remove {str[0]} str[1]");
+                        IsRemove = true;
                         break;
 
                     }
                 }
-                return true;
+                return IsRemove;
             }
             catch (Exception ex)
             {
-                OnError?.Invoke("从号码移除一个客户端时的报错：" + ex);
+                OnError?.Invoke($"Error when removing a client from a number：{ex.ToString()}");
                 return false;
             }
             finally
@@ -320,8 +325,10 @@ namespace ToolBox.Socket
                     {
                      
                         item.Value.socket.Close();
+
+                        OnDebug?.Invoke($"User No.{item.Value.id} with ip {item.Value.ip} is No heartbeat,so get out");
                        
-                        OnClientClose?.Invoke($"id号:{item.Value.id}，{item.Value.ip} 用户没有心跳了，送他归家");
+                      
 
                     }
 
@@ -329,7 +336,7 @@ namespace ToolBox.Socket
             }
             catch (Exception ex)
             {
-                OnError?.Invoke("心跳事件里面报错：" + ex);
+                OnError?.Invoke($"Error in the heartbeat：{ex.ToString()}");
            
             }
             finally
