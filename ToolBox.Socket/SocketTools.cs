@@ -10,7 +10,7 @@ namespace ToolBox.Socket
     /// <summary>
     /// 套接字工具类
     /// </summary>
-    public  class SocketTools
+    public static  class SocketTools
     {
 
         /// <summary>
@@ -18,7 +18,7 @@ namespace ToolBox.Socket
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
-        public static byte[] GetBytes(string data)
+        public static byte[] GetBytes(this string data)
         {
 
             byte[] dataBytes = Encoding.UTF8.GetBytes(data);
@@ -31,19 +31,78 @@ namespace ToolBox.Socket
 
 
         /// <summary>
+        /// Get the binary byte, the header has been added
+        /// </summary>
+        /// <param name="data"></param>
+        /// <param name="IsEncryption"></param>
+        /// <returns></returns>
+        public static byte[] GetBytes(this string data, bool IsEncryption = true) {
+
+            if (IsEncryption)
+            {
+                return GetBytes(data.Encrypt());
+            }
+            else {
+
+                return GetBytes(data);
+            }
+
+        }
+
+
+        /// <summary>
+        /// 字符串解密（Stringdecryption）
+        /// </summary>
+        /// <param name="str"></param>
+        /// <param name="IsEncryption"></param>
+        public static string  StringDecrypt(this string str, bool IsEncryption) {
+
+            if (IsEncryption)
+            {
+                return str.Decrypt();
+            }
+            else {
+
+                return str;
+            }
+
+        }
+
+
+
+        /// <summary>
+        /// 发送信息
+        /// </summary>
+        /// <param name="socket"></param>
+        /// <param name="data"></param>
+        /// <param name="IsEncryption"></param>
+        public static void SendMsg(System.Net.Sockets.Socket socket,string data,bool IsEncryption=true) {
+
+            if (IsEncryption)
+            {
+                SendMsg(socket, data.Encrypt());
+            }
+            else {
+
+                SendMsg(socket, data);
+            }
+
+
+        }
+
+
+
+        /// <summary>
         /// 发送信息
         /// </summary>
         /// <param name="socket">套接字</param>
-        /// <param name="date">要发送的信息</param>
-        public static void SendMsg(System.Net.Sockets.Socket socket , string data)
+        /// <param name="data">要发送的信息</param>
+        private static void SendMsg(System.Net.Sockets.Socket socket , string data)
         {
 
             try
             {
-                byte[] dataBytes = Encoding.UTF8.GetBytes(data);
-                int dataLength = dataBytes.Length;
-                byte[] lengthBytes = BitConverter.GetBytes(dataLength);
-                byte[] newBytes = lengthBytes.Concat(dataBytes).ToArray();
+                byte[] newBytes =  GetBytes(data);
 
                 if (socket.Connected)
                 {
@@ -69,7 +128,7 @@ namespace ToolBox.Socket
         /// </summary>
         /// <param name="socket"></param>
         /// <returns></returns>
-        public static bool IsSocketConnected(System.Net.Sockets.Socket socket)
+        public static bool IsSocketConnected(this System.Net.Sockets.Socket socket)
         {
 
             bool part1 = socket.Poll(1000, SelectMode.SelectRead);

@@ -18,14 +18,45 @@
             <param name="socket"></param>
             <param name="id"></param>
         </member>
+        <member name="T:ToolBox.Socket.SocketArgs">
+            <summary>
+            Socket info args
+            </summary>
+        </member>
+        <member name="P:ToolBox.Socket.SocketArgs.ClientInfo">
+            <summary>
+            clinet info 
+            </summary>
+        </member>
+        <member name="M:ToolBox.Socket.SocketArgs.#ctor(ToolBox.Socket.ClientInfo)">
+            <summary>
+            
+            </summary>
+            <param name="ClientInfo"></param>
+        </member>
+        <member name="T:ToolBox.Socket.ClientInfo">
+            <summary>
+            clinet info 
+            </summary>
+        </member>
+        <member name="P:ToolBox.Socket.ClientInfo.id">
+            <summary>
+            id
+            </summary>
+        </member>
+        <member name="P:ToolBox.Socket.ClientInfo.ip">
+            <summary>
+            ip
+            </summary>
+        </member>
+        <member name="P:ToolBox.Socket.TcpServer.OnDebug">
+            <summary>
+            all debug info Output
+            </summary>
+        </member>
         <member name="P:ToolBox.Socket.TcpServer.OnSuccess">
             <summary>
             成功启动后的回调函数
-            </summary>
-        </member>
-        <member name="P:ToolBox.Socket.TcpServer.OnServerError">
-            <summary>
-            服务端异常回调
             </summary>
         </member>
         <member name="P:ToolBox.Socket.TcpServer.OnRecMessage">
@@ -38,12 +69,12 @@
             处理消息回调函数
             </summary>
         </member>
-        <member name="P:ToolBox.Socket.TcpServer.OnClientClose">
+        <member name="E:ToolBox.Socket.TcpServer.OnClientClose">
             <summary>
             客户端关闭的回调函数
             </summary>
         </member>
-        <member name="P:ToolBox.Socket.TcpServer.OnClientAdd">
+        <member name="E:ToolBox.Socket.TcpServer.OnClientAdd">
             <summary>
             添加一个用客户端后的回调函数
             </summary>
@@ -83,6 +114,18 @@
             心跳检查间隔（Heartbeat check interval）
             </summary>
         </member>
+        <member name="P:ToolBox.Socket.TcpServer.IsOpenDesEnc">
+            <summary>
+             (是否打开des加密，默认是打开)Whether to open des encryption, open by default
+            </summary>
+        </member>
+        <member name="M:ToolBox.Socket.TcpServer.SetEncryptKey(System.String)">
+            <summary>
+            the key is length must >=8 
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
         <member name="M:ToolBox.Socket.TcpServer.StartServer(System.Int32,System.Int32,System.String)">
             <summary>
             开始服务器
@@ -91,19 +134,13 @@
             <param name="count">连接队列总数（默认50）</param>
             <param name="ip">ip地址（默认本机ip）</param>
         </member>
-        <member name="M:ToolBox.Socket.TcpServer.writeMsg(System.String)">
-            <summary>
-            写入输出信息
-            </summary>
-            <param name="msg"></param>
-        </member>
         <member name="M:ToolBox.Socket.TcpServer.RecMsg(System.Object)">
             <summary>
             接收信息
             </summary>
             <param name="socket"></param>
         </member>
-        <member name="M:ToolBox.Socket.TcpServer.AddSocketClient(System.String,System.Net.Sockets.Socket,System.Threading.Thread)">
+        <member name="M:ToolBox.Socket.TcpServer.AddSocketClient(System.String,System.Net.Sockets.Socket,System.Threading.Thread,System.String@)">
             <summary>
             添加一个新的客户端
             </summary>
@@ -153,6 +190,53 @@
             <summary>
             心跳协议
             </summary>
+        </member>
+        <member name="T:ToolBox.Socket.SocketDesHelper">
+            <summary>
+            socket des helper
+            </summary>
+        </member>
+        <member name="P:ToolBox.Socket.SocketDesHelper.encryptKey">
+            <summary>
+            Set Encryption key
+            </summary>
+        </member>
+        <member name="M:ToolBox.Socket.SocketDesHelper.SetEncryptKey(System.String)">
+            <summary>
+            the key is length must >=8 
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ToolBox.Socket.SocketDesHelper.Encrypt(System.String)">
+            <summary>
+            DES【加密】字符串，使用缺省密钥。
+            </summary>
+            <param name="text">字符串</param>
+            <returns>返回string</returns>
+        </member>
+        <member name="M:ToolBox.Socket.SocketDesHelper.Encrypt(System.String,System.String)">
+            <summary> 
+            DES【加密】字符串，使用给定密钥。
+            </summary> 
+            <param name="text">字符串</param> 
+            <param name="key">密钥字符串</param> 
+            <returns>返回string</returns> 
+        </member>
+        <member name="M:ToolBox.Socket.SocketDesHelper.Decrypt(System.String)">
+            <summary>
+            DES【解密】字符串，使用缺省密钥。 
+            </summary>
+            <param name="text">字符串</param> 
+            <returns>返回string</returns>
+        </member>
+        <member name="M:ToolBox.Socket.SocketDesHelper.Decrypt(System.String,System.String)">
+            <summary> 
+            DES【解密】字符串，使用给定密钥。
+            </summary> 
+            <param name="text">字符串</param> 
+            <param name="key">密钥字符串</param> 
+            <returns>返回string</returns> 
         </member>
         <member name="T:ToolBox.Socket.SocketTools">
             <summary>

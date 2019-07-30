@@ -15,15 +15,11 @@ namespace ToolBox.Socket
 
         #region 变量
 
-        /// <summary>
-        /// 负责监听连接的线程
-        /// </summary>
-        private Thread threadWatch = null;
 
         /// <summary>
         /// 服务端监听套接字
         /// </summary>
-        private System.Net.Sockets.Socket socketWatch = null;   
+        private System.Net.Sockets.Socket socketWatch = null;
 
         /// <summary>
         /// 客户端的字典
@@ -36,17 +32,38 @@ namespace ToolBox.Socket
         private ReaderWriterLockSlim lockSlim = new ReaderWriterLockSlim();
 
         /// <summary>
+        /// Heartbeat time (by default, the client is cleared if no heartbeat event is received for more than 7 seconds)
         /// 心跳时间（默认超过7秒没收到心跳事件就把客户端清除）
         /// </summary>
-        public long HearTime { get; set; } = 7;         
+        public long HearTime { get; set; } = 7;
 
         /// <summary>
         /// 心跳检查间隔（Heartbeat check interval）
         /// </summary>
         public int HeartbeatCheckInterval { get; set; } = 3000;
 
+        /// <summary>
+        ///  (是否打开des加密，默认是打开)Whether to open des encryption, open by default
+        /// </summary>
+        public bool IsOpenDesEnc { get; set; } = true;
 
         #endregion
+
+
+        /// <summary>
+        /// Set key,the key is length must >=8 
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        public void SetEncryptKey(string key) {
+
+            if (!SocketDesHelper.SetEncryptKey(key)) {
+
+                throw new Exception("The key is set incorrectly, the length is greater than or equal to 8, and cannot contain Chinese.");
+
+            }           
+   
+        }
 
 
         #region 开始服务器
@@ -70,7 +87,7 @@ namespace ToolBox.Socket
             }
             catch (Exception ex)
             {
-         
+
                 OnError?.Invoke($"Startup exception : {ex.ToString()}");
                 OnSuccess?.Invoke(false);
                 return;
@@ -89,18 +106,17 @@ namespace ToolBox.Socket
 
             });
 
-           // 监听客户端请求的方法，线程
+            // 监听客户端请求的方法，线程
             Task.Run(() =>
             {
 
                 while (true)
                 {
-                  
+
                     System.Net.Sockets.Socket conn = socketWatch.Accept();
                     string socketip = conn.RemoteEndPoint.ToString();
-
-
-                    conn.Send(SocketTools.GetBytes("YouIP," + socketip));
+                 
+                    conn.Send(SocketTools.GetBytes("YouIP," + socketip, IsOpenDesEnc));
 
                     Thread thr = new Thread(RecMsg);
                     thr.IsBackground = true;
@@ -108,10 +124,9 @@ namespace ToolBox.Socket
 
                     string id;
 
-                    AddSocketClient(socketip, conn, thr,out id);
+                    AddSocketClient(socketip, conn, thr, out id);
 
-                  
-                    OnClientAdd?.Invoke(this,new SocketArgs (new ClientInfo() { ip= socketip ,id=id}));
+                    OnClientAdd?.Invoke(this, new SocketArgs(new ClientInfo() { ip = socketip, id = id }));
 
                 }
 
@@ -125,14 +140,6 @@ namespace ToolBox.Socket
 
 
 
-        /// <summary>
-        /// 写入输出信息
-        /// </summary>
-        /// <param name="msg"></param>
-        private void writeMsg(string msg)
-        {
-            OnMessage?.Invoke(msg);
-        }
 
 
         #region 接收信息
@@ -145,7 +152,7 @@ namespace ToolBox.Socket
         {
             int headSize = 4;
             byte[] surplusBuffer = null;
-            System.Net.Sockets.Socket  sokClient = socket as System.Net.Sockets.Socket;
+            System.Net.Sockets.Socket sokClient = socket as System.Net.Sockets.Socket;
             string socketip = sokClient.RemoteEndPoint.ToString();
 
             while (true)
@@ -209,8 +216,8 @@ namespace ToolBox.Socket
                             }
                             else
                             {
-                                string strc = Encoding.UTF8.GetString(surplusBuffer, haveRead + headSize, bodySize);
-                                
+                                string strc = Encoding.UTF8.GetString(surplusBuffer, haveRead + headSize, bodySize).StringDecrypt(IsOpenDesEnc);
+
                                 string[] ss = strc.Split(',');
 
                                 //心跳事件，更新客户端的最后登陆时间
@@ -228,14 +235,14 @@ namespace ToolBox.Socket
                                         {
 
                                             OnDebug?.Invoke($"Update timestamp：{SocketTools.GetTimeStamp()} -  ss[1].ToString()");
-                                          
+
                                             socketClient.lastTickTime = SocketTools.GetTimeStamp();
 
                                         }
                                     }
                                     catch (Exception ex)
                                     {
-                                        OnError?.Invoke($"Heartbeat error: {ex.ToString()}");                                 
+                                        OnError?.Invoke($"Heartbeat error: {ex.ToString()}");
                                     }
                                     finally
                                     {
@@ -265,7 +272,7 @@ namespace ToolBox.Socket
                 catch (Exception ex)
                 {
                     ReMoveSocketClient(socketip);
-                
+
                     //OnError?.Invoke($"Client thread error:{socketip} " );
                     break;
                 }

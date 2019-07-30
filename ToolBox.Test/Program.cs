@@ -22,7 +22,11 @@ namespace ToolBox.Test
 
             TcpServer tcpServer = new TcpServer();
 
-            tcpServer.StartServer(1985);
+            tcpServer.SetEncryptKey("5555");
+
+          
+
+
     
             Console.ReadKey();
         }

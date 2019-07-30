@@ -187,7 +187,7 @@ namespace ToolBox.Socket
                 {
                     if (SocketTools.IsSocketConnected(item.Value.socket))
                     {
-                        item.Value.socket.Send(SocketTools.GetBytes(msg));
+                        item.Value.socket.Send(SocketTools.GetBytes(msg,IsOpenDesEnc));
                     }
                     else
                     {
@@ -229,7 +229,7 @@ namespace ToolBox.Socket
                      ClientMode clientMode= dictsocket[ip.Trim()];
                     if (SocketTools.IsSocketConnected(clientMode.socket))
                     {
-                        clientMode.socket.Send(SocketTools.GetBytes(msg));
+                        clientMode.socket.Send(SocketTools.GetBytes(msg,IsOpenDesEnc));
                         isok = true;
                     }
                     else

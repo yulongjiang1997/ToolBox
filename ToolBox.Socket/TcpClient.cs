@@ -39,6 +39,12 @@ namespace ToolBox.Socket
         /// </summary>
         public int HeartbeatCheckInterval { get; set; } = 3000;
 
+
+        /// <summary>
+        ///  (是否打开des加密，默认是打开)Whether to open des encryption, open by default
+        /// </summary>
+        public bool IsOpenDesEnc { get; set; } = true;
+
         /// <summary>
         /// 开始连接服务器
         /// </summary>
@@ -101,6 +107,25 @@ namespace ToolBox.Socket
                 OnError?.Invoke(ex);    //报错的回调
             }
 
+
+        }
+
+
+
+        /// <summary>
+        /// Set key,the key is length must >=8 
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        public void SetEncryptKey(string key)
+        {
+
+            if (!SocketDesHelper.SetEncryptKey(key))
+            {
+
+                throw new Exception("The key is set incorrectly, the length is greater than or equal to 8, and cannot contain Chinese.");
+
+            }
 
         }
 
@@ -181,7 +206,7 @@ namespace ToolBox.Socket
                         else
                         {
 
-                            string strc = Encoding.UTF8.GetString(surplusBuffer, haveRead + headSize, bodySize);
+                            string strc = Encoding.UTF8.GetString(surplusBuffer, haveRead + headSize, bodySize).StringDecrypt(IsOpenDesEnc);
 
                             if (IsReceive == false)
                             {
@@ -247,11 +272,11 @@ namespace ToolBox.Socket
 
             if (mySocket.Connected)
             {
-                mySocket.Send(SocketTools.GetBytes(msg));
+                mySocket.Send(SocketTools.GetBytes(msg,IsOpenDesEnc));
             }
             else
             {
-                 OnMessage?.Invoke("没有跟服务器连接~");
+                 OnMessage?.Invoke("Not connected to the server~");
 
             }
         }
