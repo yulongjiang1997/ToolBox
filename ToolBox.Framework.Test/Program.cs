@@ -20,12 +20,18 @@ namespace ToolBox.Framework.Test
         {
 
             TcpClient tcpClient = new TcpClient();
-            tcpClient.StartConnect(1985);
+            tcpClient.IsOpenDesEnc = false;
+
+            tcpClient.SetEncryptKey("ddccbbaa");
+
+            tcpClient.StartConnect(1988);
 
             tcpClient.OnSuccess = (s) =>
             {
 
                 Console.WriteLine("成功");
+
+             //   tcpClient.SendMsg("4456465");
             };
 
             tcpClient.OnMessage = (s) =>
@@ -41,7 +47,17 @@ namespace ToolBox.Framework.Test
             };
 
 
-            Console.ReadLine();
+            while (true) {
+
+              string str=  Console.ReadLine();
+
+                tcpClient.SendMsg(str);
+
+
+            }
+
+
+     
             //wssv.Stop();
         }
 

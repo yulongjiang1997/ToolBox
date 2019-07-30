@@ -252,7 +252,9 @@ namespace ToolBox.Socket
                                 }
                                 else
                                 {
-                                    OnRecMessage?.Invoke(socketip, strc);
+
+                                    //   OnRecMessage?.Invoke(socketip, strc);
+                                    OnRecMessage?.Invoke(this, new SocketMsgArgs(new ClientRecInfo() { ip = socketip, msg = strc }));
                                 }
 
                                 haveRead = haveRead + headSize + bodySize;

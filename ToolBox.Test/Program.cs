@@ -21,14 +21,51 @@ namespace ToolBox.Test
 
 
             TcpServer tcpServer = new TcpServer();
+            tcpServer.IsOpenDesEnc = false;
+            tcpServer.SetEncryptKey("ddccbbaa");
 
-            tcpServer.SetEncryptKey("5555");
+            tcpServer.OnSuccess = (s) =>
+            {
+                if (s)
+                {
+                    Console.WriteLine("运行成功~");
+                }
+
+            };
+
+            
+
+            tcpServer.StartServer(1988);
+
+            tcpServer.OnRecMessage += TcpServer_OnRecMessage;
+   
+
+            tcpServer.OnClientAdd += TcpServer_OnClientAdd;
+
+            tcpServer.OnClientClose += TcpServer_OnClientClose;
 
           
 
 
     
             Console.ReadKey();
+        }
+
+        private static void TcpServer_OnRecMessage(object sender, SocketMsgArgs e)
+        {
+            Console.WriteLine($"接收到{e.clientRecInfo.ip} + {e.clientRecInfo.msg}");
+
+
+        }
+
+        private static void TcpServer_OnClientClose(object sender, SocketArgs e)
+        {
+            Console.WriteLine($"退出了{e.ClientInfo.id} + {e.ClientInfo.ip}");
+        }
+
+        private static void TcpServer_OnClientAdd(object sender, SocketArgs e)
+        {
+            Console.WriteLine($"添加了{e.ClientInfo.id} + {e.ClientInfo.ip}");
         }
 
         public enum test

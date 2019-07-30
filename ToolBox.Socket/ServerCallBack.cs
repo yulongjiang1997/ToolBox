@@ -45,6 +45,46 @@ namespace ToolBox.Socket
 
 
 
+    /// <summary>
+    /// SocketMsgArgs
+    /// </summary>
+    public class SocketMsgArgs : EventArgs
+    {
+     
+        public ClientRecInfo clientRecInfo { get; set; }
+
+        /// <summary>
+        /// /
+        /// </summary>
+        /// <param name="clientRecInfo"></param>
+        public SocketMsgArgs(ClientRecInfo clientRecInfo)
+        {
+
+            this.clientRecInfo = clientRecInfo;
+        }
+
+    }
+
+
+    /// <summary>
+    /// ClientRecInfo
+    /// </summary>
+    public class ClientRecInfo {
+
+        /// <summary>
+        /// ip
+        /// </summary>
+        public string ip { get; set; }
+
+        /// <summary>
+        /// msg
+        /// </summary>
+        public string msg { get; set; }
+
+    }
+
+
+
     public partial class TcpServer
     {
 
@@ -59,15 +99,21 @@ namespace ToolBox.Socket
         public Action<bool> OnSuccess { get; set; }
  
 
-        /// <summary>
-        /// 处理接收消息的回调函数
-        /// </summary>
-        public Action<string , string> OnRecMessage { get; set; }                     
+        ///// <summary>
+        ///// 处理接收消息的回调函数
+        ///// </summary>
+        //public Action<string , string> OnRecMessage { get; set; }                     
 
         /// <summary>
         /// 处理消息回调函数
         /// </summary>
-        public Action<string> OnMessage { get; set; }                                 
+        public Action<string> OnMessage { get; set; }
+
+
+        /// <summary>
+        /// 处理接收消息的回调函数
+        /// </summary>
+        public event EventHandler<SocketMsgArgs> OnRecMessage;
 
 
 
