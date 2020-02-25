@@ -4,6 +4,7 @@ using ToolBox.DateTimeTool;
 using ToolBox.Log;
 using System.Threading.Tasks;
 using ToolBox.Socket;
+using ToolBox.Phone;
 
 namespace ToolBox.Test
 {
@@ -20,34 +21,14 @@ namespace ToolBox.Test
             //Console.ReadKey();
 
 
-            TcpServer tcpServer = new TcpServer();
-            tcpServer.IsOpenDesEnc = false;
-            tcpServer.SetEncryptKey("ddccbbaa");
-
-            tcpServer.OnSuccess = (s) =>
-            {
-                if (s)
-                {
-                    Console.WriteLine("运行成功~");
-                }
-
-            };
-
-            
-
-            tcpServer.StartServer(1988);
-
-            tcpServer.OnRecMessage += TcpServer_OnRecMessage;
-   
-
-            tcpServer.OnClientAdd += TcpServer_OnClientAdd;
-
-            tcpServer.OnClientClose += TcpServer_OnClientClose;
-
-          
-
-
-    
+            Console.WriteLine(new PhoneModelNumberTool().ModelNumberToName("PCAM00"));
+            Console.WriteLine(new PhoneModelNumberTool().ModelNumberToName("Nokia X6"));
+            Console.WriteLine(new PhoneModelNumberTool().ModelNumberToName("TAS-AN00"));
+            Console.WriteLine(new PhoneModelNumberTool().ModelNumberToName("LIO-AN00"));
+            Console.WriteLine(new PhoneModelNumberTool().ModelNumberToName("TNY-AL00"));
+            Console.WriteLine(new PhoneModelNumberTool().ModelNumberToName("vivo X21A"));
+            Console.WriteLine(new PhoneModelNumberTool().ModelNumberToName("MI CC9 Pro Premium Edition"));
+            Console.WriteLine(new PhoneModelNumberTool().ModelNumberToName("WLZ-AL10"));
             Console.ReadKey();
         }
 

@@ -3,11 +3,7 @@
 namespace ToolBox.DateTimeTool
 {
     public static class DateTimeExtend
-    {
-
-
-      
-
+    { 
         /// <summary>
         /// 获取本日开始时间（0点0分0秒）
         /// </summary>
@@ -19,7 +15,7 @@ namespace ToolBox.DateTimeTool
         }
 
         /// <summary>
-        /// 获取本日结束时间（23点59分59秒）
+        /// 获取本日结束时间（23点59分59秒999毫秒）
         /// </summary>
         /// <param name="dateTime"></param>
         /// <returns></returns>

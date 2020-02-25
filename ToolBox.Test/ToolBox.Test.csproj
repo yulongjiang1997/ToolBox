@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ToolBox.Log\ToolBox.Log.csproj" />
+    <ProjectReference Include="..\ToolBox.Phone\ToolBox.Phone.csproj" />
     <ProjectReference Include="..\ToolBox.Socket\ToolBox.Socket.csproj" />
   </ItemGroup>
 

@@ -1,0 +1,230 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ToolBox.DateTimeTool</name>
+    </assembly>
+    <members>
+        <member name="M:ToolBox.DateTimeTool.DateTimeExtend.GetDayStart(System.DateTime)">
+            <summary>
+            获取本日开始时间（0点0分0秒）
+            </summary>
+            <param name="dateTime"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ToolBox.DateTimeTool.DateTimeExtend.GetDayEnd(System.DateTime)">
+            <summary>
+            获取本日结束时间（23点59分59秒999毫秒）
+            </summary>
+            <param name="dateTime"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ToolBox.DateTimeTool.DateTimeExtend.GetWeekStart(System.DateTime)">
+            <summary>
+            获取本周开始时间
+            </summary>
+            <param name="dateTime"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ToolBox.DateTimeTool.DateTimeExtend.GetWeekEnd(System.DateTime)">
+            <summary>
+            获取本周结束时间
+            </summary>
+            <param name="dateTime"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ToolBox.DateTimeTool.DateTimeExtend.GetMonthStart(System.DateTime)">
+            <summary>
+            获取本月开始时间
+            </summary>
+            <param name="dateTime"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ToolBox.DateTimeTool.DateTimeExtend.GetMonthEnd(System.DateTime)">
+            <summary>
+            获取本月结束时间
+            </summary>
+            <param name="dateTime"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ToolBox.DateTimeTool.DateTimeExtend.GetSeasonStart(System.DateTime)">
+            <summary>
+            获取本季度开始时间
+            </summary>
+            <param name="dateTime"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ToolBox.DateTimeTool.DateTimeExtend.GetSeasonEnd(System.DateTime)">
+            <summary>
+            获取本季度结束时间
+            </summary>
+            <param name="dateTime"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ToolBox.DateTimeTool.DateTimeExtend.GetYearStart(System.DateTime)">
+            <summary>
+            获取本年开始时间
+            </summary>
+            <param name="dateTime"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ToolBox.DateTimeTool.DateTimeExtend.GetYearEnd(System.DateTime)">
+            <summary>
+            获取本年结束时间
+            </summary>
+            <param name="dateTime"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ToolBox.DateTimeTool.DateTimeExtend.BeijingTimeToUnixTimeStamp10(System.DateTime)">
+            <summary>
+            北京时间转换成unix时间戳(10位/秒)
+            </summary>
+            <param name="dateTime"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ToolBox.DateTimeTool.DateTimeExtend.UtcTimeToUnixTimeStamp10(System.DateTime)">
+            <summary>
+            格林威治时间转换成unix时间戳(10位/秒)
+            </summary>
+            <param name="dateTime"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ToolBox.DateTimeTool.DateTimeExtend.BeijingTimeToUnixTimeStamp13(System.DateTime)">
+            <summary>
+            北京时间转换成unix时间戳(13位/毫秒)
+            </summary>
+            <param name="dateTime"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ToolBox.DateTimeTool.DateTimeExtend.UtcTimeToUnixTimeStamp13(System.DateTime)">
+            <summary>
+            格林威治时间转换成unix时间戳(13位/毫秒)
+            </summary>
+            <param name="dateTime"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ToolBox.DateTimeTool.DateTimeExtend.UnixTimeStamp10ToBeijingTime(System.Int64)">
+            <summary>
+            10位unix时间戳转换成北京时间
+            </summary>
+            <param name="dateTime"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ToolBox.DateTimeTool.DateTimeExtend.UnixTimeStamp10ToUtcTime(System.Int64)">
+            <summary>
+            10位unix时间戳转换成格林威治
+            </summary>
+            <param name="dateTime"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ToolBox.DateTimeTool.DateTimeExtend.UnixTimeStamp13ToBeijingTime(System.Int64)">
+            <summary>
+            13位unix时间戳转换成北京时间
+            </summary>
+            <param name="dateTime"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ToolBox.DateTimeTool.DateTimeExtend.UnixTimeStamp13ToUtcTime(System.Int64)">
+            <summary>
+            13位unix时间戳转换成格林威治
+            </summary>
+            <param name="dateTime"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ToolBox.DateTimeTool.DateTimeExtend.GetFirstWeekDayOfMonth(System.DateTime,System.DayOfWeek)">
+            <summary>
+            当前日期所在月份第一个指定星期几的日期
+            </summary>
+            <param name="date">给定日期</param>
+            <param name="dayOfWeek">星期几</param>
+            <returns>所对应的日期</returns>
+        </member>
+        <member name="M:ToolBox.DateTimeTool.DateTimeExtend.GetLastWeekDayOfMonth(System.DateTime,System.DayOfWeek)">
+            <summary>
+            当前日期所在月份最后1个指定星期几的日期
+            </summary>
+            <param name="date">给定日期</param>
+            <param name="dayOfWeek">星期几</param>
+            <returns>所对应的日期</returns>
+        </member>
+        <member name="M:ToolBox.DateTimeTool.DateTimeExtend.IsBefore(System.DateTime,System.DateTime)">
+            <summary>
+            判断是否比指定之间早
+            </summary>
+            <param name="date"></param>
+            <param name="other"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ToolBox.DateTimeTool.DateTimeExtend.IsAfter(System.DateTime,System.DateTime)">
+            <summary>
+            判断是否比指定时间晚
+            </summary>
+            <param name="date"></param>
+            <param name="other"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ToolBox.DateTimeTool.DateTimeExtend.GetCountDaysOfMonth(System.DateTime)">
+            <summary>
+            给定日期所在月份共有多少天
+            </summary>
+            <param name="date"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ToolBox.DateTimeTool.DateTimeExtend.IsDateEqual(System.DateTime,System.DateTime)">
+            <summary>
+            当前日期与给定日期是否是同一天
+            </summary>
+            <param name="date">当前日期</param>
+            <param name="dateToCompare">给定日期</param>
+            <returns></returns>
+        </member>
+        <member name="M:ToolBox.DateTimeTool.DateTimeExtend.IsWeekend(System.DateTime)">
+            <summary>
+            是否是周未
+            </summary>
+            <param name="date"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ToolBox.DateTimeTool.DateTimeExtend.IsWeekDay(System.DateTime)">
+            <summary>
+            是否是工作日
+            </summary>
+            <param name="date"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ToolBox.DateTimeTool.DateTimeExtend.IsToday(System.DateTime)">
+            <summary>
+            判断是否为今天
+            </summary>
+            <param name="date"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ToolBox.DateTimeTool.DateTimeExtend.IsLeap(System.DateTime)">
+            <summary>
+            判定公历闰年遵循的一般规律为：四年一闰，百年不闰，四百年再闰。
+            公历闰年的精确计算方法：（按一回归年365天5小时48分45.5秒）
+            普通年能被4整除而不能被100整除的为闰年。 （如2004年就是闰年，1900年不是闰年）
+            世纪年能被400整除而不能被3200整除的为闰年。 (如2000年是闰年，3200年不是闰年)
+            对于数值很大的年份能整除3200,但同时又能整除172800则又是闰年。(如172800年是闰年，86400年不是闰年）
+            公元前闰年规则如下：
+            非整百年：年数除4余数为1是闰年，即公元前1、5、9……年；
+            整百年：年数除400余数为1是闰年，年数除3200余数为1，不是闰年,年数除172800余1又为闰年，即公元前401、801……年。
+            </summary>
+            <param name="dateTime"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ToolBox.DateTimeTool.DateTimeExtend.GetDaysByYear(System.DateTime)">
+            <summary>
+            获取当前年天数
+            </summary>
+            <param name="dateTime"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ToolBox.DateTimeTool.DateTimeExtend.GetWeekCountByYear(System.DateTime)">
+            <summary>
+            获取当前年天数
+            </summary>
+            <param name="dateTime"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
