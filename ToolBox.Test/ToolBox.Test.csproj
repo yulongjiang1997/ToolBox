@@ -12,8 +12,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ToolBox.Log\ToolBox.Log.csproj" />
-    <ProjectReference Include="..\ToolBox.Phone\ToolBox.Phone.csproj" />
     <ProjectReference Include="..\ToolBox.Socket\ToolBox.Socket.csproj" />
+    <ProjectReference Include="..\ToolBox.UserAgentParse\ToolBox.UserAgentParse.csproj" />
   </ItemGroup>
 
 </Project>

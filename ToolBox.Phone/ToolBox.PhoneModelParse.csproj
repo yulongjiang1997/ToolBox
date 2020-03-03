@@ -3,9 +3,11 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Description>新增机型</Description>
+    <Description>更改包名</Description>
     <Authors>yulongjiang</Authors>
-    <Version>1.0.3</Version>
+    <Version>1.0.5</Version>
+    <AssemblyName>ToolBox.PhoneModelParse</AssemblyName>
+    <RootNamespace>ToolBox.PhoneModelParse</RootNamespace>
   </PropertyGroup>
 
 </Project>

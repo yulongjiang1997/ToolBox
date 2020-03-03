@@ -4,7 +4,8 @@ using ToolBox.DateTimeTool;
 using ToolBox.Log;
 using System.Threading.Tasks;
 using ToolBox.Socket;
-using ToolBox.Phone;
+using System.IO;
+using ToolBox.UserAgentParse;
 
 namespace ToolBox.Test
 {
@@ -12,23 +13,16 @@ namespace ToolBox.Test
     {
         static void Main(string[] args)
         {
-            //Console.WriteLine("Hello World!");
-
-            //Console.WriteLine(((long)1561815867).UnixTimeStamp10ToBeijingTime());
-            //Console.WriteLine(((long)1563073506).UnixTimeStamp10ToBeijingTime());
-            //string a = "";
-            //Console.WriteLine(a == "" ? "0" : a);
-            //Console.ReadKey();
-
-
-            Console.WriteLine(new PhoneModelNumberTool().ModelNumberToName("PCAM00"));
-            Console.WriteLine(new PhoneModelNumberTool().ModelNumberToName("Nokia X6"));
-            Console.WriteLine(new PhoneModelNumberTool().ModelNumberToName("TAS-AN00"));
-            Console.WriteLine(new PhoneModelNumberTool().ModelNumberToName("LIO-AN00"));
-            Console.WriteLine(new PhoneModelNumberTool().ModelNumberToName("TNY-AL00"));
-            Console.WriteLine(new PhoneModelNumberTool().ModelNumberToName("vivo X21A"));
-            Console.WriteLine(new PhoneModelNumberTool().ModelNumberToName("MI CC9 Pro Premium Edition"));
-            Console.WriteLine(new PhoneModelNumberTool().ModelNumberToName("WLZ-AL10"));
+            using (StreamReader sr = new StreamReader(@"C:\Users\Administrator\Desktop\tt.txt"))
+            {
+                var txt = sr.ReadLine();
+                while (!string.IsNullOrEmpty(txt))
+                {
+                    var ua = new UaUnit(txt).Parse();
+                    Console.WriteLine($"浏览器内核:{ua.BrowserKernel}--浏览器名称:{ua.BrowserName}--浏览器版本:{ua.BrowserVersion}--手机型号:{ua.PhoneModelName}--手机型号代码：{ua.PhoneModelCode}--平台：{ua.Platform}--操作系统：{ua.SystemName}--操作系统版本:{ua.SystemVersion}");
+                    txt = sr.ReadLine();
+                }
+            }
             Console.ReadKey();
         }
 

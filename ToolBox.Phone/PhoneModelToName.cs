@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-namespace ToolBox.Phone
+namespace ToolBox.PhoneModelParse
 {
     /// <summary>
     /// 手机型号工具
