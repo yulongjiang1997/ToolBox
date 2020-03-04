@@ -16,13 +16,15 @@ namespace ToolBox.Test
         {
             List<string> aa = new List<string>();
 
-            using (StreamReader sr = new StreamReader(@"C:\Users\Administrator\Desktop\111.txt"))
+            using (StreamReader sr = new StreamReader(@"C:\Users\Administrator\Desktop\tt.txt"))
             {
                 var txt = sr.ReadLine();
+                var count = 1;
                 while (!string.IsNullOrEmpty(txt))
                 {
                     var ua = new UaUnit(txt).Parse();
-                    aa.Add($"浏览器内核:{ua.BrowserKernel}--浏览器名称:{ua.BrowserName}--浏览器版本:{ua.BrowserVersion}\t--手机型号:{ua.PhoneModelName}\t--手机型号代码：{ua.PhoneModelCode}\t--平台：{ua.Platform}\t--操作系统：{ua.SystemName}\t--操作系统版本:{ua.SystemVersion}");
+                    Console.WriteLine($"{count}.浏览器内核:{ua.BrowserKernel}\r\n浏览器名称:{ua.BrowserName}\r\n浏览器版本:{ua.BrowserVersion}\r\n手机型号:{ua.PhoneModelName}\r\n手机型号代码：{ua.PhoneModelCode}\r\n平台：{ua.Platform}\r\n操作系统：{ua.SystemName}\r\n操作系统版本:{ua.SystemVersion}\r\n");
+                    count++;
                     txt = sr.ReadLine();
                 }
             }
