@@ -62,16 +62,17 @@ namespace ToolBox.UserAgentParse
         /// <returns></returns>
         private (string, string) GetBrowserName()
         {
-            if (UaStr.Contains("LBBROWSER")) return ("猎豹浏览器", "");
+            if (UaStr.Contains("LBBROWSER")) return ("猎豹浏览器", GetVersion("LBBROWSER"));
             if (UaStr.Contains("Chromium")) return ("Chromium", GetVersion("Chromium"));
             if (UaStr.Contains("Opera")) return ("欧朋浏览器", GetVersion("Opera"));
             if (UaStr.Contains("OPR")) return ("欧朋浏览器", GetVersion("OPR"));
             if (UaStr.Contains("Firefox")) return ("火狐浏览器", GetVersion("Firefox"));
+            if (UaStr.Contains("UCBrowser")) return ("UC浏览器", GetVersion("UCBrowser"));
             if (UaStr.Contains("SeaMonkey")) return ("SeaMonkey", GetVersion("SeaMonkey"));
             if (UaStr.Contains("MicroMessenger")) return ("微信浏览器", GetVersion("MicroMessenger"));
-            if (UaStr.Contains("QQBrowser")) return ("QQ浏览器", "QQBrowser");
-            if (UaStr.Contains("MiuiBrowser")) return ("小米浏览器", "MiuiBrowser");
-            if (UaStr.Contains("baiduboxapp")) return ("手机百度APP浏览器", "baiduboxapp");
+            if (UaStr.Contains("QQBrowser")) return ("QQ浏览器", GetVersion("QQBrowser"));
+            if (UaStr.Contains("MiuiBrowser")) return ("小米浏览器", GetVersion("MiuiBrowser"));
+            if (UaStr.Contains("baiduboxapp")) return ("手机百度APP浏览器", GetVersion("baiduboxapp"));
             if (UaStr.Contains("360SE")) return ("360浏览器", GetVersion("360SE"));
             if (UaStr.Contains("360EE")) return ("360浏览器", GetVersion("360EE"));
             if (UaStr.Contains("weibo")) return ("新浪微博浏览器", GetVersion("__weibo__"));
@@ -159,10 +160,10 @@ namespace ToolBox.UserAgentParse
         /// <returns></returns>
         private string GetBrowserKernel()
         {
-            if (UaStr.Contains("Trident")) return "Trident";
             if (UaStr.Contains("Presto")) return "Presto";
             if (UaStr.Contains("WebKit")) return "Webkit";
             if (UaStr.Contains("Blink")) return "Blink"; 
+            if (UaStr.Contains("Trident")) return "Trident";
             if (UaStr.Contains("Gecko")) return "Gecko";
             return "";
         }

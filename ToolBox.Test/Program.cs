@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using ToolBox.Socket;
 using System.IO;
 using ToolBox.UserAgentParse;
+using System.Collections.Generic;
 
 namespace ToolBox.Test
 {
@@ -13,16 +14,26 @@ namespace ToolBox.Test
     {
         static void Main(string[] args)
         {
-            using (StreamReader sr = new StreamReader(@"C:\Users\Administrator\Desktop\tt.txt"))
+            List<string> aa = new List<string>();
+
+            using (StreamReader sr = new StreamReader(@"C:\Users\Administrator\Desktop\111.txt"))
             {
                 var txt = sr.ReadLine();
                 while (!string.IsNullOrEmpty(txt))
                 {
                     var ua = new UaUnit(txt).Parse();
-                    Console.WriteLine($"浏览器内核:{ua.BrowserKernel}--浏览器名称:{ua.BrowserName}--浏览器版本:{ua.BrowserVersion}--手机型号:{ua.PhoneModelName}--手机型号代码：{ua.PhoneModelCode}--平台：{ua.Platform}--操作系统：{ua.SystemName}--操作系统版本:{ua.SystemVersion}");
+                    aa.Add($"浏览器内核:{ua.BrowserKernel}--浏览器名称:{ua.BrowserName}--浏览器版本:{ua.BrowserVersion}\t--手机型号:{ua.PhoneModelName}\t--手机型号代码：{ua.PhoneModelCode}\t--平台：{ua.Platform}\t--操作系统：{ua.SystemName}\t--操作系统版本:{ua.SystemVersion}");
                     txt = sr.ReadLine();
                 }
             }
+            using (StreamWriter sw = new StreamWriter(@"C:\Users\Administrator\Desktop\tt1.txt"))
+            {
+                foreach (var item in aa)
+                {
+                    sw.WriteLine(item);
+                }
+            }
+            Console.WriteLine("wanshier");
             Console.ReadKey();
         }
 
